@@ -118,6 +118,15 @@ export default function FooterBar() {
           src={footerLogo}
           alt="footer logo"
         />
+        <Typography
+          sx={{
+            fontSize: body.defaultExtraLight,
+            marginTop: "20px",
+            color: palette.secondary,
+          }}
+        >
+          Showcasing AI’s artistic creativity
+        </Typography>
       </Box>
       <Box
         sx={{
@@ -145,16 +154,6 @@ export default function FooterBar() {
         >
           We are committed to delivering aesthetically appealing artworks,
           created by AI, for any and every room
-        </Typography>
-
-        <Typography
-          sx={{
-            fontSize: body.defaultNormal,
-            marginTop: "40px",
-            color: palette.secondary,
-          }}
-        >
-          Showcasing AI’s artistic creativity
         </Typography>
       </Box>
       <Box
