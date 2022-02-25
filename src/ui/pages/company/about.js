@@ -80,16 +80,16 @@ export default function AboutPage() {
             specializing in using artificial intelligence to generate unique
             artworks that bring life to any wall or room. Our artists are not
             humans, rather they are advanced AI systems that can create
-            beautiful art peices from a short simple description. <br />
+            beautiful art pieces from a short simple description. <br />
             <br />
-            King Tony Art was started by Caleb Tony, after stummbling on the
+            King Tony Art was started by Caleb Tony, after stumbling on the
             VQGAN+CLIP model while doing preparing for an AI side project. After
-            weeks of testing and perfecting the art of “promp-based” image
+            weeks of testing and perfecting the art of “prompt-based” image
             generation on the model, he decided it would an injustice keep such
             artistic creativity to himself and opted to instead to showcase
             these beauties to the world. <br />
             <br />
-            We exisist to showcase AI’s creativity to the world, through canvas
+            We exists to showcase AI’s creativity to the world, through canvas
             art, one wall at a time.
           </Typography>
           <Typography
@@ -111,17 +111,17 @@ export default function AboutPage() {
               textAlign: "start",
             }}
           >
-            We want more of the world to know and interact with Artifical
-            Intelligence because we belive its the future. AI has been
-            expontially growing in the couple of years and can do so much more
+            We want more of the world to know and interact with Artificial
+            Intelligence because we believe its the future. AI has been
+            exponentially growing in the couple of years and can do so much more
             that just create art master pieces, but there is a way to go before
-            it is adopted and interated to everyday life.
+            it is adopted and interacted to everyday life.
             <br />
             <br />
             Caleb Tony, sees this as a necessary first step to bring AI into
             everyday conversations. Hopefully, through this people can not only
-            get familliar with the technology but get involved in exploring and
-            harnesing it’s true potential
+            get familiar with the technology but get involved in exploring and
+            harnessing it’s true potential
           </Typography>
         </Box>
       </Box>
