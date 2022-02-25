@@ -95,7 +95,7 @@ export default function FooterBar() {
         justifyContent: "space-around",
         flexWrap: "nowrap",
         padding: "20px 50px",
-        position: { xs: "static", md: "fixed" },
+        position: "static",
         bottom: 0,
       }}
     >
