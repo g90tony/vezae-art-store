@@ -55,6 +55,21 @@ export const headingTypographyStyles = {
 };
 
 export const bodyTypographyStyles = {
+  extraLargeLight: {
+    fontFamily: "'Red Rose', cursive",
+    fontSize: "18px",
+    fontWeight: 400,
+  },
+  extraLargeNormal: {
+    fontFamily: "'Red Rose', cursive",
+    fontSize: "18px",
+    fontWeight: 500,
+  },
+  extraLargeBold: {
+    fontFamily: "'Red Rose', cursive",
+    fontSize: "18px",
+    fontWeight: 700,
+  },
   largeLight: {
     fontFamily: "'Red Rose', cursive",
     fontSize: "16px",
