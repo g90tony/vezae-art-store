@@ -15,6 +15,7 @@ import ShopFilteredProductsPage from "./ui/pages/shop/filteredProducts";
 import ShopFilteredCollectionsPage from "./ui/pages/shop/filteredCollections";
 import GalleryPage from "./ui/pages/company/gallery";
 import FooterBar from "./ui/modules/global/footer";
+import ScrollToTop from "./helpers/scrollToTop";
 function App() {
   return (
     <Grid
@@ -29,6 +30,7 @@ function App() {
       }}
     >
       <Router>
+        <ScrollToTop />
         <NavBar />
         <Grid container sx={{ marginTop: "100px", padding: "20px" }}>
           <Routes>
