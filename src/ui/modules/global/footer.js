@@ -16,6 +16,26 @@ export default function FooterBar() {
       path: "/shop/collection/HorsesCollection",
       text: "Horses Collection",
     },
+    {
+      id: 2,
+      path: "/shop/collection/lifeOnWater",
+      text: "Life on Water Collection",
+    },
+    {
+      id: 3,
+      path: "/shop/collection/seasonsInFrance",
+      text: "Seasons in France Collection",
+    },
+    {
+      id: 3,
+      path: "/shop/collection/outInNature",
+      text: "Out in Nature Collection",
+    },
+    {
+      id: 4,
+      path: "/shop/collection/coupleActivities",
+      text: "Couple Activities Collection",
+    },
   ];
 
   const categories = [
@@ -134,7 +154,7 @@ export default function FooterBar() {
             color: palette.secondary,
           }}
         >
-          showcasing AI’s artistic creativity
+          Showcasing AI’s artistic creativity
         </Typography>
       </Box>
       <Box
@@ -204,7 +224,6 @@ export default function FooterBar() {
             display: "flex",
             flexDirection: "column",
             marginTop: "20px",
-            padding: "5px 10px",
           }}
         >
           {topCollections.map((collection) => {
