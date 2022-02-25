@@ -24,8 +24,9 @@ function App() {
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh",
-        width: "100vw",
+        width: "100%",
         margin: 0,
+        overFlowX: "hidden",
         backgroundColor: palette.accentLight,
       }}
     >

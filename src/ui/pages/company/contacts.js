@@ -15,9 +15,9 @@ export default function ContactsPage() {
       sx={{
         width: "100%",
         padding: "20px",
-        margin: "0 20px",
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
       }}
     >
       <Box
@@ -29,7 +29,7 @@ export default function ContactsPage() {
       >
         <Box
           sx={{
-            width: { xs: "100%", lg: "50%" },
+            width: { xs: "100%", lg: "30%" },
             display: { xs: "none", lg: "flex" },
             position: "relative",
           }}
@@ -37,8 +37,7 @@ export default function ContactsPage() {
           <img
             src={logoWaterMark}
             style={{
-              width: "80%",
-              heigh: "fit-content",
+              width: "100%",
               objectFit: "contain",
             }}
             alt=""
