@@ -30,6 +30,12 @@ import { NavLink } from "react-router-dom";
 export default function NavBar() {
   const navLinks = [
     {
+      id: 5,
+      text: "Home",
+      path: "/",
+      hasChildren: false,
+    },
+    {
       id: 1,
       text: "Shop",
       hasChildren: true,
@@ -136,11 +142,37 @@ export default function NavBar() {
             style={{
               objectFit: "contain",
               width: "225px",
-              margin: "aut0 20px",
+              margin: " 20px auto",
             }}
             alt="nav_logo"
           />
         </NavLink>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <IconButton
+            sx={{
+              color: system_colors.primary,
+              width: "50%",
+              margin: "20px auto",
+            }}
+          >
+            <ShoppingCartIcon />
+          </IconButton>
+          <IconButton
+            sx={{
+              color: system_colors.primary,
+              width: "50%",
+              margin: "20px auto",
+            }}
+          >
+            <SearchIcon />
+          </IconButton>
+        </Box>
         <List>
           {navLinks.map((navLink) => {
             return !navLink.hasChildren ? (
@@ -237,33 +269,6 @@ export default function NavBar() {
             );
           })}
         </List>
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <IconButton
-            sx={{
-              color: system_colors.primary,
-              width: "50%",
-              margin: "20px auto",
-            }}
-          >
-            <ShoppingCartIcon />
-          </IconButton>
-          <IconButton
-            sx={{
-              color: system_colors.primary,
-              width: "50%",
-              margin: "20px auto",
-            }}
-          >
-            <SearchIcon />
-          </IconButton>
-        </Box>
       </Box>
     );
   }
@@ -281,10 +286,15 @@ export default function NavBar() {
         flexWrap: "nowrap",
         justifyContent: "space-between",
         alignItems: "center",
+        position: "fixed",
       }}
     >
       <Box
-        sx={{ padding: "10px", width: { xs: "100%", lg: "33.3%" } }}
+        sx={{
+          display: { xs: "none", lg: "flex" },
+          padding: "10px",
+          width: { xs: "100%", lg: "33.3%" },
+        }}
         component="div"
       >
         <NavLink
