@@ -28,7 +28,7 @@ export default function Error404Page() {
     return () => {
       clearTimeout(timer1);
     };
-  }, []);
+  }, [history]);
 
   return (
     <Grid
