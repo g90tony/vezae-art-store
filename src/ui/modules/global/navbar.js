@@ -91,7 +91,6 @@ export default function NavBar() {
   ];
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [drawerAnchor, setDrawerAnchor] = React.useState({ right: false });
   const [drawerState, setDrawerState] = React.useState(false);
   const [openDrawerSubMenu, setOpenDrawerSubMenu] = React.useState(false);
 
