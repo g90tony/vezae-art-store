@@ -23,8 +23,8 @@ export const marketingTypographyStyles = {
 
 export const headingTypographyStyles = {
   h1: {
-    fontFamily: "28px",
-    fontSize: "",
+    fontFamily: "'Playfair Display',serif",
+    fontSize: "28px",
     fontWeight: 800,
   },
   h2: {
