@@ -60,6 +60,11 @@ export const bodyTypographyStyles = {
     fontSize: "18px",
     fontWeight: 400,
   },
+  extraLargeExtraLight: {
+    fontFamily: "'Red Rose', cursive",
+    fontSize: "18px",
+    fontWeight: 200,
+  },
   extraLargeNormal: {
     fontFamily: "'Red Rose', cursive",
     fontSize: "18px",
@@ -75,6 +80,11 @@ export const bodyTypographyStyles = {
     fontSize: "16px",
     fontWeight: 400,
   },
+  largeExtraLight: {
+    fontFamily: "'Red Rose', cursive",
+    fontSize: "16px",
+    fontWeight: 200,
+  },
   largeNormal: {
     fontFamily: "'Red Rose', cursive",
     fontSize: "16px",
@@ -85,10 +95,15 @@ export const bodyTypographyStyles = {
     fontSize: "16px",
     fontWeight: 700,
   },
+  defaultExtraLight: {
+    fontFamily: "'Red Rose', cursive",
+    fontSize: "14px",
+    fontWeight: 200,
+  },
   defaultLight: {
     fontFamily: "'Red Rose', cursive",
     fontSize: "14px",
-    fontWeight: 804,
+    fontWeight: 800,
   },
   defaultNormal: {
     fontFamily: "'Red Rose', cursive",
@@ -104,6 +119,11 @@ export const bodyTypographyStyles = {
     fontFamily: "'Red Rose', cursive",
     fontSize: "12px",
     fontWeight: 400,
+  },
+  smallExtraLight: {
+    fontFamily: "'Red Rose', cursive",
+    fontSize: "12px",
+    fontWeight: 200,
   },
   smallNormal: {
     fontFamily: "'Red Rose', cursive",
