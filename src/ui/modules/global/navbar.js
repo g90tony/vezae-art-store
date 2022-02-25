@@ -286,6 +286,7 @@ export default function NavBar() {
         justifyContent: "space-between",
         alignItems: "center",
         position: "fixed",
+        zIndex: 300,
       }}
     >
       <Box
