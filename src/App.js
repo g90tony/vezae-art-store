@@ -18,17 +18,20 @@ function App() {
         flexDirection: "column",
         minHeight: "100vh",
         width: "100vw",
+        margin: 0,
         backgroundColor: palette.accentLight,
       }}
     >
       <Router>
         <NavBar />
-        <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route path="/about-us" element={<AboutPage />} />
-          <Route path="/contact-us" element={<ContactsPage />} />
-          <Route path="*" element={<Error404Page />} />
-        </Routes>
+        <Grid container sx={{ marginTop: "100px", padding: "20px" }}>
+          <Routes>
+            <Route exact path="/" element={<LandingPage />} />
+            <Route path="/about-us" element={<AboutPage />} />
+            <Route path="/contact-us" element={<ContactsPage />} />
+            <Route path="*" element={<Error404Page />} />
+          </Routes>
+        </Grid>
       </Router>
     </Grid>
   );
