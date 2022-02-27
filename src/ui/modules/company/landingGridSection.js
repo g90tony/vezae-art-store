@@ -205,8 +205,8 @@ export default function LandingGridSection() {
                 fontSize: body.largeBold,
                 textDecoration: "none",
                 height: "fit-content",
-                padding: "10px",
-                margin: "5px",
+                padding: "15px",
+                marginRight: "5px",
               }}
             >
               Visit Shop
@@ -219,8 +219,8 @@ export default function LandingGridSection() {
                 fontSize: body.largeBold,
                 textDecoration: "none",
                 height: "fit-content",
-                padding: "10px",
-                margin: "5px",
+                padding: "15px",
+                marginRight: "5px",
               }}
             >
               Visit Gallery

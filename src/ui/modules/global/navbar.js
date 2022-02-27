@@ -252,7 +252,7 @@ export default function NavBar() {
                                 sx={{
                                   textDecoration: "none",
                                   color: system_colors.primary,
-                                  fontSize: body.defaultNormal,
+                                  fontSize: body.smallBold,
                                 }}
                               >
                                 {child.text}
