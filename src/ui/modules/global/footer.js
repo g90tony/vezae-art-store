@@ -90,12 +90,13 @@ export default function FooterBar() {
       sx={{
         height: { xs: "auto", lg: "300px" },
         backgroundColor: palette.primary,
+        display: "flex",
+        // position: "absolute",
         width: "100vw",
         flexDirection: { xs: "column", md: "row" },
         justifyContent: "space-around",
         flexWrap: "nowrap",
         padding: "20px 50px",
-        position: "static",
         bottom: 0,
       }}
     >
