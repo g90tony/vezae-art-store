@@ -7,7 +7,7 @@ import {
   marketingTypographyStyles as marketing,
   bodyTypographyStyles as body,
 } from "../../../assets/styles/typography";
-import { palette, overlays } from "../../../assets/styles/colors";
+import { palette } from "../../../assets/styles/colors";
 import "../../../assets/styles/landingGridStyle.css";
 import { NavLink } from "react-router-dom";
 

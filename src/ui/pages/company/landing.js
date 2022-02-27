@@ -1,5 +1,11 @@
+import { Grid } from "@mui/material";
 import React from "react";
+import LandingGridSection from "../../modules/company/landingGridSection";
 
 export default function LandingPage() {
-  return <div>This is the landing page</div>;
+  return (
+    <Grid container sx={{ display: "flex", flexDisplay: "column" }}>
+      <LandingGridSection />
+    </Grid>
+  );
 }
