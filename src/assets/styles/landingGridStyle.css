@@ -1,0 +1,348 @@
+.landing-grid-hero {
+  grid-area: hero_text;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: auto;
+}
+
+.landing-grid-image-info {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 80%;
+  margin: auto;
+  width: 80%;
+  color: #fff;
+  padding: 20px;
+  z-index: 3;
+  transition: all 1500ms;
+  opacity: 0;
+}
+
+.landing-grid-image1:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image2:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image3:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image4:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image5:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image6:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image7:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image8:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image9:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image10:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image11:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image12:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image13:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image14:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image15:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image16:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image17:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.landing-grid-image18:hover .landing-grid-image-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: "fit-content";
+  transition: 1500ms;
+  opacity: 1;
+  transition-duration: 1500ms;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.landing-grid-image1 {
+  grid-area: thumbnail1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-grid-image2 {
+  grid-area: thumbnail2;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-grid-image3 {
+  grid-area: thumbnail3;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-grid-image4 {
+  grid-area: thumbnail4;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-grid-image5 {
+  grid-area: thumbnail5;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-grid-image6 {
+  grid-area: thumbnail6;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-grid-image7 {
+  grid-area: thumbnail7;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-grid-image8 {
+  grid-area: thumbnail8;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-grid-image9 {
+  grid-area: thumbnail9;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-grid-image10 {
+  grid-area: thumbnail10;
+  position: relative;
+  width: "100%";
+  height: "100%";
+}
+
+.landing-grid-image11 {
+  grid-area: thumbnail11;
+  position: relative;
+  width: "100%";
+  height: "100%";
+}
+
+.landing-grid-image12 {
+  grid-area: thumbnail12;
+  position: relative;
+  width: "100%";
+  height: "100%";
+}
+
+.landing-grid-image13 {
+  grid-area: thumbnail13;
+  position: relative;
+  width: "100%";
+  height: "100%";
+}
+
+.landing-grid-image14 {
+  grid-area: thumbnail14;
+  position: relative;
+  width: "100%";
+  height: "100%";
+}
+
+.landing-grid-image15 {
+  grid-area: thumbnail15;
+  position: relative;
+  width: "100%";
+  height: "100%";
+}
+
+.landing-grid-image16 {
+  grid-area: thumbnail16;
+  position: relative;
+  width: "100%";
+  height: "100%";
+}
+
+.landing-grid-image17 {
+  grid-area: thumbnail17;
+  position: relative;
+  width: "100%";
+  height: "100%";
+}
+
+.landing-grid-image18 {
+  grid-area: thumbnail18;
+  position: relative;
+  width: "100%";
+  height: "100%";
+}
