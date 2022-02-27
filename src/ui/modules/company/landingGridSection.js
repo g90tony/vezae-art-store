@@ -276,10 +276,13 @@ export default function LandingGridSection() {
       <Grid
         sx={{
           display: { xs: "flex", lg: "none" },
+          flexDirection: "column",
+          padding: "20px",
           width: "100%",
           height: "100%",
           margin: "auto",
         }}
+        maxWidth="md"
       >
         <Typography sx={{ fontSize: marketing.title, width: "100%" }}>
           Adding a splash of AI onto every wall
