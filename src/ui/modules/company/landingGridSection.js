@@ -253,7 +253,7 @@ export default function LandingGridSection() {
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: body.defaultlight,
+                    fontSize: body.defaultLight,
                     marginTop: "10px",
                     marginBottom: "15px",
                     textAlign: "center",
