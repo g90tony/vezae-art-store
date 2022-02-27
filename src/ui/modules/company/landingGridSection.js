@@ -183,6 +183,7 @@ export default function LandingGridSection() {
               fontSize: body.extraLargeExtraLight,
               width: "70%",
               textAlign: "start",
+              marginTop: "10px",
             }}
           >
             We are committed to delivering aesthetically appealing artworks,
@@ -193,6 +194,7 @@ export default function LandingGridSection() {
               display: "flex",
               flexDirection: "row",
               justifyContent: "flex-start",
+              marginTop: "10px",
               width: "100%",
               flexWrap: "nowrap",
             }}
@@ -207,6 +209,7 @@ export default function LandingGridSection() {
                 height: "fit-content",
                 padding: "15px",
                 marginRight: "5px",
+                fontWeight: 900,
               }}
             >
               Visit Shop
@@ -221,6 +224,7 @@ export default function LandingGridSection() {
                 height: "fit-content",
                 padding: "15px",
                 marginRight: "5px",
+                fontWeight: 900,
               }}
             >
               Visit Gallery
@@ -243,15 +247,19 @@ export default function LandingGridSection() {
               />
               <div className="landing-grid-image-info">
                 <Typography
-                  sx={{ fontSize: body.defaultLight, textAlign: "start" }}
+                  sx={{ fontSize: body.largeBold, textAlign: "center" }}
                 >
                   {image.title}
                 </Typography>
-                <Typography sx={{ fontSize: body.smallExtraLight }}>
-                  {image.description}
-                </Typography>
-                <Typography sx={{ fontSize: body.smallNormal }}>
-                  {image.description}
+                <Typography
+                  sx={{
+                    fontSize: body.defaultlight,
+                    marginTop: "10px",
+                    marginBottom: "15px",
+                    textAlign: "center",
+                  }}
+                >
+                  {image.price}
                 </Typography>
                 <NavLink
                   to={image.path}
@@ -263,9 +271,10 @@ export default function LandingGridSection() {
                     textAlign: "center",
                     padding: "5px",
                     marginTop: "5px",
+                    fontWeight: 900,
                   }}
                 >
-                  View
+                  View Piece
                 </NavLink>
               </div>
             </div>
