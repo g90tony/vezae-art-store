@@ -3,8 +3,6 @@ import React from "react";
 
 import LandingCollectionSection from "../../modules/company/landingCollectionSection";
 import LandingGridSection from "../../modules/company/landingGridSection";
-import NewestCollectionSection from "../../modules/company/newestCollectoinSection";
-import PopularCollectionSection from "../../modules/company/popularCollectionSection";
 
 export default function LandingPage() {
   const featuredCollection = {
