@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import FilterProductsCard from "../../modules/shop/filterProductsCard";
+import ProductsSearchBar from "../../modules/shop/productsSearchBar";
 
 export default function ShopAllProductsPage() {
   return (
@@ -9,19 +10,20 @@ export default function ShopAllProductsPage() {
       container
       sx={{
         display: "flex",
-        flexDirection: "row",
-        flexWrap: "nowrap",
+        flexDirection: { xs: "column", lg: "row" },
+        flexWrap: { xs: "wrap", lg: "nowrap" },
         minHeight: "100vh",
         width: "100%",
+        marginTop: "20px",
       }}
     >
       <Box
         sx={{
           width: { xs: "100%", lg: "25%" },
-          height: "100%",
           display: "flex",
-          flexDirection: "columns",
+          flexDirection: "column",
           justifyContent: "flex-start",
+          alignItems: "center",
         }}
       >
         <FilterProductsCard />
@@ -29,12 +31,14 @@ export default function ShopAllProductsPage() {
       <Box
         sx={{
           width: { xs: "100%", lg: "75%" },
-          height: "100%",
           display: "flex",
-          flexDirection: "columns",
+          flexDirection: "column",
           justifyContent: "flex-start",
+          alignItems: "center",
         }}
-      ></Box>
+      >
+        <ProductsSearchBar />
+      </Box>
     </Grid>
   );
 }
