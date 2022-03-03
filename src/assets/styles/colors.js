@@ -10,3 +10,7 @@ export const overlays = {
   medium: "RGBA(0,0,0,0.5)",
   dark: "RGBA(0,0,0,0.75)",
 };
+
+export const message = {
+  warning: "#DD000D",
+};
