@@ -49,6 +49,8 @@ export function FilterApply([
   selectedCollections,
   selectedArtTypes,
   selectedCanvasSize,
+  newPriceRange,
+  priceUpdated,
 ]) {
   if (!selectedCollections && !selectedArtTypes && !selectedCanvasSize) {
     alert("Filters are empty");
