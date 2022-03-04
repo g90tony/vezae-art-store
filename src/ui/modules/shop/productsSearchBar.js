@@ -1,14 +1,16 @@
 import {
+  Breadcrumbs,
   FormControl,
   Grid,
   InputLabel,
+  Link,
   MenuItem,
   Select,
   TextField,
-  Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import { palette } from "../../../assets/styles/colors";
 
 import { headingTypographyStyles } from "../../../assets/styles/typography";
 
@@ -22,7 +24,7 @@ const OrderOptions = [
 
 export default function ProductsSearchBar() {
   const [sort, setSort] = React.useState("most_recent");
-  const [size, setSize] = React.useState("medium");
+  const [size, setSize] = React.useState("small");
 
   function handleChange(e) {
     setSort(e.target.value);
@@ -51,15 +53,35 @@ export default function ProductsSearchBar() {
           width: "auto",
         }}
       >
-        <Typography
+        <Breadcrumbs
+          aria-label="breadcrumb"
           sx={{
+            color: palette.primary,
             fontSize: headingTypographyStyles.h4,
-            textAlign: "start",
-            margin: "auto 10px",
+            marginLeft: "10px",
           }}
         >
-          All Pieces
-        </Typography>
+          <Link
+            underline="hover"
+            sx={{
+              color: palette.primary,
+              fontSize: headingTypographyStyles.h4,
+            }}
+            href="/"
+          >
+            Shop
+          </Link>
+          <Link
+            underline="hover"
+            sx={{
+              color: palette.primary,
+              fontSize: headingTypographyStyles.h5,
+            }}
+            href="/shop/allPieces"
+          >
+            All Pieces
+          </Link>
+        </Breadcrumbs>
       </Box>
       <Box
         sx={{
@@ -71,9 +93,9 @@ export default function ProductsSearchBar() {
       >
         <TextField
           size={size}
-          id="productSearchInput"
+          id="pieceSearchInput"
           variant="outlined"
-          label="Search Products"
+          label="Search Pieces"
           sx={{
             width: { xs: "80%", lg: "250px" },
             margin: { xs: "10px auto", lg: "10px" },
@@ -84,17 +106,6 @@ export default function ProductsSearchBar() {
             width: {
               xs: "80%",
               lg: "250px",
-            },
-
-            "& .root": {
-              xs: () => {
-                setSize("small");
-                return "80%";
-              },
-              lg: () => {
-                setSize("medium");
-                return "250px";
-              },
             },
             margin: { xs: "10px auto", lg: "10px" },
           }}
