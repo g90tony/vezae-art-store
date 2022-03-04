@@ -14,7 +14,8 @@ export default function ShopAllProductsPage() {
         flexWrap: { xs: "wrap", lg: "nowrap" },
         minHeight: "100vh",
         width: "100%",
-        marginTop: "20px",
+        marginTop: "10px",
+        padding: "20px",
       }}
     >
       <Box
