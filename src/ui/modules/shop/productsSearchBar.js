@@ -1,5 +1,4 @@
 import {
-  Autocomplete,
   FormControl,
   Grid,
   InputLabel,
@@ -10,11 +9,20 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { palette } from "../../../assets/styles/colors";
+
 import { headingTypographyStyles } from "../../../assets/styles/typography";
 
+const OrderOptions = [
+  { text: "Most Recent", value: "most_recent" },
+  { text: "Alphabetic Ascending", value: "alpha_asc" },
+  { text: "Alphabetic Descending", value: "alpha_dsc" },
+  { text: "Price Ascending", value: "price_asc" },
+  { text: "Price Descend", value: "price_dsc" },
+];
+
 export default function ProductsSearchBar() {
-  const [sort, setSort] = React.useState("Most Recent");
+  const [sort, setSort] = React.useState("most_recent");
+  const [size, setSize] = React.useState("medium");
 
   function handleChange(e) {
     setSort(e.target.value);
@@ -25,12 +33,13 @@ export default function ProductsSearchBar() {
       container
       sx={{
         backgroundColor: "#fff",
-        width: { xs: "100%", lg: "90%" },
+        width: "100%",
         display: "flex",
-        flexDirection: { xs: "column", lg: "column" },
-        justifyContent: { xs: "flex-start", lg: "space-between" },
+        flexDirection: { xs: "column", lg: "row" },
+        flexWrap: "none",
+        justifyContent: { xs: "center", lg: "space-between" },
         alignItems: "center",
-        padding: "0 10px",
+        padding: "10px",
         margin: "10px auto",
       }}
     >
@@ -38,96 +47,82 @@ export default function ProductsSearchBar() {
         sx={{
           display: "flex",
           flexDirection: "row",
-          width: "100%",
-          alignItems: "flex-start",
-          padding: "10px",
+          justifyContent: "flex-start",
+          width: "auto",
         }}
       >
-        {/* <Box
+        <Typography
           sx={{
-            width: { xs: "100%", lg: "100%" },
-            marginTop: "10px",
-            flexDirection: "row",
+            fontSize: headingTypographyStyles.h4,
+            textAlign: "start",
+            margin: "auto 10px",
           }}
         >
-          <Typography
-            sx={{
-              fontSize: headingTypographyStyles.h4,
-              color: palette.primary,
-            }}
-          >
-            Search Bar
-          </Typography>
-        </Box> */}
-        <Box
+          All Pieces
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", lg: "row" },
+          justifyContent: { xs: "center", lg: "flex-end" },
+          width: { xs: "100%", lg: "auto" },
+        }}
+      >
+        <TextField
+          size={size}
+          id="productSearchInput"
+          variant="outlined"
+          label="Search Products"
           sx={{
-            display: "flex",
-            flexDirection: {
-              xs: "column",
-              lg: "row",
+            width: { xs: "80%", lg: "250px" },
+            margin: { xs: "10px auto", lg: "10px" },
+          }}
+        />
+        <FormControl
+          sx={{
+            width: {
+              xs: "80%",
+              lg: "250px",
             },
-            justifyContent: { xs: "flex-start", lg: "space-between" },
-            alignItems: "center",
-            padding: "10px",
-            width: "100%",
-            margin: "0 auto",
+
+            "& .root": {
+              xs: () => {
+                setSize("small");
+                return "80%";
+              },
+              lg: () => {
+                setSize("medium");
+                return "250px";
+              },
+            },
+            margin: { xs: "10px auto", lg: "10px" },
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: { xs: "center", lg: "flex-start" },
-              justifyContent: "center",
-              padding: "10px",
-              width: { xs: "100%", lg: "100%" },
-            }}
-          >
-            <Autocomplete
-              id="free-solo-demo"
-              sx={{ width: { xs: "100%", lg: "80%" } }}
-              freeSolo
-              //   options={}
+          <InputLabel sx={{ width: "100%" }} id="orderSelectLabel">
+            Sort by
+          </InputLabel>
 
-              renderInput={(params) => (
-                <TextField {...params} label="Search Pieces" />
-              )}
-            />
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: { xs: "center", lg: "flex-end" },
-              padding: "10px",
-              width: { xs: "100%", lg: "100%" },
-            }}
+          <Select
+            size={size}
+            labelId="orderSelectLabel"
+            id="demo-simple-select"
+            value={sort}
+            label="sort by"
+            onChange={handleChange}
           >
-            <FormControl
-              sx={{
-                margin: "0px 10px",
-                padding: "10px",
-                width: { xs: "100%", lg: "80%" },
-              }}
-            >
-              <InputLabel sx={{ width: "100%" }} id="demo-simple-select-label">
-                Sort by
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={sort}
-                label="sort by"
-                sx={{ width: "100%" }}
-                onChange={handleChange}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-        </Box>
+            {OrderOptions.map((option) => {
+              return (
+                <MenuItem
+                  key={OrderOptions.indexOf(option)}
+                  value={option.value}
+                >
+                  {option.text}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
       </Box>
     </Grid>
   );
