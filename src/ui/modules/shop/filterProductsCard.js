@@ -35,7 +35,7 @@ import {
   FilterAction,
   FilterApply,
   FilterClear,
-} from "../../../helpers/data/filterHelpers";
+} from "../../../helpers/filterHelpers";
 
 export default function FilterProductsCard() {
   const [mobileFilter, setMobileFilter] = React.useState(false);
@@ -44,19 +44,16 @@ export default function FilterProductsCard() {
   const [collections, setCollections] = React.useState([]);
   const [canvasSizes, setCanvasSizes] = React.useState([]);
   const [artTypes, setArtTypes] = React.useState([]);
+  const [priceRange, setPriceRange] = React.useState([0, 10000]);
 
   // toggle states
   const [collectionsToggle, setCollectionToggle] = React.useState(false);
   const [priceToggle, setPriceToggle] = React.useState(false);
   const [canvasSizeToggle, setCanvasSizeToggle] = React.useState(false);
   const [artTypeToggle, setArtTypeToggle] = React.useState(false);
-
+  const [hasChanged, setHasChanged] = React.useState();
   // selected filter items in
   const [selectedCollections, setSelectedCollection] = React.useState([]);
-  const [priceRange, setPriceRange] = React.useState({
-    minPrice: 0,
-    maxPrice: 0,
-  });
   const [selectedCanvasSizes, setSelectedCanvasSizes] = React.useState([]);
   const [selectedArtTypes, setSelectedArtTypes] = React.useState([]);
 
@@ -99,7 +96,14 @@ export default function FilterProductsCard() {
   }, []);
 
   function handleApply() {
-    FilterApply(selectedCollections, selectedArtTypes, selectedCanvasSizes);
+    console.log(hasChanged);
+    FilterApply(
+      selectedCollections,
+      selectedArtTypes,
+      selectedCanvasSizes,
+      priceRange,
+      hasChanged
+    );
   }
 
   function handleClear() {
@@ -122,6 +126,12 @@ export default function FilterProductsCard() {
         filterStateUpdater: setCanvasSizes,
         selectedFiltersStateUpdater: setSelectedCanvasSizes,
       },
+      {
+        filterState: canvasSizes,
+        filterToggleUpdater: setCanvasSizeToggle,
+        filterStateUpdater: setCanvasSizes,
+        selectedFiltersStateUpdater: setSelectedCanvasSizes,
+      },
     ].forEach((filter) => {
       FilterClear(
         filter.filterState,
@@ -130,6 +140,28 @@ export default function FilterProductsCard() {
         filter.selectedFiltersStateUpdater
       );
     });
+
+    setPriceRange([0, 10000]);
+    setHasChanged(false);
+    setPriceToggle(false);
+  }
+
+  function updatePrice(event, newValue, activeThumb) {
+    if (hasChanged === false) {
+      setHasChanged(true);
+    }
+
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (activeThumb === 0) {
+      setPriceRange(newValue);
+    } else {
+      setPriceRange(newValue);
+    }
+
+    console.log(hasChanged);
   }
 
   return (
@@ -156,7 +188,7 @@ export default function FilterProductsCard() {
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
               justifyContent: "space-between",
               margin: "10px auto",
               width: "100%",
@@ -164,17 +196,38 @@ export default function FilterProductsCard() {
           >
             <ListSubheader
               component="div"
-              sx={{ fontSize: heading.h4, color: palette.primary }}
+              sx={{
+                fontSize: heading.h4,
+                color: palette.primary,
+                width: "100%",
+                textAlign: "center",
+              }}
               id="nested-list-subheader"
-              onClick={() => setMobileFilter(!mobileFilter)}
             >
               Filter Results
             </ListSubheader>
-
             <Button
-              size="small"
+              onClick={() => setMobileFilter(!mobileFilter)}
               sx={{
                 fontSize: body.smallBold,
+                width: "80%",
+                margin: "10px auto",
+                padding: "5px 7px",
+                backgroundColor: palette.primary,
+                color: palette.secondary,
+                "&:hover": {
+                  backgroundColor: palette.accentLight,
+                  color: palette.primary,
+                },
+              }}
+            >
+              {!mobileFilter ? "Open Filters" : "Close Filters"}
+            </Button>
+            <Button
+              sx={{
+                fontSize: body.smallBold,
+                width: "80%",
+                margin: "0 auto",
                 padding: "5px 7px",
                 backgroundColor: palette.accentDark,
                 color: palette.secondary,
@@ -204,7 +257,7 @@ export default function FilterProductsCard() {
           <ListItemButton
             sx={{
               backgroundColor: palette.accentLight,
-              margin: "10px 0px 0 0px",
+              margin: "10px 10px 0 10px",
               padding: "10px",
             }}
             onClick={() => setCollectionToggle(!collectionsToggle)}
@@ -214,8 +267,8 @@ export default function FilterProductsCard() {
               primary={
                 <Typography
                   sx={{
-                    padding: "10px",
-                    fontSize: body.extraLargeBold,
+                    padding: "5px 20px",
+                    fontSize: body.defaultBold,
                     fontWeight: 800,
                   }}
                 >
@@ -306,8 +359,8 @@ export default function FilterProductsCard() {
               primary={
                 <Typography
                   sx={{
-                    padding: "10px",
-                    fontSize: body.extraLargeBold,
+                    padding: "5px 20px",
+                    fontSize: body.defaultBold,
                     fontWeight: 800,
                   }}
                 >
@@ -397,8 +450,8 @@ export default function FilterProductsCard() {
               primary={
                 <Typography
                   sx={{
-                    padding: "10px",
-                    fontSize: body.extraLargeBold,
+                    padding: "5px 20px",
+                    fontSize: body.defaultBold,
                     fontWeight: 800,
                   }}
                 >
@@ -488,8 +541,8 @@ export default function FilterProductsCard() {
               primary={
                 <Typography
                   sx={{
-                    padding: "10px",
-                    fontSize: body.extraLargeBold,
+                    padding: "5px 20px",
+                    fontSize: body.defaultBold,
                     fontWeight: 800,
                   }}
                 >
@@ -528,13 +581,18 @@ export default function FilterProductsCard() {
                 backgroundColor: "#fff",
               }}
             >
-              <PriceSlider />
+              <PriceSlider
+                hasChanged={setHasChanged}
+                value={priceRange}
+                updatePrice={updatePrice}
+              />
             </Box>
           </Collapse>
           <Button
+            size="small"
             onClick={handleApply}
             sx={{
-              padding: "20px",
+              padding: "5px 20px",
               width: "100%",
               margin: "0 auto",
               fontWeight: 800,
@@ -547,23 +605,6 @@ export default function FilterProductsCard() {
             }}
           >
             Apply Filter
-          </Button>
-          <Button
-            onClick={handleClear}
-            sx={{
-              padding: "20px",
-              width: "100%",
-              margin: "5px auto",
-              fontWeight: 800,
-              "&:hover": {
-                backgroundColor: palette.secondary,
-                color: message.warning,
-              },
-              backgroundColor: message.warning,
-              color: palette.secondary,
-            }}
-          >
-            Clear Filters
           </Button>
         </Collapse>
       </List>
@@ -918,7 +959,11 @@ export default function FilterProductsCard() {
               alignItems: "center",
             }}
           >
-            <PriceSlider />
+            <PriceSlider
+              priceUpdated={updatePrice}
+              value={priceRange}
+              updatePrice={updatePrice}
+            />
           </Box>
         </Collapse>
         <Button
