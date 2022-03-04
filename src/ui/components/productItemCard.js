@@ -92,12 +92,12 @@ export default function ProductItemCard(props) {
         >
           <Typography
             sx={{
-              fontSize: headingTypographyStyles.h6,
+              fontSize: bodyTypographyStyles.largeLight,
               //   fontWeight: 800,
               textAlign: "start",
             }}
           >
-            {props.product.collectionName}
+            {"  " + props.product.collectionName}
           </Typography>
         </Box>
         <Box
