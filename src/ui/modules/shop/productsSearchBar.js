@@ -24,7 +24,6 @@ const OrderOptions = [
 
 export default function ProductsSearchBar() {
   const [sort, setSort] = React.useState("most_recent");
-  const [size, setSize] = React.useState("small");
 
   function handleChange(e) {
     setSort(e.target.value);
@@ -92,7 +91,7 @@ export default function ProductsSearchBar() {
         }}
       >
         <TextField
-          size={size}
+          size="small"
           id="pieceSearchInput"
           variant="outlined"
           label="Search Pieces"
@@ -115,7 +114,7 @@ export default function ProductsSearchBar() {
           </InputLabel>
 
           <Select
-            size={size}
+            size="small"
             labelId="orderSelectLabel"
             id="demo-simple-select"
             value={sort}
