@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid, Typography } from "@mui/material";
+import { Grid, Link, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 import {
@@ -8,8 +8,8 @@ import {
   bodyTypographyStyles as body,
 } from "../../../assets/styles/typography";
 import { palette } from "../../../assets/styles/colors";
-import "../../../assets/styles/landingGridStyle.css";
 import { NavLink } from "react-router-dom";
+import ProductGridItemCard from "../../components/productGridItemCard";
 
 export default function LandingGridSection() {
   const gridImages = [
@@ -19,7 +19,7 @@ export default function LandingGridSection() {
       title: "Test Image 1",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/1",
     },
     {
       id: "2",
@@ -27,7 +27,7 @@ export default function LandingGridSection() {
       title: "Test Image 2",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/2",
     },
     {
       id: "3",
@@ -35,7 +35,7 @@ export default function LandingGridSection() {
       title: "Test Image 3",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/3",
     },
     {
       id: "4",
@@ -43,7 +43,7 @@ export default function LandingGridSection() {
       title: "Test Image 4",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/4",
     },
     {
       id: "5",
@@ -51,7 +51,7 @@ export default function LandingGridSection() {
       title: "Test Image 5",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/5",
     },
     {
       id: "6",
@@ -59,7 +59,7 @@ export default function LandingGridSection() {
       title: "Test Image 6",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/6",
     },
     {
       id: "7",
@@ -67,7 +67,7 @@ export default function LandingGridSection() {
       title: "Test Image 7",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/7",
     },
     {
       id: "8",
@@ -75,7 +75,7 @@ export default function LandingGridSection() {
       title: "Test Image 8",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/8",
     },
     {
       id: "9",
@@ -83,7 +83,7 @@ export default function LandingGridSection() {
       title: "Test Image 9",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/9",
     },
     {
       id: "10",
@@ -91,7 +91,7 @@ export default function LandingGridSection() {
       title: "Test Image 10",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/10",
     },
     {
       id: "11",
@@ -99,7 +99,7 @@ export default function LandingGridSection() {
       title: "Test Image 11",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/11",
     },
     {
       id: "12",
@@ -107,7 +107,7 @@ export default function LandingGridSection() {
       title: "Test Image 12",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/12",
     },
     {
       id: "13",
@@ -115,7 +115,7 @@ export default function LandingGridSection() {
       title: "Test Image 13",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/13",
     },
     {
       id: "14",
@@ -123,7 +123,7 @@ export default function LandingGridSection() {
       title: "Test Image 14",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/14",
     },
     {
       id: "15",
@@ -131,7 +131,7 @@ export default function LandingGridSection() {
       title: "Test Image 15",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/15",
     },
     {
       id: "16",
@@ -139,7 +139,7 @@ export default function LandingGridSection() {
       title: "Test Image 16",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/16",
     },
     {
       id: "17",
@@ -147,7 +147,7 @@ export default function LandingGridSection() {
       title: "Test Image 17",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/17",
     },
     {
       id: "18",
@@ -155,7 +155,7 @@ export default function LandingGridSection() {
       title: "Test Image 18",
       description: "This is a test artwork, very beautiful for any page",
       price: "$23.95",
-      path: "/shop/about-us",
+      path: "/shop/pieces/view/18",
     },
   ];
 
@@ -233,52 +233,7 @@ export default function LandingGridSection() {
         </div>
 
         {gridImages.map((image) => {
-          return (
-            <div className={`landing-grid-image${image.id}`} key={image.id}>
-              <img
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "center",
-                }}
-                src={image.url}
-                alt={image.title}
-              />
-              <div className="landing-grid-image-info">
-                <Typography
-                  sx={{ fontSize: body.largeBold, textAlign: "center" }}
-                >
-                  {image.title}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: body.defaultLight,
-                    marginTop: "10px",
-                    marginBottom: "15px",
-                    textAlign: "center",
-                  }}
-                >
-                  {image.price}
-                </Typography>
-                <NavLink
-                  to={image.path}
-                  style={{
-                    backgroundColor: palette.secondary,
-                    color: palette.primary,
-                    fontSize: body.smallBold,
-                    textDecoration: "none",
-                    textAlign: "center",
-                    padding: "5px",
-                    marginTop: "5px",
-                    fontWeight: 900,
-                  }}
-                >
-                  View Piece
-                </NavLink>
-              </div>
-            </div>
-          );
+          return <ProductGridItemCard piece={image} />;
         })}
       </Grid>
 
@@ -309,11 +264,15 @@ export default function LandingGridSection() {
             flexWrap: "nowrap",
           }}
         >
-          <NavLink
-            to="/"
+          <Link
+            href="/"
             style={{
               backgroundColor: palette.primary,
               color: palette.secondary,
+              "& :hover": {
+                backgroundColor: palette.secondary,
+                color: palette.primary,
+              },
               fontSize: body.largeBold,
               textDecoration: "none",
               height: "fit-content",
@@ -322,7 +281,7 @@ export default function LandingGridSection() {
             }}
           >
             Visit Shop
-          </NavLink>
+          </Link>
           <NavLink
             to="/gallery"
             style={{
