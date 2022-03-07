@@ -6,7 +6,7 @@ import ViewProductLayout from "../../layouts/viewProductLayout";
 import { dummyProductsData as dummyProducts } from "../../../helpers/data/dummyData";
 import ProductDetailsSection from "../../modules/shop/productDetailsSection";
 import ProductImageGrid from "../../modules/shop/productImageGrid";
-import ProductRelatedSection from "../../modules/shop/productRelatedSection";
+import RelatedSection from "../../modules/shop/relatedSection";
 
 export default function ShopViewProductPage(props) {
   let { id } = useParams();
@@ -63,9 +63,11 @@ export default function ShopViewProductPage(props) {
             />
           }
           child3={
-            <ProductRelatedSection
+            <RelatedSection
               related={relatedPieces}
               selectedSize={currentSize}
+              sectionHEader="Related Pieces"
+              itemButtonText="View Piece"
             />
           }
         />
