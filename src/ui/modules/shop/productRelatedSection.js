@@ -1,16 +1,14 @@
-import { Grid, Link, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-import { palette } from "../../../assets/styles/colors";
-import {
-  bodyTypographyStyles,
-  headingTypographyStyles,
-} from "../../../assets/styles/typography";
-import CollectionGridItem from "../../components/collectionGridItem";
-import ProductItemCard from "../../components/productItemCard";
+
+import { headingTypographyStyles } from "../../../assets/styles/typography";
+
 import RelatedProductItem from "../../components/relatedProductItem";
 
 export default function ProductRelatedSection(props) {
+  const [relatedItemWidth, setRelatedItemWidth] = React.useState("350px");
+
   return (
     <Grid
       container
@@ -39,9 +37,13 @@ export default function ProductRelatedSection(props) {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: { xs: "column", lg: "row" },
+          justifyContent: "center",
+          alignItems: "center",
           flexWrap: "nowrap",
-          //   width: "100%",
+          xs: () => setRelatedItemWidth("80%"),
+          lg: () => setRelatedItemWidth("350px"),
+          width: "100%",
           height: "100%",
           overflowX: "auto",
           margin: "10px auto",
@@ -52,7 +54,7 @@ export default function ProductRelatedSection(props) {
             <RelatedProductItem
               product={piece}
               selectedSize={props.selectedSize}
-              width="350px"
+              width={relatedItemWidth}
             />
           );
         })}
