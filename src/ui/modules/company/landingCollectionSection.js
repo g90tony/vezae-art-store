@@ -1,15 +1,13 @@
 import React from "react";
 
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 import {
   marketingTypographyStyles as marketing,
   bodyTypographyStyles as body,
-  headingTypographyStyles as heading,
 } from "../../../assets/styles/typography";
 import { palette } from "../../../assets/styles/colors";
-import { NavLink } from "react-router-dom";
 import CollectionGridItem from "../../components/collectionGridItem";
 
 export default function LandingCollectionSection(props) {
@@ -105,40 +103,54 @@ export default function LandingCollectionSection(props) {
               width: "100%",
             }}
           >
-            <NavLink
-              to="/"
-              style={{
+            <Button
+              href="/"
+              sx={{
+                "&:hover": {
+                  backgroundColor: props.darkBg
+                    ? palette.primary
+                    : palette.secondary,
+                  color: props.darkBg ? palette.secondary : palette.primary,
+                },
                 backgroundColor: props.darkBg
                   ? palette.secondary
                   : palette.primary,
+                color: props.darkBg ? palette.primary : palette.secondary,
                 padding: "10px",
                 textDecoration: "none",
-                color: props.darkBg ? palette.primary : palette.secondary,
                 fontWeight: 900,
                 fontSize: body.defaultBold,
                 margin: { xs: "20px", lg: "0 20px 0 0" },
+                borderRadius: 0,
                 width: { xs: "100%", lg: "fit-content" },
               }}
             >
               View Collection
-            </NavLink>
-            <NavLink
-              to="/"
-              style={{
+            </Button>
+            <Button
+              href="/"
+              sx={{
                 backgroundColor: props.darkBg
                   ? palette.secondary
                   : palette.primary,
+                "&:hover": {
+                  backgroundColor: props.darkBg
+                    ? palette.primary
+                    : palette.secondary,
+                  color: props.darkBg ? palette.secondary : palette.primary,
+                },
+                color: props.darkBg ? palette.primary : palette.secondary,
                 padding: "10px",
                 textDecoration: "none",
-                color: props.darkBg ? palette.primary : palette.secondary,
                 fontWeight: 900,
                 fontSize: body.defaultBold,
                 margin: { xs: "20px ", lg: "0 20px 0 0" },
+                borderRadius: 0,
                 width: { xs: "100%", lg: "fit-content" },
               }}
             >
               Add to Cart
-            </NavLink>
+            </Button>
           </Box>
         </Box>
       </Box>
