@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import ViewLayout from "../../layouts/viewLayout";
+import ViewProductLayout from "../../layouts/viewProductLayout";
 
 import { dummyProductsData as dummyProducts } from "../../../helpers/data/dummyData";
 import ProductDetailsSection from "../../modules/shop/productDetailsSection";
@@ -52,7 +52,7 @@ export default function ShopViewProductPage(props) {
   return (
     <>
       {currentPiece && (
-        <ViewLayout
+        <ViewProductLayout
           history={history}
           child1={<ProductImageGrid images={currentSizeImages} />}
           child2={
