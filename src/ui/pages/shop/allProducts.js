@@ -49,15 +49,17 @@ export default function ShopAllProductsPage() {
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
-            justifyContent: "center",
+            justifyContent: { xs: "center", lg: "start" },
             alignItems: "flex-start",
+            width: "100%",
             padding: "10px",
+            margin: "0 auto",
           }}
         >
           {dummyProducts.map((product) => {
             return (
               <React.Fragment key={product.id}>
-                <ProductItemCard product={product} />
+                <ProductItemCard product={product} width={350} />
               </React.Fragment>
             );
           })}
