@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid, Link, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 import {
@@ -8,7 +8,6 @@ import {
   bodyTypographyStyles as body,
 } from "../../../assets/styles/typography";
 import { palette } from "../../../assets/styles/colors";
-import { NavLink } from "react-router-dom";
 import ProductGridItemCard from "../../components/productGridItemCard";
 
 export default function LandingGridSection() {
@@ -199,36 +198,48 @@ export default function LandingGridSection() {
               flexWrap: "nowrap",
             }}
           >
-            <NavLink
-              to="/"
-              style={{
+            <Button
+              href="/shop/pieces/all"
+              sx={{
                 backgroundColor: palette.primary,
                 color: palette.secondary,
+                "&:hover": {
+                  backgroundColor: palette.secondary,
+                  color: palette.primary,
+                  borderColor: palette.primary,
+                },
                 fontSize: body.largeBold,
                 textDecoration: "none",
                 height: "fit-content",
                 padding: "15px",
                 marginRight: "5px",
                 fontWeight: 900,
+                borderRadius: 0,
               }}
             >
               Visit Shop
-            </NavLink>
-            <NavLink
-              to="/gallery"
-              style={{
+            </Button>
+            <Button
+              href="/gallery"
+              sx={{
                 backgroundColor: palette.primary,
                 color: palette.secondary,
+                "&:hover": {
+                  backgroundColor: palette.secondary,
+                  color: palette.primary,
+                  borderColor: palette.primary,
+                },
                 fontSize: body.largeBold,
                 textDecoration: "none",
                 height: "fit-content",
                 padding: "15px",
                 marginRight: "5px",
                 fontWeight: 900,
+                borderRadius: 0,
               }}
             >
               Visit Gallery
-            </NavLink>
+            </Button>
           </Box>
         </div>
 
@@ -264,12 +275,12 @@ export default function LandingGridSection() {
             flexWrap: "nowrap",
           }}
         >
-          <Link
+          <Button
             href="/"
-            style={{
+            sx={{
               backgroundColor: palette.primary,
               color: palette.secondary,
-              "& :hover": {
+              "&:hover": {
                 backgroundColor: palette.secondary,
                 color: palette.primary,
               },
@@ -281,12 +292,16 @@ export default function LandingGridSection() {
             }}
           >
             Visit Shop
-          </Link>
-          <NavLink
-            to="/gallery"
-            style={{
+          </Button>
+          <Button
+            href="/gallery"
+            sx={{
               backgroundColor: palette.primary,
               color: palette.secondary,
+              "&:hover": {
+                backgroundColor: palette.secondary,
+                color: palette.primary,
+              },
               fontSize: body.largeBold,
               textDecoration: "none",
               height: "fit-content",
@@ -295,7 +310,7 @@ export default function LandingGridSection() {
             }}
           >
             Visit Gallery
-          </NavLink>
+          </Button>
         </Box>
       </Grid>
     </>
