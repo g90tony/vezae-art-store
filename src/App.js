@@ -11,7 +11,6 @@ import NavBar from "./ui/modules/global/navbar";
 import { palette } from "./assets/styles/colors";
 import ShopAllCollectionsPage from "./ui/pages/shop/allCollections";
 import ShopAllProductsPage from "./ui/pages/shop/allProducts";
-import ShopFilteredProductsPage from "./ui/pages/shop/filteredProducts";
 import ShopFilteredCollectionsPage from "./ui/pages/shop/filteredCollections";
 import GalleryPage from "./ui/pages/company/gallery";
 import FooterBar from "./ui/modules/global/footer";
