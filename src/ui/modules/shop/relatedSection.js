@@ -6,8 +6,16 @@ import { headingTypographyStyles } from "../../../assets/styles/typography";
 
 import RelatedProductItem from "../../components/relatedProductItem";
 
-export default function ProductRelatedSection(props) {
-  const [relatedItemWidth, setRelatedItemWidth] = React.useState("350px");
+export default function RelatedSection(props) {
+  const [relatedItemWidth, setRelatedItemWidth] = React.useState();
+
+  React.useEffect(() => {
+    setRelatedItemWidth("350px");
+
+    return () => {
+      setRelatedItemWidth();
+    };
+  }, []);
 
   return (
     <Grid
@@ -32,7 +40,7 @@ export default function ProductRelatedSection(props) {
           margin: "20px auto",
         }}
       >
-        Related Pieces
+        {props.sectionHeader}
       </Typography>
       <Box
         sx={{
@@ -50,11 +58,20 @@ export default function ProductRelatedSection(props) {
         }}
       >
         {props.related.map((piece) => {
-          return (
+          return props.itemButtonText === "View Collection" ? (
             <RelatedProductItem
+              key={piece.id}
+              product={piece}
+              width={relatedItemWidth}
+              buttonText={props.itemButtonText}
+            />
+          ) : (
+            <RelatedProductItem
+              key={piece.id}
               product={piece}
               selectedSize={props.selectedSize}
               width={relatedItemWidth}
+              buttonText={props.itemButtonText}
             />
           );
         })}
