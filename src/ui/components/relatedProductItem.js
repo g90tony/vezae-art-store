@@ -11,10 +11,10 @@ export default function RelatedProductItem(props) {
     <div
       className={`collection-grid-photo${props.product.id}`}
       style={{
-        padding: "20px",
+        padding: "10px",
         width: props.width,
         height: props.width,
-        margin: "auto 10px",
+        margin: props.width === "350px" ? "auto 10px" : "10px auto",
         position: "relative",
       }}
     >
