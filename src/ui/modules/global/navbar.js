@@ -37,16 +37,12 @@ export default function NavBar() {
     },
     {
       id: 1,
-      text: "Shop",
+      text: "Collections",
       hasChildren: true,
       children: [
         {
           text: "All Art Collections",
           path: "/shop/collections/all",
-        },
-        {
-          text: "All Art Pieces",
-          path: "/shop/pieces/all",
         },
 
         {
@@ -55,13 +51,24 @@ export default function NavBar() {
         },
 
         {
-          text: "Newest Art Pieces",
-          path: "/shop/pieces/latest",
+          text: "Trending Art Collections",
+          path: "/shop/collections/trending",
+        },
+      ],
+    },
+    {
+      id: 6,
+      text: "Pieces",
+      hasChildren: true,
+      children: [
+        {
+          text: "All Art Pieces",
+          path: "/shop/pieces/all",
         },
 
         {
-          text: "Trending Art Collections",
-          path: "/shop/collections/trending",
+          text: "Newest Art Pieces",
+          path: "/shop/pieces/latest",
         },
 
         {
@@ -78,13 +85,13 @@ export default function NavBar() {
     },
     {
       id: 3,
-      text: "About Us",
+      text: "About",
       path: "/about-us",
       hasChildren: false,
     },
     {
       id: 4,
-      text: "Contact Us",
+      text: "Contacts",
       path: "/contact-us",
       hasChildren: false,
     },
@@ -293,7 +300,7 @@ export default function NavBar() {
         sx={{
           display: { xs: "none", lg: "flex" },
           padding: "10px",
-          width: { xs: "100%", lg: "33.3%" },
+          width: { xs: "100%", lg: "100%%" },
         }}
         component="div"
       >
@@ -315,7 +322,8 @@ export default function NavBar() {
       <Box
         sx={{
           padding: "10px",
-          width: "33.3%",
+          width: "100%",
+          margin: "auto",
           display: { xs: "none", lg: "flex" },
           flexDirection: "row",
           flexWrap: "nowrap",
@@ -384,6 +392,7 @@ export default function NavBar() {
                         to={child.path}
                         style={{
                           textDecoration: "none",
+                          width: "100%",
                         }}
                       >
                         <Typography
@@ -408,7 +417,7 @@ export default function NavBar() {
       <Box
         sx={{
           padding: "10px",
-          width: { xs: "50%", lg: "33.3%" },
+          width: { xs: "50%", lg: "100%" },
           flexDirection: "row",
           display: { lg: "flex", xs: "none" },
           justifyContent: "flex-end",
