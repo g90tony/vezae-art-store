@@ -154,7 +154,7 @@ export default function CollectionItemCard(props) {
           }}
         >
           <Button
-            href={`/shop/pieces/view/${props.product.id}`}
+            href={`/shop/collections/view/${props.product.id}`}
             sx={{
               textDecoration: "none",
               backgroundColor: palette.primary,
