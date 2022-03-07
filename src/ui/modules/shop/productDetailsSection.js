@@ -4,6 +4,7 @@ import {
   FormControl,
   Grid,
   InputLabel,
+  Link,
   MenuItem,
   Select,
   Typography,
@@ -53,9 +54,18 @@ export default function ProductDetailsSection(props) {
           width: "100%",
         }}
       >
-        <Typography sx={{ fontSize: headingTypographyStyles.h3 }}>
+        <Link
+          href={`/shop/collections/view/${props.productDetails.id}`}
+          sx={{
+            fontSize: headingTypographyStyles.h3,
+            "&.MuiLink-root": {
+              textDecoration: "none",
+              color: palette.primary,
+            },
+          }}
+        >
           {props.productDetails.collectionName}
-        </Typography>{" "}
+        </Link>{" "}
         <Typography
           sx={{ fontSize: headingTypographyStyles.h4, fontWeight: 500 }}
         >
