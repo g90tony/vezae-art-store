@@ -6,7 +6,7 @@ import {
   headingTypographyStyles,
 } from "../../assets/styles/typography";
 
-import "../../../assets/styles/landingGridStyle.css";
+import "../../assets/styles/landingGridStyle.css";
 
 export default function CollectionGridItem(props) {
   return (
