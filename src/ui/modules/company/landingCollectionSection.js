@@ -9,8 +9,8 @@ import {
   headingTypographyStyles as heading,
 } from "../../../assets/styles/typography";
 import { palette } from "../../../assets/styles/colors";
-import "../../../assets/styles/landingGridStyle.css";
 import { NavLink } from "react-router-dom";
+import CollectionGridItem from "../../components/collectionGridItem";
 
 export default function LandingCollectionSection(props) {
   return (
@@ -47,70 +47,7 @@ export default function LandingCollectionSection(props) {
           }}
         >
           {props.collection.pieces.map((piece) => {
-            return (
-              <div
-                className={`collection-grid-photo${piece.id}`}
-                style={{
-                  padding: "20px",
-                  width: "300px",
-                  height: "300px",
-                  margin: "auto",
-                  position: "relative",
-                }}
-              >
-                <img
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  src={piece.url}
-                  alt={piece.title}
-                />
-                <div className="collection-grid-info">
-                  <Typography
-                    sx={{
-                      fontSze: heading.h3,
-                      color: palette.secondary,
-                      fontWeight: 900,
-                    }}
-                  >
-                    {piece.title}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSze: heading.h5,
-                      width: "80%",
-                      margin: "5px auto",
-                      textAlign: "center",
-                      maxheight: "50%",
-                      color: palette.secondary,
-                    }}
-                  >
-                    {piece.price}
-                  </Typography>
-                  <NavLink
-                    style={{
-                      textDecoration: "none",
-                      fontSze: body.defaultBold,
-                      width: "50%",
-                      margin: "5px auto",
-                      textAlign: "center",
-                      color: props.darkBg ? palette.secondary : palette.primary,
-                      padding: "10px",
-                      backgroundColor: props.darkBg
-                        ? palette.primary
-                        : palette.secondary,
-                      fontWeight: 900,
-                    }}
-                    to={piece.path}
-                  >
-                    View Piece
-                  </NavLink>
-                </div>
-              </div>
-            );
+            return <CollectionGridItem product={piece} />;
           })}
         </Box>
       </Box>
