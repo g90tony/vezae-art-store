@@ -4,7 +4,7 @@ import { palette } from "../../assets/styles/colors";
 import { headingTypographyStyles } from "../../assets/styles/typography";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 
-export default function ViewLayout(props) {
+export default function ViewProductLayout(props) {
   return (
     <Grid
       container
