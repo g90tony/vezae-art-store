@@ -20,9 +20,9 @@ export default function ProductImageGrid(props) {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          height: "500px",
-          width: "500px",
-          marginBottom: "20px",
+          height: { xs: "100%", lg: "500px" },
+          width: { xs: "100%", lg: "500px" },
+          margin: { xs: "10px auto", lg: "0 auto 20px auto" },
         }}
       >
         <img

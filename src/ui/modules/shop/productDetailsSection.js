@@ -27,7 +27,7 @@ export default function ProductDetailsSection(props) {
       sx={{
         display: "flex",
         flexDirection: "column",
-        width: "50%",
+        width: { xs: "100%", lg: "75%" },
         alignItems: "center",
         justifyContent: "center",
         height: "100%",
