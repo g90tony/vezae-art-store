@@ -20,9 +20,9 @@ export default function ProductImageGrid(props) {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          height: { xs: "100%", lg: "500px" },
-          width: { xs: "100%", lg: "500px" },
-          margin: { xs: "10px auto", lg: "0 auto 20px auto" },
+          height: "500px",
+          width: "500px",
+          marginBottom: "20px",
         }}
       >
         <img
@@ -50,6 +50,7 @@ export default function ProductImageGrid(props) {
         {props.images.map((image) => {
           return (
             <img
+              key={props.images.indexOf(image)}
               style={{
                 width: "100px",
                 height: "100px",
