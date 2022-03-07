@@ -1,10 +1,8 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import ProductItemCard from "../components/productItemCard";
-import FilterProductsCard from "../modules/shop/filterProductsCard";
-import ProductsSearchBar from "../modules/shop/productsSearchBar";
 
-export default function AllProductsLayout(props) {
+export default function ProductsGridLayout(props) {
   return (
     <Grid
       container
@@ -27,7 +25,7 @@ export default function AllProductsLayout(props) {
           alignItems: "center",
         }}
       >
-        <FilterProductsCard />
+        {props.child1}
       </Box>
       <Box
         sx={{
@@ -38,7 +36,7 @@ export default function AllProductsLayout(props) {
           alignItems: "center",
         }}
       >
-        <ProductsSearchBar pageName={props.pageName} />
+        {props.child2}
 
         <Box
           sx={{
