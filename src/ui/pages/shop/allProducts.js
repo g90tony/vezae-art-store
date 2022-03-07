@@ -1,11 +1,11 @@
 import React from "react";
 
 import { dummyProductsData as dummyProducts } from "../../../helpers/data/dummyData";
-import AllProductsLayout from "../../layouts/allProductsLayout";
+import ProductsGridLayout from "../../layouts/productsGridLayout";
 
 export default function ShopAllProductsPage() {
   return (
-    <AllProductsLayout
+    <ProductsGridLayout
       products={dummyProducts}
       width="350px"
       pageName="All Pieces"
