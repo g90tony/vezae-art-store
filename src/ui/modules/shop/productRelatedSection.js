@@ -45,7 +45,7 @@ export default function ProductRelatedSection(props) {
           lg: () => setRelatedItemWidth("350px"),
           width: "100%",
           height: "100%",
-          overflowX: "auto",
+          overflowX: { xs: "hidden", lg: "auto" },
           margin: "10px auto",
         }}
       >
