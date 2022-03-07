@@ -43,7 +43,7 @@ export default function ShopViewProductPage() {
     return () => {
       setCurrentPiece(null);
     };
-  }, []);
+  }, [history, id]);
 
   function changeSizes(size) {
     setCurrentSize(size);
