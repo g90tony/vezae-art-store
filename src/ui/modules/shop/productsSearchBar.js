@@ -7,6 +7,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
@@ -22,7 +23,7 @@ const OrderOptions = [
   { text: "Price Descend", value: "price_dsc" },
 ];
 
-export default function ProductsSearchBar() {
+export default function ProductsSearchBar(props) {
   const [sort, setSort] = React.useState("most_recent");
 
   function handleChange(e) {
@@ -68,18 +69,17 @@ export default function ProductsSearchBar() {
             }}
             href="/"
           >
-            Shop
+            Home
           </Link>
-          <Link
+          <Typography
             underline="hover"
             sx={{
               color: palette.primary,
               fontSize: headingTypographyStyles.h5,
             }}
-            href="/shop/pieces/all"
           >
-            All Pieces
-          </Link>
+            {props.pageName}
+          </Typography>
         </Breadcrumbs>
       </Box>
       <Box
