@@ -19,6 +19,7 @@ import ShopTrendingProductsPage from "./ui/pages/shop/trendingProducts";
 import ShopLatestProductsPage from "./ui/pages/shop/latestProducts";
 import ShopTrendingCollectionsPage from "./ui/pages/shop/trendingCollections";
 import ShopLatestCollectionsPage from "./ui/pages/shop/latestCollections";
+import ShopViewCollectionPage from "./ui/pages/shop/viewCollection";
 function App() {
   return (
     <Grid
@@ -59,6 +60,10 @@ function App() {
             <Route
               path="/shop/pieces/view/:id"
               element={<ShopViewProductPage />}
+            />
+            <Route
+              path="/shop/collections/view/:id"
+              element={<ShopViewCollectionPage />}
             />
             <Route
               path="/shop/pieces/trending"
