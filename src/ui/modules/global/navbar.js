@@ -97,22 +97,36 @@ export default function NavBar() {
     },
   ];
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorElCollection, setAnchorElCollection] = React.useState(null);
+  const [anchorElPiece, setAnchorElPiece] = React.useState(null);
   const [drawerState, setDrawerState] = React.useState(false);
-  const [openDrawerSubMenu, setOpenDrawerSubMenu] = React.useState(false);
+  const [openPieceSubMenu, setOpenPieceSubMenu] = React.useState(false);
+  const [openCollectionSubMenu, setOpenCollectionSubMenu] =
+    React.useState(false);
 
-  const menuOpen = Boolean(anchorEl);
+  const menuOpenPiece = Boolean(anchorElPiece);
+  const menuOpenCollection = Boolean(anchorElCollection);
 
-  const openMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const openPieceMenu = (event) => {
+    setAnchorElPiece(event.currentTarget);
+  };
+  const openCollectionMenu = (event) => {
+    setAnchorElCollection(event.currentTarget);
   };
 
-  const closeMenu = () => {
-    setAnchorEl(null);
+  const closePieceMenu = () => {
+    setAnchorElPiece(null);
+  };
+  const closeCollectionMenu = () => {
+    setAnchorElCollection(null);
   };
 
-  const handleDrawerSubMenu = () => {
-    setOpenDrawerSubMenu(!openDrawerSubMenu);
+  const handlePieceSubMenu = () => {
+    setOpenPieceSubMenu(!openPieceSubMenu);
+  };
+
+  const handleCollectionSubMenu = () => {
+    setOpenCollectionSubMenu(!openCollectionSubMenu);
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -218,7 +232,11 @@ export default function NavBar() {
                 key={navLink.id}
               >
                 <ListItemButton
-                  onClick={handleDrawerSubMenu}
+                  onClick={
+                    navLink.text === "Collections"
+                      ? handleCollectionSubMenu
+                      : handlePieceSubMenu
+                  }
                   sx={{
                     display: "flex",
                     flexDirection: "row",
@@ -237,9 +255,27 @@ export default function NavBar() {
                       {navLink.text}
                     </Typography>{" "}
                   </ListItemText>
-                  {openDrawerSubMenu ? <ExpandLess /> : <ExpandMore />}
+                  {navLink.text === "Collection" ? (
+                    openCollectionSubMenu ? (
+                      <ExpandLess />
+                    ) : (
+                      <ExpandMore />
+                    )
+                  ) : openPieceSubMenu ? (
+                    <ExpandLess />
+                  ) : (
+                    <ExpandMore />
+                  )}
                 </ListItemButton>
-                <Collapse in={openDrawerSubMenu} timeout="auto" unmountOnExit>
+                <Collapse
+                  in={
+                    navLink.text === "Collections"
+                      ? openCollectionSubMenu
+                      : openPieceSubMenu
+                  }
+                  timeout="auto"
+                  unmountOnExit
+                >
                   <List component="div" disablePadding>
                     {navLink.children.map((child) => {
                       return (
@@ -250,7 +286,11 @@ export default function NavBar() {
                           <ListItemText>
                             <NavLink
                               to={child.path}
-                              onClick={handleDrawerSubMenu}
+                              onClick={
+                                navLink.text === "Collections"
+                                  ? handleCollectionSubMenu
+                                  : handlePieceSubMenu
+                              }
                               style={{
                                 textDecoration: "none",
                               }}
@@ -356,18 +396,61 @@ export default function NavBar() {
                   color: system_colors.primary,
                 }}
                 id={`${navLink.text}-button`}
-                aria-controls={menuOpen ? "shop-menu" : undefined}
+                aria-controls={
+                  navLink.text === "Collections"
+                    ? menuOpenCollection
+                      ? "collection-menu"
+                      : undefined
+                    : menuOpenCollection
+                    ? "piece-menu"
+                    : undefined
+                }
                 aria-haspopup="true"
-                aria-expanded={menuOpen ? "true" : undefined}
-                onClick={openMenu}
+                aria-expanded={
+                  navLink.text === "Collections"
+                    ? menuOpenCollection
+                      ? "true"
+                      : undefined
+                    : menuOpenPiece
+                    ? "piece-menu"
+                    : undefined
+                }
+                onClick={
+                  navLink.text === "Collections"
+                    ? openCollectionMenu
+                    : openPieceMenu
+                }
               >
-                {navLink.text} {menuOpen ? <ExpandLess /> : <ExpandMore />}
+                {navLink.text}{" "}
+                {navLink.text === "Collection" ? (
+                  menuOpenCollection ? (
+                    <ExpandLess />
+                  ) : (
+                    <ExpandMore />
+                  )
+                ) : menuOpenPiece ? (
+                  <ExpandLess />
+                ) : (
+                  <ExpandMore />
+                )}
               </Button>
               <Menu
                 id={`${navLink.text}-menu`}
-                anchorEl={anchorEl}
-                open={menuOpen}
-                onClose={closeMenu}
+                anchorEl={
+                  navLink.text === "Collections"
+                    ? anchorElCollection
+                    : anchorElPiece
+                }
+                open={
+                  navLink.text === "Collections"
+                    ? menuOpenCollection
+                    : menuOpenPiece
+                }
+                onClose={
+                  navLink.text === "Collections"
+                    ? closeCollectionMenu
+                    : closePieceMenu
+                }
                 sx={{
                   width: "100%",
                   display: "flex",
@@ -382,7 +465,11 @@ export default function NavBar() {
                   return (
                     <MenuItem
                       key={child.text}
-                      onClick={closeMenu}
+                      onClick={
+                        navLink.text === "Collections"
+                          ? closeCollectionMenu
+                          : closePieceMenu
+                      }
                       sx={{
                         color: system_colors.primary,
                         width: "100%",
