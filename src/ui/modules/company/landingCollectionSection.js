@@ -104,7 +104,7 @@ export default function LandingCollectionSection(props) {
             }}
           >
             <Button
-              href="/"
+              href={`/shop/collections/view/${props.collection.id}`}
               sx={{
                 "&:hover": {
                   backgroundColor: props.darkBg
@@ -128,7 +128,6 @@ export default function LandingCollectionSection(props) {
               View Collection
             </Button>
             <Button
-              href="/"
               sx={{
                 backgroundColor: props.darkBg
                   ? palette.secondary
