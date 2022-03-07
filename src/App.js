@@ -11,13 +11,14 @@ import NavBar from "./ui/modules/global/navbar";
 import { palette } from "./assets/styles/colors";
 import ShopAllCollectionsPage from "./ui/pages/shop/allCollections";
 import ShopAllProductsPage from "./ui/pages/shop/allProducts";
-import ShopFilteredCollectionsPage from "./ui/pages/shop/filteredCollections";
 import GalleryPage from "./ui/pages/company/gallery";
 import FooterBar from "./ui/modules/global/footer";
 import ScrollToTop from "./helpers/scrollToTop";
 import ShopViewProductPage from "./ui/pages/shop/viewProduct";
 import ShopTrendingProductsPage from "./ui/pages/shop/trendingProducts";
 import ShopLatestProductsPage from "./ui/pages/shop/latestProducts";
+import ShopTrendingCollectionsPage from "./ui/pages/shop/trendingCollections";
+import ShopLatestCollectionsPage from "./ui/pages/shop/latestCollections";
 function App() {
   return (
     <Grid
@@ -48,11 +49,11 @@ function App() {
             />
             <Route
               path="/shop/collections/trending"
-              element={<ShopFilteredCollectionsPage />}
+              element={<ShopTrendingCollectionsPage />}
             />
             <Route
               path="/shop/collections/latest"
-              element={<ShopFilteredCollectionsPage />}
+              element={<ShopLatestCollectionsPage />}
             />
             <Route path="/shop/pieces/all" element={<ShopAllProductsPage />} />
             <Route
