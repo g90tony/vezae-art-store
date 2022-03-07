@@ -184,6 +184,7 @@ export default function FooterBar() {
           {categories.map((collection) => {
             return (
               <Link
+                key={categories.indexOf(collection)}
                 to={collection.path}
                 style={{
                   textDecoration: "none",
@@ -229,6 +230,7 @@ export default function FooterBar() {
           {topCollections.map((collection) => {
             return (
               <Link
+                key={topCollections.indexOf(collection)}
                 to={collection.path}
                 style={{
                   textDecoration: "none",
@@ -273,6 +275,7 @@ export default function FooterBar() {
           {quickLinks.map((link) => {
             return (
               <Link
+                key={quickLinks.indexOf(link)}
                 to={link.path}
                 style={{
                   textDecoration: "none",
