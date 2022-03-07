@@ -76,7 +76,7 @@ export default function ProductsSearchBar() {
               color: palette.primary,
               fontSize: headingTypographyStyles.h5,
             }}
-            href="/shop/allPieces"
+            href="/shop/pieces/all"
           >
             All Pieces
           </Link>
