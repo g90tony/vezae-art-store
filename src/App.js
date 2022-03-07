@@ -17,6 +17,8 @@ import GalleryPage from "./ui/pages/company/gallery";
 import FooterBar from "./ui/modules/global/footer";
 import ScrollToTop from "./helpers/scrollToTop";
 import ShopViewProductPage from "./ui/pages/shop/viewProduct";
+import ShopTrendingProductsPage from "./ui/pages/shop/trendingProducts";
+import ShopLatestProductsPage from "./ui/pages/shop/latestProducts";
 function App() {
   return (
     <Grid
@@ -60,11 +62,11 @@ function App() {
             />
             <Route
               path="/shop/pieces/trending"
-              element={<ShopFilteredProductsPage />}
+              element={<ShopTrendingProductsPage />}
             />
             <Route
               path="/shop/pieces/latest"
-              element={<ShopFilteredProductsPage />}
+              element={<ShopLatestProductsPage />}
             />
           </Routes>
         </Grid>
