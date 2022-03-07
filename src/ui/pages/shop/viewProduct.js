@@ -138,7 +138,7 @@ export default function ShopViewProductPage() {
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: { xs: "column", lg: "row" },
               width: "100%",
               margin: "0 10px 10px 10px",
             }}
