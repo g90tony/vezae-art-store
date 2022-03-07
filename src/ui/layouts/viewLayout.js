@@ -60,10 +60,8 @@ export default function ViewLayout(props) {
           margin: "0 auto",
         }}
       >
-        <Box sx={{ width: "100%", margin: "0 auto" }}>
-          {props.productImageGrid}
-        </Box>
-        <Box sx={{ width: "100%" }}>{props.productDetailsSection}</Box>
+        <Box sx={{ width: "100%", margin: "0 auto" }}>{props.child1}</Box>
+        <Box sx={{ width: "100%" }}>{props.child2}</Box>
       </Box>
       <Box
         sx={{
@@ -73,7 +71,7 @@ export default function ViewLayout(props) {
           margin: "0 10px 10px 10px",
         }}
       >
-        {props.productRelatedSection}
+        {props.child3}
       </Box>
     </Grid>
   );

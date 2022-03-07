@@ -54,15 +54,15 @@ export default function ShopViewProductPage(props) {
       {currentPiece && (
         <ViewLayout
           history={history}
-          productImageGrid={<ProductImageGrid images={currentSizeImages} />}
-          productDetailsSection={
+          child1={<ProductImageGrid images={currentSizeImages} />}
+          child2={
             <ProductDetailsSection
               productDetails={currentPiece}
               selectedSize={currentSize}
               changeSize={changeSizes}
             />
           }
-          productRelatedSection={
+          child3={
             <ProductRelatedSection
               related={relatedPieces}
               selectedSize={currentSize}
