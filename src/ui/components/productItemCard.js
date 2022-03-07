@@ -28,7 +28,7 @@ export default function ProductItemCard(props) {
     <Grid
       container
       sx={{
-        width: "275px",
+        width: props.width,
         backgroundColor: palette.secondary,
         margin: { xs: "10px auto", lg: "10px 20px" },
         display: "flex",
@@ -36,7 +36,7 @@ export default function ProductItemCard(props) {
         justifyContent: "flex-start",
       }}
     >
-      <Box sx={{ margin: "0 0 5px 0", width: "100%", height: "55%" }}>
+      <Box sx={{ margin: "0 0 5px 0", width: "100%", maxHeight: "55%" }}>
         <img
           style={{
             objectFit: "cover",
@@ -176,7 +176,7 @@ export default function ProductItemCard(props) {
           }}
         >
           <Button
-            to={`/shop/pieces/${props.product.id}`}
+            href={`/shop/pieces/view/${props.product.id}`}
             sx={{
               textDecoration: "none",
               backgroundColor: palette.primary,
