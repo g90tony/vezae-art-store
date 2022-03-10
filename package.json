@@ -24,9 +24,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "ssr": "npm run build && node server/index.js",
-    "dev-ssr": "npm run build && nodemon server/index.js",
-    "start": "react-scripts start",
+    "client": "react-scripts start",
+    "api": "nodemon server/index.js",
+    "start": "npm run client && node server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
