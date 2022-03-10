@@ -26,6 +26,9 @@ import { bodyTypographyStyles as body } from "../../../assets/styles/typography"
 
 import navLogo from "../../../assets/images/nav_logo.png";
 import { NavLink } from "react-router-dom";
+import CartPopup from "../../components/cartPopup";
+
+import { cart } from "../../../helpers/data/dummyData";
 
 export default function NavBar() {
   const navLinks = [
@@ -99,14 +102,20 @@ export default function NavBar() {
 
   const [anchorElCollection, setAnchorElCollection] = React.useState(null);
   const [anchorElPiece, setAnchorElPiece] = React.useState(null);
+  const [anchorElCart, setAnchorElCart] = React.useState(null);
   const [drawerState, setDrawerState] = React.useState(false);
+  const [openCartSubMenu, setOpenCartSubMenu] = React.useState(false);
   const [openPieceSubMenu, setOpenPieceSubMenu] = React.useState(false);
   const [openCollectionSubMenu, setOpenCollectionSubMenu] =
     React.useState(false);
 
+  const menuOpenCart = Boolean(anchorElCart);
   const menuOpenPiece = Boolean(anchorElPiece);
   const menuOpenCollection = Boolean(anchorElCollection);
 
+  const openCartMenu = (event) => {
+    setAnchorElCart(event.currentTarget);
+  };
   const openPieceMenu = (event) => {
     setAnchorElPiece(event.currentTarget);
   };
@@ -114,11 +123,18 @@ export default function NavBar() {
     setAnchorElCollection(event.currentTarget);
   };
 
+  const closeCartMenu = () => {
+    setAnchorElCart(null);
+  };
   const closePieceMenu = () => {
     setAnchorElPiece(null);
   };
   const closeCollectionMenu = () => {
     setAnchorElCollection(null);
+  };
+
+  const handleCartSubMenu = () => {
+    setOpenCartSubMenu(!openCartSubMenu);
   };
 
   const handlePieceSubMenu = () => {
@@ -144,8 +160,9 @@ export default function NavBar() {
     return (
       <Box
         sx={{
-          width: "250px",
-          height: "100%",
+          width: "300px",
+          height: "fit-content",
+          overflow: "hidden",
           marginTop: "40px",
           display: "flex",
           flexDirection: "column",
@@ -181,7 +198,7 @@ export default function NavBar() {
               margin: "20px auto",
             }}
           >
-            <ShoppingCartIcon />
+            <SearchIcon />
           </IconButton>
           <IconButton
             sx={{
@@ -189,132 +206,139 @@ export default function NavBar() {
               width: "50%",
               margin: "20px auto",
             }}
+            onClick={handleCartSubMenu}
           >
-            <SearchIcon />
+            <ShoppingCartIcon />{" "}
+            {openCartSubMenu ? <ExpandLess /> : <ExpandMore />}
           </IconButton>
         </Box>
-        <List>
-          {navLinks.map((navLink) => {
-            return !navLink.hasChildren ? (
-              <ListItem
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: "100%",
-                }}
-                button
-                key={navLink.id}
-                onClick={toggleDrawer("right", false)}
-              >
-                <NavLink
-                  to={navLink.path}
-                  style={{
-                    textDecoration: "none",
-                    color: system_colors.primary,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      textDecoration: "none",
-                      margin: "auto 20px",
-                      fontSize: body.extraLargeNormal,
-                      textAlign: "start",
-                    }}
-                  >
-                    {navLink.text}
-                  </Typography>
-                </NavLink>
-              </ListItem>
-            ) : (
-              <ListItem
-                sx={{ display: "flex", flexDirection: "column" }}
-                key={navLink.id}
-              >
-                <ListItemButton
-                  onClick={
-                    navLink.text === "Collections"
-                      ? handleCollectionSubMenu
-                      : handlePieceSubMenu
-                  }
+        <Collapse in={openCartSubMenu} timeout="auto" unmountOnExit>
+          <CartPopup cart={cart} width="100%" />
+        </Collapse>
+        {!openCartSubMenu && (
+          <List>
+            {navLinks.map((navLink) => {
+              return !navLink.hasChildren ? (
+                <ListItem
                   sx={{
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
                     width: "100%",
                   }}
+                  button
+                  key={navLink.id}
+                  onClick={toggleDrawer("right", false)}
                 >
-                  <ListItemText>
+                  <NavLink
+                    to={navLink.path}
+                    style={{
+                      textDecoration: "none",
+                      color: system_colors.primary,
+                    }}
+                  >
                     <Typography
                       sx={{
                         textDecoration: "none",
+                        margin: "auto 20px",
                         fontSize: body.extraLargeNormal,
                         textAlign: "start",
                       }}
                     >
                       {navLink.text}
-                    </Typography>{" "}
-                  </ListItemText>
-                  {navLink.text === "Collection" ? (
-                    openCollectionSubMenu ? (
+                    </Typography>
+                  </NavLink>
+                </ListItem>
+              ) : (
+                <ListItem
+                  sx={{ display: "flex", flexDirection: "column" }}
+                  key={navLink.id}
+                >
+                  <ListItemButton
+                    onClick={
+                      navLink.text === "Collections"
+                        ? handleCollectionSubMenu
+                        : handlePieceSubMenu
+                    }
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      width: "100%",
+                    }}
+                  >
+                    <ListItemText>
+                      <Typography
+                        sx={{
+                          textDecoration: "none",
+                          fontSize: body.extraLargeNormal,
+                          textAlign: "start",
+                        }}
+                      >
+                        {navLink.text}
+                      </Typography>{" "}
+                    </ListItemText>
+                    {navLink.text === "Collection" ? (
+                      openCollectionSubMenu ? (
+                        <ExpandLess />
+                      ) : (
+                        <ExpandMore />
+                      )
+                    ) : openPieceSubMenu ? (
                       <ExpandLess />
                     ) : (
                       <ExpandMore />
-                    )
-                  ) : openPieceSubMenu ? (
-                    <ExpandLess />
-                  ) : (
-                    <ExpandMore />
-                  )}
-                </ListItemButton>
-                <Collapse
-                  in={
-                    navLink.text === "Collections"
-                      ? openCollectionSubMenu
-                      : openPieceSubMenu
-                  }
-                  timeout="auto"
-                  unmountOnExit
-                >
-                  <List component="div" disablePadding>
-                    {navLink.children.map((child) => {
-                      return (
-                        <ListItem
-                          onClick={toggleDrawer("right", false)}
-                          key={child.text}
-                        >
-                          <ListItemText>
-                            <NavLink
-                              to={child.path}
-                              onClick={
-                                navLink.text === "Collections"
-                                  ? handleCollectionSubMenu
-                                  : handlePieceSubMenu
-                              }
-                              style={{
-                                textDecoration: "none",
-                              }}
-                            >
-                              <Typography
-                                sx={{
+                    )}
+                  </ListItemButton>
+                  <Collapse
+                    in={
+                      navLink.text === "Collections"
+                        ? openCollectionSubMenu
+                        : openPieceSubMenu
+                    }
+                    timeout="auto"
+                    unmountOnExit
+                  >
+                    <List component="div" disablePadding>
+                      {navLink.children.map((child) => {
+                        return (
+                          <ListItem
+                            onClick={toggleDrawer("right", false)}
+                            key={child.text}
+                          >
+                            <ListItemText>
+                              <NavLink
+                                to={child.path}
+                                onClick={
+                                  navLink.text === "Collections"
+                                    ? handleCollectionSubMenu
+                                    : handlePieceSubMenu
+                                }
+                                style={{
                                   textDecoration: "none",
-                                  color: system_colors.primary,
-                                  fontSize: body.smallBold,
                                 }}
                               >
-                                {child.text}
-                              </Typography>
-                            </NavLink>
-                          </ListItemText>
-                        </ListItem>
-                      );
-                    })}
-                  </List>
-                </Collapse>
-              </ListItem>
-            );
-          })}
-        </List>
+                                <Typography
+                                  sx={{
+                                    textDecoration: "none",
+                                    color: system_colors.primary,
+                                    fontSize: body.smallBold,
+                                  }}
+                                >
+                                  {child.text}
+                                </Typography>
+                              </NavLink>
+                            </ListItemText>
+                          </ListItem>
+                        );
+                      })}
+                    </List>
+                  </Collapse>
+                </ListItem>
+              );
+            })}
+          </List>
+        )}
       </Box>
     );
   }
@@ -511,9 +535,32 @@ export default function NavBar() {
           flexWrap: "nowrap",
         }}
       >
-        <IconButton sx={{ color: system_colors.primary, margin: "auto 10px" }}>
-          <ShoppingCartIcon />
+        <IconButton
+          sx={{ color: system_colors.primary, margin: "auto 10px" }}
+          aria-controls={menuOpenCart ? "cart-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={menuOpenCart ? "true" : undefined}
+          onClick={openCartMenu}
+        >
+          <ShoppingCartIcon /> {menuOpenCart ? <ExpandLess /> : <ExpandMore />}
         </IconButton>
+        <Menu
+          id={`cart-menu`}
+          anchorEl={anchorElCart}
+          open={menuOpenCart}
+          onClose={closeCartMenu}
+          sx={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+          MenuListProps={{
+            "aria-labelledby": "cart-button",
+          }}
+        >
+          <CartPopup cart={cart} width="450px" />
+        </Menu>
         <IconButton sx={{ color: system_colors.primary, margin: "auto 10px" }}>
           <SearchIcon />
         </IconButton>
