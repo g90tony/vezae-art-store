@@ -16,8 +16,8 @@ export default function ShopViewCollectionPage(props) {
   let { id } = useParams();
   let history = useNavigate();
 
-  const [currentCollection, setCurrentCollection] = React.useState();
-  const [collectionPieces, setCollectionPieces] = React.useState();
+  const [currentCollection, setCurrentCollection] = React.useState({});
+  const [collectionPieces, setCollectionPieces] = React.useState([]);
 
   const [relatedPieces, setRelatedPieces] = React.useState();
 
@@ -39,23 +39,17 @@ export default function ShopViewCollectionPage(props) {
   }, [history, id]);
 
   return (
-    <>
-      {currentCollection && (
-        <ViewProductLayout
-          history={history}
-          child1={<CollectionImageGrid images={collectionPieces} />}
-          child2={
-            <CollectionDetailsSection productDetails={currentCollection} />
-          }
-          child3={
-            <RelatedSection
-              sectionHeader="Related Collections"
-              itemButtonText="View Collection"
-              related={relatedPieces}
-            />
-          }
+    <ViewProductLayout
+      history={history}
+      child1={<CollectionImageGrid images={collectionPieces} />}
+      child2={<CollectionDetailsSection productDetails={currentCollection} />}
+      child3={
+        <RelatedSection
+          sectionHeader="Related Collections"
+          itemButtonText="View Collection"
+          related={relatedPieces}
         />
-      )}
-    </>
+      }
+    />
   );
 }
