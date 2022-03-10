@@ -1,4 +1,4 @@
-import "./App.css";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Grid } from "@mui/material";
 
@@ -33,6 +33,7 @@ function App() {
         overFlowX: "hidden",
         backgroundColor: palette.accentLight,
       }}
+      className="App"
     >
       <Router>
         <ScrollToTop />
