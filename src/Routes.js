@@ -1,9 +1,10 @@
 import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import LandingPage from "./ui/pages/company/landing";
 import AboutPage from "./ui/pages/company/about";
 import ContactsPage from "./ui/pages/company/contacts";
+
 import Error404Page from "./ui/pages/company/404";
 
 import ShopAllCollectionsPage from "./ui/pages/shop/allCollections";
@@ -30,6 +31,13 @@ class parameterResolver {
 const parameterResolverObj = new parameterResolver();
 
 export const routes = [
+  {
+    path: "**",
+    exact: true,
+    hasParams: false,
+    loadData: (data) => parameterResolverObj.setParameters(data),
+    component: <Error404Page />,
+  },
   {
     path: "/",
     exact: true,
