@@ -671,3 +671,54 @@ export const dummyProductsData = [
     ],
   },
 ];
+
+export const cart = [
+  {
+    id: 1,
+    url: "https://images.pexels.com/photos/1255372/pexels-photo-1255372.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    name: "collection item #1",
+    size: "12 inches by 12 inches",
+    price: 29.95,
+    count: 2,
+  },
+  {
+    id: 2,
+    url: "https://images.pexels.com/photos/1255372/pexels-photo-1255372.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    name: "collection item #1",
+    size: "12 inches by 12 inches",
+    price: 29.95,
+    count: 2,
+  },
+  {
+    id: 3,
+    url: "https://images.pexels.com/photos/1255372/pexels-photo-1255372.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    name: "collection item #1",
+    size: "12 inches by 12 inches",
+    price: 29.95,
+    count: 2,
+  },
+  {
+    id: 4,
+    url: "https://images.pexels.com/photos/1255372/pexels-photo-1255372.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    name: "collection item #1",
+    size: "12 inches by 12 inches",
+    price: 29.95,
+    count: 2,
+  },
+  {
+    id: 5,
+    url: "https://images.pexels.com/photos/1255372/pexels-photo-1255372.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    name: "collection item #1",
+    size: "12 inches by 12 inches",
+    price: 29.95,
+    count: 2,
+  },
+  {
+    id: 6,
+    url: "https://images.pexels.com/photos/1255372/pexels-photo-1255372.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    name: "collection item #1",
+    size: "12 inches by 12 inches",
+    price: 29.95,
+    count: 2,
+  },
+];
