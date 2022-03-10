@@ -57,24 +57,25 @@ export default function RelatedSection(props) {
           margin: "10px auto",
         }}
       >
-        {props.related.map((piece) => {
-          return props.itemButtonText === "View Collection" ? (
-            <RelatedProductItem
-              key={piece.id}
-              product={piece}
-              width={relatedItemWidth}
-              buttonText={props.itemButtonText}
-            />
-          ) : (
-            <RelatedProductItem
-              key={piece.id}
-              product={piece}
-              selectedSize={props.selectedSize}
-              width={relatedItemWidth}
-              buttonText={props.itemButtonText}
-            />
-          );
-        })}
+        {props.related &&
+          props.related.map((piece) => {
+            return props.itemButtonText === "View Collection" ? (
+              <RelatedProductItem
+                key={piece.id}
+                product={piece}
+                width={relatedItemWidth}
+                buttonText={props.itemButtonText}
+              />
+            ) : (
+              <RelatedProductItem
+                key={piece.id}
+                product={piece}
+                selectedSize={props.selectedSize}
+                width={relatedItemWidth}
+                buttonText={props.itemButtonText}
+              />
+            );
+          })}
       </Box>
     </Grid>
   );
