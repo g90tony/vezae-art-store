@@ -9,7 +9,7 @@ import { Grid } from "@mui/material";
 
 import NavBar from "./ui/modules/global/navbar";
 import FooterBar from "./ui/modules/global/footer";
-function App(props) {
+function App() {
   return (
     <Grid
       container
