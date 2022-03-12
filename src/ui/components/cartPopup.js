@@ -1,19 +1,9 @@
-import {
-  Badge,
-  Button,
-  Grid,
-  Typography,
-  IconButton,
-  Input,
-  FilledInput,
-  OutlinedInput,
-} from "@mui/material";
-import Add from "@mui/icons-material/Add";
-import Remove from "@mui/icons-material/Remove";
+import { Badge, Button, Grid, Typography, OutlinedInput } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
 import { palette } from "../../assets/styles/colors";
+
 import {
   bodyTypographyStyles,
   headingTypographyStyles,
