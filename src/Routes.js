@@ -13,6 +13,7 @@ import GalleryPage from "./ui/pages/company/gallery";
 
 import ShopViewProductPage from "./ui/pages/shop/viewProduct";
 import ShopViewCollectionPage from "./ui/pages/shop/viewCollection";
+import ShopCheckoutPage from "./ui/pages/shop/checkout";
 
 class parameterResolver {
   constructor() {
@@ -98,11 +99,11 @@ export const routes = [
     component: <ShopViewProductPage />,
   },
   {
-    path: "/shop/checkout/:cart",
+    path: "/shop/checkout",
     exact: false,
     hasParams: true,
     loadData: (data) => parameterResolverObj.setParameters(data),
-    component: <ShopViewCollectionPage />,
+    component: <ShopCheckoutPage />,
   },
 ];
 export function RoutingTable(props) {
