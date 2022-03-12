@@ -1182,7 +1182,7 @@ export default function CheckoutDetailsCard() {
               color: palette.secondary,
             }}
           >
-            Checkout
+            Save Details
           </Button>
         </Collapse>
       </List>
