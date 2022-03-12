@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "redux-react";
+import { Provider } from "react-redux";
 
 import ScrollToTop from "./helpers/scrollToTop";
 
