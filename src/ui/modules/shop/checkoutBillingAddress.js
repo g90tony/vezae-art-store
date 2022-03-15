@@ -17,18 +17,6 @@ import { palette } from "../../../assets/styles/colors";
 
 export default function CheckoutBillingAddress() {
   // filters data
-  const [billingAddress, setBillingAddress] = React.useState({
-    address1: "",
-    address2: "",
-    city: "",
-    company: "",
-    country: "",
-    firstName: "",
-    lastName: "",
-    phone: "",
-    province: "",
-    zip: "",
-  });
 
   const [address1, setAddress1] = React.useState("");
   const [address2, setAddress2] = React.useState("");
@@ -37,7 +25,6 @@ export default function CheckoutBillingAddress() {
   const [country, setCountry] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
-  const [phone, setPhone] = React.useState("");
   const [province, setProvince] = React.useState("");
   const [zip, setZip] = React.useState("");
 
