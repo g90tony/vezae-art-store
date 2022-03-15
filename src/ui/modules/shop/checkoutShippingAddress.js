@@ -5,13 +5,7 @@ import {
   headingTypographyStyles,
 } from "../../../assets/styles/typography";
 
-import {
-  TextField,
-  FormGroup,
-  Grid,
-  OutlinedInput,
-  Typography,
-} from "@mui/material";
+import { TextField, FormGroup, Grid, Typography } from "@mui/material";
 import { palette } from "../../../assets/styles/colors";
 
 export default function CheckoutShippingAddress() {
@@ -22,7 +16,6 @@ export default function CheckoutShippingAddress() {
   const [country, setCountry] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
-  const [phone, setPhone] = React.useState("");
   const [province, setProvince] = React.useState("");
   const [zip, setZip] = React.useState("");
 

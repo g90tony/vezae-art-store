@@ -5,14 +5,7 @@ import {
   headingTypographyStyles,
 } from "../../../assets/styles/typography";
 
-import {
-  FormControlLabel,
-  FormGroup,
-  Grid,
-  OutlinedInput,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { FormGroup, Grid, TextField, Typography } from "@mui/material";
 import { palette } from "../../../assets/styles/colors";
 
 export default function CheckoutBillingAddress() {
