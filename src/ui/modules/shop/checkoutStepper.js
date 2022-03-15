@@ -11,12 +11,13 @@ import { palette } from "../../../assets/styles/colors";
 import CheckoutBillingAddress from "./checkoutBillingAddress";
 import CheckoutShippingAddress from "./checkoutShippingAddress";
 import CheckoutCreditCard from "./checkoutCreditCard";
+import { CircularProgress } from "@mui/material";
 
 const steps = [
   "Confirm Products",
   "Billing Address",
   "Shipping Address",
-  "Payment Method",
+  "Credit Card Details",
 ];
 
 export default function HorizontalLinearStepper() {
@@ -24,7 +25,7 @@ export default function HorizontalLinearStepper() {
   const [skipped, setSkipped] = React.useState(new Set());
 
   const isStepOptional = (step) => {
-    return step === 1;
+    return step === 2;
   };
 
   const isStepSkipped = (step) => {
@@ -107,8 +108,16 @@ export default function HorizontalLinearStepper() {
       </Stepper>
       {activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
+          <Typography
+            sx={{
+              width: "100%",
+              heigh: "500px",
+              margin: "50px auto",
+              textAlign: "center",
+              fontSize: "74px",
+            }}
+          >
+            <CircularProgress />
           </Typography>
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Box sx={{ flex: "1 1 auto" }} />
