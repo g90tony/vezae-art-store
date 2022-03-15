@@ -66,6 +66,7 @@ export default function CartCheckout(props) {
         justifyContent: "flex-start",
         height: "100%",
         borderRadius: 0,
+        marginTop: "40px",
       }}
     >
       <Box
@@ -84,7 +85,7 @@ export default function CartCheckout(props) {
             marginBottom: "10px",
           }}
         >
-          Your Cart
+          Confirm Items
         </Typography>
       </Box>
       <Box
@@ -93,7 +94,7 @@ export default function CartCheckout(props) {
           flexDirection: "row",
           flexWrap: "nowrap",
           width: "100%",
-          height: "75%",
+          height: "100%",
           justifyContent: "flex-start",
         }}
       >
@@ -102,6 +103,7 @@ export default function CartCheckout(props) {
             display: "column",
             justifyContent: "flex-start",
             width: "100%",
+            height: "45vh",
             overflowY: "auto",
             overflowX: "hidden",
             margin: "0 5px",
@@ -259,24 +261,6 @@ export default function CartCheckout(props) {
           Grand Total:{" " + grandTotal}
         </Typography>
       </Box>
-      <Button
-        href="/shop/checkout"
-        sx={{
-          width: "100%",
-          padding: "10px",
-          backgroundColor: palette.primary,
-          color: palette.secondary,
-          "&:hover": {
-            backgroundColor: palette.secondary,
-            color: palette.primary,
-            border: `1px ${palette.primary} solid`,
-          },
-          borderRadius: 0,
-          fontSize: bodyTypographyStyles.defaultBold,
-        }}
-      >
-        Check Out
-      </Button>
     </Grid>
   );
 }
