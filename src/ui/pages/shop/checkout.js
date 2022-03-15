@@ -5,7 +5,8 @@ import { palette } from "../../../assets/styles/colors";
 import { cart } from "../../../helpers/data/dummyData";
 import CartCheckout from "../../components/cartCheckout";
 import CartPopup from "../../components/cartPopup";
-import CheckoutDetailsCard from "../../modules/shop/checkoutDetailsCard";
+import CheckoutDetailsCard from "../../modules/shop/checkoutBillingAddress";
+import CheckoutStepper from "../../modules/shop/checkoutStepper";
 import FilterProductsCard from "../../modules/shop/filterProductsCard";
 
 export default function ShopCheckoutPage() {
@@ -17,39 +18,11 @@ export default function ShopCheckoutPage() {
         flexDirection: "row",
         justifyContent: "center",
         padding: "10px",
-        height: "80vh",
+        height: "100%",
         overflowY: "hidden",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "space-between",
-          width: { xs: "100%", lg: "30.33%" },
-          margin: "0 auto 20px auto",
-          height: "75vh",
-          overflowY: "auto",
-          overflowX: "hidden",
-        }}
-      >
-        <CheckoutDetailsCard />
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          width: { xs: "100%", lg: "66.67%" },
-          height: "100%",
-          backgroundColor: palette.secondary,
-          // padding: "0 20px",
-        }}
-      >
-        <CartCheckout cart={cart} width="100%" />
-      </Box>
+      <CheckoutStepper />
     </Grid>
   );
 }
