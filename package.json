@@ -24,9 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "api": "nodemon api/server.js",
-    "prod": "npm run client && node api/server.js",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build ../store-ssr/build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
