@@ -18,8 +18,15 @@ import {
 } from "../../../assets/styles/typography";
 
 export default function ProductDetailsSection(props) {
+  const [selectedSize, setSelectedSize] = React.useState({ price: "90" });
+
+  React.useEffect(() => {
+    setSelectedSize(props.productDetails.variants[0]);
+  }, []);
+
   function handleChange(e) {
     props.changeSize(e.target.value);
+    setSelectedSize(e.target.value);
   }
 
   return (
@@ -55,7 +62,7 @@ export default function ProductDetailsSection(props) {
         }}
       >
         <Link
-          href={`/shop/collections/view/${props.productDetails.id}`}
+          href={`/shop/collections/view/${props.productDetails.collection.collection_id}`}
           sx={{
             fontSize: headingTypographyStyles.h3,
             "&.MuiLink-root": {
@@ -64,12 +71,12 @@ export default function ProductDetailsSection(props) {
             },
           }}
         >
-          {props.productDetails.collectionName}
+          {props.productDetails.collection.collection_name}
         </Link>{" "}
         <Typography
-          sx={{ fontSize: headingTypographyStyles.h4, fontWeight: 500 }}
+          sx={{ fontSize: headingTypographyStyles.h4, fontWeight: 700 }}
         >
-          {props.selectedSize.price} USD
+          {selectedSize.price} KES
         </Typography>
       </Box>
       <Box
@@ -85,10 +92,12 @@ export default function ProductDetailsSection(props) {
             fontSize: bodyTypographyStyles.defaultBold,
             fontWeight: 400,
             marginTop: "20px",
+            maxHeight: "30vh",
+            overflowX: "auto",
           }}
-        >
-          {props.productDetails.description}
-        </Typography>
+          component="div"
+          dangerouslySetInnerHTML={{ __html: props.productDetails.description }}
+        />
       </Box>
       <Box
         sx={{
@@ -117,17 +126,17 @@ export default function ProductDetailsSection(props) {
             }}
             labelId="sizeSelectLabel"
             id="sizeSelect"
-            value={props.currentSize}
+            value={selectedSize}
             label="Canvas Sizes"
             onChange={handleChange}
           >
-            {props.productDetails.sizes.map((size) => {
+            {props.productDetails.variants.map((size) => {
               return (
                 <MenuItem
-                  key={props.productDetails.sizes.indexOf(size)}
+                  key={props.productDetails.variants.indexOf(size)}
                   value={size}
                 >
-                  {size.text}
+                  {size.title}
                 </MenuItem>
               );
             })}
