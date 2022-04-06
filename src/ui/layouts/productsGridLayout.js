@@ -53,7 +53,11 @@ export default function ProductsGridLayout(props) {
           {props.products.map((product) => {
             return (
               <React.Fragment key={product.id}>
-                <ProductItemCard product={product} width={props.width} />
+                <ProductItemCard
+                  product={product}
+                  index={props.products.indexOf(product)}
+                  width={props.width}
+                />
               </React.Fragment>
             );
           })}
