@@ -11,7 +11,7 @@ import "../../assets/styles/landingGridStyle.css";
 export default function CollectionGridItem(props) {
   return (
     <div
-      className={`collection-grid-photo${props.product.id}`}
+      className={`collection-grid-photo${props.index}`}
       style={{
         padding: "20px",
         width: "300px",
@@ -27,7 +27,7 @@ export default function CollectionGridItem(props) {
           width: "100%",
           height: "100%",
         }}
-        src={props.product.url}
+        src={props.product.image}
         alt={props.product.title}
       />
       <div className="collection-grid-info">
@@ -40,7 +40,7 @@ export default function CollectionGridItem(props) {
         >
           {props.product.title}
         </Typography>
-        <Typography
+        {/* <Typography
           sx={{
             fontSze: headingTypographyStyles.h5,
             width: "80%",
@@ -51,9 +51,9 @@ export default function CollectionGridItem(props) {
           }}
         >
           {props.product.price}
-        </Typography>
+        </Typography> */}
         <Button
-          href={`/shop/pieces/view/${props.product.id}`}
+          href={`/shop/pieces/view/${props.product.product_id}`}
           sx={{
             color: props.darkBg ? palette.secondary : palette.primary,
             backgroundColor: props.darkBg ? palette.primary : palette.secondary,
