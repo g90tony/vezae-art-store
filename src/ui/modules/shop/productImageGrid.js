@@ -2,7 +2,8 @@ import { Box, Grid } from "@mui/material";
 import React from "react";
 
 export default function ProductImageGrid(props) {
-  const [selectedImage, setSelectedImage] = React.useState(props.images[0]);
+  const [selectedImage, setSelectedImage] = React.useState();
+
   return (
     <Grid
       container
@@ -25,16 +26,29 @@ export default function ProductImageGrid(props) {
           marginBottom: "20px",
         }}
       >
-        <img
-          style={{
-            objectFit: "contain",
-            objectPosition: "center",
-            width: "100%",
-            height: "100%",
-          }}
-          src={selectedImage}
-          alt="product"
-        />
+        {selectedImage ? (
+          <img
+            style={{
+              objectFit: "contain",
+              objectPosition: "center",
+              width: "100%",
+              height: "100%",
+            }}
+            src={selectedImage.url}
+            alt="product"
+          />
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Select an Image to view
+          </Box>
+        )}
       </Box>
       <Box
         sx={{
@@ -47,23 +61,24 @@ export default function ProductImageGrid(props) {
           overflowX: "auto",
         }}
       >
-        {props.images.map((image) => {
-          return (
-            <img
-              key={props.images.indexOf(image)}
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-                margin: "10px",
-                objectPosition: "center",
-              }}
-              src={image}
-              alt="product preview"
-              onClick={() => setSelectedImage(image)}
-            />
-          );
-        })}
+        {props.images &&
+          props.images.map((image) => {
+            return (
+              <img
+                key={props.images.indexOf(image)}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "cover",
+                  margin: "10px",
+                  objectPosition: "center",
+                }}
+                src={image.url}
+                alt="product preview"
+                onClick={() => setSelectedImage(image)}
+              />
+            );
+          })}
       </Box>
     </Grid>
   );
