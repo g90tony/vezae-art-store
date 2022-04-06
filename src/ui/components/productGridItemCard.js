@@ -7,9 +7,9 @@ import "../../assets/styles/landingGridStyle.css";
 export default function ProductGridItemCard(props) {
   return (
     <div
-      className={`landing-grid-image${props.piece.id}`}
+      className={`landing-grid-image${props.piece.index}`}
       styles={{ width: props.width }}
-      key={props.piece.id}
+      key={props.piece.index}
     >
       <img
         style={{
@@ -18,7 +18,7 @@ export default function ProductGridItemCard(props) {
           objectFit: "cover",
           objectPosition: "center",
         }}
-        src={props.piece.url}
+        src={props.piece.image}
         alt={props.piece.title}
       />
       <div className="landing-grid-image-info">
@@ -38,7 +38,7 @@ export default function ProductGridItemCard(props) {
           {props.piece.price}
         </Typography>
         <Button
-          href={`/shop/pieces/view/${props.piece.id}`}
+          href={`/shop/pieces/view/${props.piece.product_id}`}
           sx={{
             backgroundColor: palette.secondary,
             color: palette.primary,
