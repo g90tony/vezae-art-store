@@ -7,65 +7,60 @@ import { dummyProductsData as dummyProducts } from "../../../helpers/data/dummyD
 import ProductDetailsSection from "../../modules/shop/productDetailsSection";
 import ProductImageGrid from "../../modules/shop/productImageGrid";
 import RelatedSection from "../../modules/shop/relatedSection";
+import { getSingleProduct } from "../../../api/products";
 
 export default function ShopViewProductPage(props) {
-  let { id } = useParams();
+  const product_id = useParams().id;
   let history = useNavigate();
 
   const [currentPiece, setCurrentPiece] = React.useState();
-  const [currentSize, setCurrentSize] = React.useState();
-  const [currentSizeImages, setCurrentSizeImages] = React.useState();
+  const [currentVariant, setCurrentVariant] = React.useState();
+
+  const [productImages, setProductImages] = React.useState();
   const [relatedPieces, setRelatedPieces] = React.useState();
 
   React.useEffect(() => {
-    let found = false;
-    dummyProducts.forEach((product) => {
-      if (product.id === parseInt(id)) {
-        setCurrentPiece(product);
+    async function loadData() {
+      try {
+        const fetchedProduct = await getSingleProduct(product_id);
 
-        if (!found) {
-          setCurrentSize(product.sizes[0]);
-          setCurrentSizeImages(product.sizes[0].images);
+        if (fetchedProduct.status === 200) {
+          setCurrentPiece(fetchedProduct.data);
+          setCurrentVariant(fetchedProduct.data.variants[0]);
+          setProductImages(fetchedProduct.data.images);
+        } else {
+          history(-1);
         }
-
-        found = true;
+      } catch (error) {
+        console.error(error);
+        console.log("there was a problem loading the product", error);
       }
-    });
-
-    if (found === false) {
-      history(-1);
-    } else {
-      const related = dummyProducts.slice(0, 4);
-      setRelatedPieces(related);
     }
+
+    loadData();
 
     return () => {
       setCurrentPiece(null);
     };
-  }, [history, id]);
-
-  function changeSizes(size) {
-    setCurrentSize(size);
-    setCurrentSizeImages(size.images);
-  }
+  }, []);
 
   return (
     <>
       {currentPiece && (
         <ViewProductLayout
           history={history}
-          child1={<ProductImageGrid images={currentSizeImages} />}
+          child1={<ProductImageGrid images={productImages} />}
           child2={
             <ProductDetailsSection
               productDetails={currentPiece}
-              selectedSize={currentSize}
-              changeSize={changeSizes}
+              selectedSize={currentVariant}
+              changeSize={(value) => setCurrentVariant(value)}
             />
           }
           child3={
             <RelatedSection
               related={relatedPieces}
-              selectedSize={currentSize}
+              // selectedSize={currentVariant}
               sectionHEader="Related Pieces"
               itemButtonText="View Piece"
             />
