@@ -12,7 +12,6 @@ import React from "react";
 import { palette } from "../../../assets/styles/colors";
 import {
   bodyTypographyStyles,
-  headingTypographyStyles,
   marketingTypographyStyles,
 } from "../../../assets/styles/typography";
 
@@ -38,10 +37,10 @@ export default function CollectionDetailsSection(props) {
         }}
       >
         <Typography sx={{ fontSize: marketingTypographyStyles.title }}>
-          Collection: {props.productDetails.title}
+          {props.productDetails.title}
         </Typography>
       </Box>
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -54,7 +53,7 @@ export default function CollectionDetailsSection(props) {
         >
           {props.productDetails.price} USD
         </Typography>
-      </Box>
+      </Box> */}
       <Box
         sx={{
           display: "flex",
@@ -69,9 +68,8 @@ export default function CollectionDetailsSection(props) {
             fontWeight: 400,
             marginTop: "20px",
           }}
-        >
-          {props.productDetails.description}
-        </Typography>
+          dangerouslySetInnerHTML={{ __html: props.productDetails.description }}
+        />
       </Box>
       <Box
         sx={{
@@ -125,7 +123,7 @@ export default function CollectionDetailsSection(props) {
           width: "100%",
         }}
       >
-        <Button
+        {/* <Button
           sx={{
             fontSize: bodyTypographyStyles.defaultBold,
             backgroundColor: palette.secondary,
@@ -139,7 +137,7 @@ export default function CollectionDetailsSection(props) {
           }}
         >
           Add to Cart
-        </Button>
+        </Button> */}
         <Button
           sx={{
             fontSize: bodyTypographyStyles.defaultBold,
