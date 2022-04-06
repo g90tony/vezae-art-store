@@ -76,21 +76,21 @@ export default function AboutPage() {
               textAlign: "start",
             }}
           >
-            King Tony Art is a revolutionary new art company on the internet,
-            specializing in using artificial intelligence to generate unique
-            artworks that bring life to any wall or room. Our artists are not
-            humans, rather they are advanced AI systems that can create
-            beautiful art pieces from a short simple description. <br />
+            Vezae Art is a revolutionary new art studio, specializing in using
+            artificial intelligence to generate unique artworks. Artworks that
+            bring life to any wall or room. Our artists are not humans, rather
+            they are advanced AI systems that can create beautiful art pieces
+            from a short simple description. <br />
             <br />
-            King Tony Art was started by Caleb Tony, after stumbling on the
+            Vezae Art was started by Caleb Tony, after stumbling on the
             VQGAN+CLIP model while doing preparing for an AI side project. After
             weeks of testing and perfecting the art of “prompt-based” image
             generation on the model, he decided it would an injustice keep such
             artistic creativity to himself and opted to instead to showcase
             these beauties to the world. <br />
             <br />
-            We exists to showcase AI’s creativity to the world, through canvas
-            art, one wall at a time.
+            We now exists to showcase AI’s creativity to the world, through
+            canvas art, one wall at a time.
           </Typography>
           <Typography
             sx={{
