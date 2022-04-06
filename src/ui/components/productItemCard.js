@@ -16,9 +16,7 @@ import {
 } from "../../assets/styles/typography";
 
 export default function ProductItemCard(props) {
-  const [selectedSize, setSelectedSize] = React.useState(
-    props.product.sizes[0]
-  );
+  const [selectedSize, setSelectedSize] = React.useState();
 
   function handleChange(e) {
     setSelectedSize(e.target.value);
@@ -44,7 +42,7 @@ export default function ProductItemCard(props) {
             width: "100%",
             height: "100%",
           }}
-          src={props.product.sizes[0].images[0]}
+          src={props.product.images[0].url}
           alt={""}
         />
       </Box>
@@ -75,7 +73,7 @@ export default function ProductItemCard(props) {
               textAlign: "start",
             }}
           >
-            {selectedSize.price}
+            {selectedSize && selectedSize.price}
           </Typography>
         </Box>
         <Box
@@ -97,7 +95,7 @@ export default function ProductItemCard(props) {
               textAlign: "start",
             }}
           >
-            {"  " + props.product.collectionName}
+            {"  " + props.product.collection.collection_name}
           </Typography>
         </Box>
         <Box
@@ -150,13 +148,13 @@ export default function ProductItemCard(props) {
               value={selectedSize}
               onChange={handleChange}
             >
-              {props.product.sizes.map((size) => {
+              {props.product.variants.map((size) => {
                 return (
                   <MenuItem
-                    key={props.product.sizes.indexOf(size)}
+                    key={props.product.variants.indexOf(size)}
                     value={size}
                   >
-                    {size.text}
+                    {size.title}
                   </MenuItem>
                 );
               })}
@@ -166,8 +164,8 @@ export default function ProductItemCard(props) {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-start",
+            flexDirection: "column",
+            justifyContent: "center",
             alignItems: "center",
             width: "100%",
             padding: 0,
@@ -176,7 +174,8 @@ export default function ProductItemCard(props) {
           }}
         >
           <Button
-            href={`/shop/pieces/view/id=${props.product.id}`}
+            fullWidth
+            href={`/shop/pieces/view/${props.product.product_id}`}
             sx={{
               textDecoration: "none",
               backgroundColor: palette.primary,
@@ -186,13 +185,14 @@ export default function ProductItemCard(props) {
                 backgroundColor: palette.secondary,
                 color: palette.primary,
               },
-              margin: "auto 0",
+              margin: "5px 0",
               borderRadius: "0",
             }}
           >
             View Piece
           </Button>
           <Button
+            fullWidth
             onClick={props.handleAddToCart}
             sx={{
               backgroundColor: palette.primary,
@@ -202,7 +202,7 @@ export default function ProductItemCard(props) {
                 backgroundColor: palette.secondary,
                 color: palette.primary,
               },
-              margin: "auto 5px",
+              margin: "5px 5px",
               borderRadius: "0",
             }}
           >
