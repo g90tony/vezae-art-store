@@ -41,44 +41,14 @@ export default function NavBar() {
     {
       id: 1,
       text: "Collections",
-      hasChildren: true,
-      children: [
-        {
-          text: "All Art Collections",
-          path: "/shop/collections/all",
-        },
-
-        {
-          text: "Newest Art Collections",
-          path: "/shop/collections/latest",
-        },
-
-        {
-          text: "Trending Art Collections",
-          path: "/shop/collections/trending",
-        },
-      ],
+      hasChildren: false,
+      path: "/shop/collections/all",
     },
     {
       id: 6,
       text: "Pieces",
-      hasChildren: true,
-      children: [
-        {
-          text: "All Art Pieces",
-          path: "/shop/pieces/all",
-        },
-
-        {
-          text: "Newest Art Pieces",
-          path: "/shop/pieces/latest",
-        },
-
-        {
-          text: "Trending Art Pieces",
-          path: "/shop/pieces/trending",
-        },
-      ],
+      hasChildren: false,
+      path: "/shop/pieces/all",
     },
     {
       id: 2,
