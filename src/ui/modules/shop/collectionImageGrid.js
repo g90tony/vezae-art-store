@@ -26,7 +26,8 @@ export default function CollectionImageGrid(props) {
         {props.images.map((piece) => {
           return (
             <CollectionGridItem
-              key={props.images.indexOf(piece)}
+              key={props.images.indexOf(piece) + 1}
+              index={props.images.indexOf(piece) + 1}
               product={piece}
             />
           );
