@@ -10,20 +10,53 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { palette } from "../../../assets/styles/colors";
 import {
   bodyTypographyStyles,
   headingTypographyStyles,
   marketingTypographyStyles,
 } from "../../../assets/styles/typography";
+import { addCart, updateCart } from "../../../state/slices/cartSlice";
 
 export default function ProductDetailsSection(props) {
-  const [selectedSize, setSelectedSize] = React.useState({ price: "90" });
+  const [selectedSize, setSelectedSize] = React.useState();
 
-  React.useEffect(() => {
-    setSelectedSize(props.productDetails.variants[0]);
-  }, []);
+  const cartState = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
 
+  function handleAddToCart(product, selectedSize) {
+    let currentState = cartState;
+
+    let foundItem = undefined;
+
+    currentState.forEach((item) => {
+      if (
+        item.product_id === product.product_id &&
+        item.size === selectedSize.title
+      ) {
+        item.count++;
+        foundItem = item;
+      }
+    });
+
+    if (foundItem === undefined) {
+      const new_cart_item = {
+        image: product.images[0].url,
+        title: product.title,
+        product_id: product.product_id,
+        size: selectedSize.title,
+        price: selectedSize.price,
+        count: 1,
+      };
+
+      console.log("new cart item", new_cart_item);
+
+      dispatch(addCart(new_cart_item));
+    } else {
+      dispatch(updateCart(foundItem));
+    }
+  }
   function handleChange(e) {
     props.changeSize(e.target.value);
     setSelectedSize(e.target.value);
@@ -76,7 +109,7 @@ export default function ProductDetailsSection(props) {
         <Typography
           sx={{ fontSize: headingTypographyStyles.h4, fontWeight: 700 }}
         >
-          {selectedSize.price} KES
+          {selectedSize ? selectedSize.price + "KES" : "----.-- KES"}
         </Typography>
       </Box>
       <Box
@@ -126,10 +159,15 @@ export default function ProductDetailsSection(props) {
             }}
             labelId="sizeSelectLabel"
             id="sizeSelect"
+            defaultValue={"none"}
             value={selectedSize}
             label="Canvas Sizes"
             onChange={handleChange}
+            placeholder="Select a size to view price"
           >
+            <MenuItem disabled value="none">
+              Select a size to view price
+            </MenuItem>
             {props.productDetails.variants.map((size) => {
               return (
                 <MenuItem
@@ -163,6 +201,8 @@ export default function ProductDetailsSection(props) {
             padding: "10px",
             marginBottom: "10px",
           }}
+          disabled={selectedSize ? false : true}
+          onClick={(e) => handleAddToCart(props.productDetails, selectedSize)}
         >
           Add to Cart
         </Button>
