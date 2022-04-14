@@ -36,7 +36,7 @@ export default function ShopAllProductsPage(props) {
       products={products}
       width="350px"
       pageName={filter}
-      child1={<FilterProductsCard />}
+      // child1={<FilterProductsCard />}
       child2={<ProductsSearchBar pageName={filter} />}
     />
   );

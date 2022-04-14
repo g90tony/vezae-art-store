@@ -31,7 +31,7 @@ export default function ShopAllCollectionsPage(props) {
 
   return (
     <CollectionsGridLayout
-      child1={<FilterCollectionsCard />}
+      // child1={<FilterCollectionsCard />}
       child2={<CollectionsSearchBar />}
       collections={collections}
       width="350px"
