@@ -2,6 +2,7 @@ import {
   Button,
   FormControl,
   Grid,
+  Link,
   MenuItem,
   Select,
   Typography,
@@ -61,6 +62,7 @@ export default function ProductItemCard(props) {
             sx={{
               fontSize: headingTypographyStyles.h5,
               width: "75%",
+              height: "50px",
               fontWeight: 800,
               textAlign: "start",
             }}
@@ -83,15 +85,22 @@ export default function ProductItemCard(props) {
             marginBottom: "10px",
           }}
         >
-          <Typography
+          <Link
+            href={`/shop/collections/view/${props.product.collection.collection_id}`}
             sx={{
               fontSize: bodyTypographyStyles.defaultExtraLight,
-              //   fontWeight: 800,
+              color: palette.primary,
+              textDecoration: "none",
+              "&:hover": {
+                fontWeight: 600,
+                textDecoration: "none",
+                transitionDuration: "ease-in-out",
+              },
               textAlign: "start",
             }}
           >
             {"  " + props.product.collection.collection_name} Collection
-          </Typography>
+          </Link>
         </Box>
         <Box
           sx={{
