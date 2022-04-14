@@ -626,7 +626,7 @@ export default function FilterProductsCard() {
             id="nested-list-subheader"
             onClick={() => setMobileFilter(!mobileFilter)}
           >
-            Filter Results
+            Filters
           </ListSubheader>
         }
       >
