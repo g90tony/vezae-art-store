@@ -1,11 +1,4 @@
-import {
-  Button,
-  FormControl,
-  Grid,
-  MenuItem,
-  Select,
-  Typography,
-} from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
@@ -16,14 +9,6 @@ import {
 } from "../../assets/styles/typography";
 
 export default function CollectionItemCard(props) {
-  const [selectedSize, setSelectedSize] = React.useState(
-    props.product.sizes[0]
-  );
-
-  function handleChange(e) {
-    setSelectedSize(e.target.value);
-  }
-
   return (
     <Grid
       container
@@ -39,16 +24,16 @@ export default function CollectionItemCard(props) {
       <Box sx={{ margin: "0 0 5px 0", width: "100%", maxHeight: "55%" }}>
         <img
           style={{
-            objectFit: "cover",
+            objectFit: "contain",
             objectPosition: "center",
             width: "100%",
             height: "100%",
           }}
-          src={props.product.sizes[0].images[0]}
+          src={props.product.image}
           alt={""}
         />
       </Box>
-      <Box sx={{ padding: "5px", margin: "auto 5px " }}>
+      <Box sx={{ padding: "10px", margin: "auto 5px " }}>
         <Box
           sx={{
             display: "flex",
@@ -68,15 +53,6 @@ export default function CollectionItemCard(props) {
           >
             {props.product.title}
           </Typography>
-          <Typography
-            sx={{
-              fontSize: bodyTypographyStyles.defaultBold,
-              //   fontWeight: 800,
-              textAlign: "start",
-            }}
-          >
-            {selectedSize.price}
-          </Typography>
         </Box>
         <Box
           sx={{
@@ -85,62 +61,26 @@ export default function CollectionItemCard(props) {
             justifyContent: "flex-start",
             flexWrap: "none",
             alignItems: "center",
-            width: "100%",
+            width: "80%",
             heigh: "100%",
             marginTop: "5px",
-            marginLeft: "5px",
+            marginLeft: "10px",
           }}
         >
           <Typography
             sx={{
-              fontSize: bodyTypographyStyles.defaultBold,
+              fontSize: bodyTypographyStyles.defaultExtraLight,
               //   fontWeight: 800,
               textAlign: "start",
-              marginLeft: "5px",
+              height: "4rem",
+              overflow: "clip",
+              textOverflow: "ellipsis",
+              lineBreak: "strict",
             }}
-          >
-            Select canvas size:
-          </Typography>
+            dangerouslySetInnerHTML={{ __html: props.product.description }}
+          />
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
-          <FormControl
-            sx={{
-              width: "100%",
-              margin: { xs: "10px auto", lg: "5px 0" },
-            }}
-          >
-            <Select
-              size="small"
-              labelId="orderSelectLabel"
-              id="demo-simple-select"
-              sx={{
-                fontSize: bodyTypographyStyles.defaultLight,
-                fontWeight: 400,
-              }}
-              value={selectedSize}
-              onChange={handleChange}
-            >
-              {props.product.sizes.map((size) => {
-                return (
-                  <MenuItem
-                    key={props.product.sizes.indexOf(size)}
-                    value={size}
-                  >
-                    {size.text}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl>
-        </Box>
+
         <Box
           sx={{
             display: "flex",
@@ -154,7 +94,7 @@ export default function CollectionItemCard(props) {
           }}
         >
           <Button
-            href={`/shop/collections/view/${props.product.id}`}
+            href={`/shop/collections/view/${props.product.collection_id}`}
             sx={{
               textDecoration: "none",
               backgroundColor: palette.primary,
@@ -164,27 +104,12 @@ export default function CollectionItemCard(props) {
                 backgroundColor: palette.secondary,
                 color: palette.primary,
               },
+              width: "100%",
               margin: "auto 0",
               borderRadius: "0",
             }}
           >
-            View Piece
-          </Button>
-          <Button
-            onClick={props.handleAddToCart}
-            sx={{
-              backgroundColor: palette.primary,
-              color: palette.secondary,
-              fontSize: bodyTypographyStyles.smallBold,
-              "&:hover": {
-                backgroundColor: palette.secondary,
-                color: palette.primary,
-              },
-              margin: "auto 5px",
-              borderRadius: "0",
-            }}
-          >
-            Add to Cart
+            View Collection
           </Button>
         </Box>
       </Box>
