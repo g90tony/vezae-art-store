@@ -3,34 +3,80 @@ import { createSlice } from "@reduxjs/toolkit";
 export const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    items: [],
-    sumTotal: 0,
+    items: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
   },
   reducers: {
-    addItem: (state, actions) => {
-      state.items.push(actions.payload.items);
-    },
-    removeItem: (state, actions) => {
-      let updatedItemList = state.items.slice(actions.payload.itemIndex, 1);
+    addCart: (state, actions) => {
+      let items = state.items;
+      items.push(actions.payload);
 
-      state.items = updatedItemList;
+      try {
+        localStorage.setItem("cartItems", JSON.stringify(items));
+        state.items = items;
+      } catch (error) {
+        console.error(error);
+      }
     },
-    increaseItemQuantity: (state, actions) => {
-      const itemIndex = actions.payload;
-      let itemToUpdate = state.items[itemIndex];
+    updateCart: (state, actions) => {
+      let items = state.items;
+      items.push(actions.payload);
 
-      itemToUpdate.quantity += 1;
-      state.items[itemIndex] = itemToUpdate;
+      try {
+        localStorage.setItem("cartItems", JSON.stringify(items));
+        state.items = items;
+      } catch (error) {
+        console.error(error);
+      }
     },
-    decreaseItemQuantity: (state, actions) => {
-      const itemIndex = actions.payload;
-      let itemToUpdate = state.items[itemIndex];
+    updateCartItem: (state, actions) => {
+      const updatedItems = state.items.map((item) => {
+        if (
+          item.product_item === actions.payload.id &&
+          item.size === actions.payload.size
+        ) {
+          item.count = actions.payload.newCount;
+          return item;
+        }
+      });
 
-      itemToUpdate.quantity -= 1;
-      state.items[itemIndex] = itemToUpdate;
+      try {
+        localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+        state.items = updatedItems;
+      } catch (error) {
+        console.error(error);
+      }
     },
-    updateSubTotal: (state, actions) => {
-      state.updateSubTotal = actions.payload.newSubTotal;
+    removeCartItem: (state, action) => {
+      const editedItems = state.items.filter((c) => {
+        if (
+          c.product_id !== action.payload.id &&
+          c.size !== action.payload.size
+        ) {
+          return c;
+        }
+      });
+
+      if (editedItems.length > 0) {
+        try {
+          localStorage.setItem("cartItems", JSON.stringify(editedItems));
+          state.items = editedItems;
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        try {
+          localStorage.setItem("cartItems", JSON.stringify([]));
+        } catch (error) {
+          console.error(error);
+        }
+      }
     },
   },
 });
+
+export const { addCart, updateCart, updateCartItem, removeCartItem } =
+  cartSlice.actions;
+
+export default cartSlice.reducer;
