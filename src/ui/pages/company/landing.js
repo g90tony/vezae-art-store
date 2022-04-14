@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Grid } from "@mui/material";
 import React from "react";
 
@@ -9,8 +10,21 @@ import {
   getLatestCollection,
   getTrendingCollection,
 } from "../../../api/landing";
+import {
+  getConversionRates,
+  getPopularCurrencyInfo,
+} from "../../../api/currencyConverter";
+import { useDispatch } from "react-redux";
+import { loadCurrenciesData } from "../../../state/slices/currencyCoversion";
+import { getUseLocation } from "../../../api/useLocation";
+import { setUserLocation } from "../../../state/slices/userLocation";
+import {
+  loadPopular,
+  updateSelected,
+} from "../../../state/slices/currencySelector";
 
 export default function LandingPage() {
+  const dispatch = useDispatch();
   const [featuredCollection, setFeaturedCollection] = React.useState({});
   const [trendingCollection, setTrendingCollection] = React.useState({});
   const [latestCollection, setLatestCollection] = React.useState({});
@@ -21,12 +35,20 @@ export default function LandingPage() {
         const featuredCollection = await getFeaturedCollection();
         const latestCollection = await getLatestCollection();
         const trendingCollection = await getTrendingCollection();
+        const currencies = await getConversionRates();
+        const popularCurrencies = await getPopularCurrencyInfo();
 
         if (featuredCollection && latestCollection && trendingCollection) {
           setFeaturedCollection(featuredCollection);
           setTrendingCollection(trendingCollection);
           setLatestCollection(latestCollection);
         }
+        const userLocationData = await getUseLocation();
+
+        dispatch(updateSelected(userLocationData));
+        dispatch(loadPopular(popularCurrencies));
+        dispatch(setUserLocation(userLocationData));
+        dispatch(loadCurrenciesData(currencies));
       } catch (error) {
         console.error(error);
 
