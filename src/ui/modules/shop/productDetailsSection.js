@@ -19,6 +19,8 @@ import {
 } from "../../../assets/styles/typography";
 import { addCart, updateCart } from "../../../state/slices/cartSlice";
 
+import PriceConverter from "../../components/priceConverter";
+
 export default function ProductDetailsSection(props) {
   const [selectedSize, setSelectedSize] = React.useState();
 
@@ -105,12 +107,8 @@ export default function ProductDetailsSection(props) {
           }}
         >
           {props.productDetails.collection.collection_name}
-        </Link>{" "}
-        <Typography
-          sx={{ fontSize: headingTypographyStyles.h4, fontWeight: 700 }}
-        >
-          {selectedSize ? selectedSize.price + "KES" : "----.-- KES"}
-        </Typography>
+        </Link>
+        <PriceConverter selectedSize={selectedSize} view={true} />
       </Box>
       <Box
         sx={{
