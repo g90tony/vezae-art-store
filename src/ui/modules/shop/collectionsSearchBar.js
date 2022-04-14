@@ -78,7 +78,7 @@ export default function CollectionsSearchBar(props) {
               fontSize: headingTypographyStyles.h5,
             }}
           >
-            {props.pageName}
+            All Collections
           </Typography>
         </Breadcrumbs>
       </Box>

@@ -78,7 +78,7 @@ export default function ProductsSearchBar(props) {
               fontSize: headingTypographyStyles.h5,
             }}
           >
-            {props.pageName}
+            Art Pieces
           </Typography>
         </Breadcrumbs>
       </Box>
