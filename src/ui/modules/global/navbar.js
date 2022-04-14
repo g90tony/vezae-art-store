@@ -1,20 +1,20 @@
 import React from "react";
 
 import {
-  Button,
   Collapse,
   Drawer,
   Grid,
   IconButton,
   List,
   ListItem,
-  ListItemButton,
-  ListItemText,
   Menu,
   MenuItem,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+
+import { useSelector, useDispatch } from "react-redux";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -22,11 +22,15 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 
 import { palette as system_colors } from "../../../assets/styles/colors";
-import { bodyTypographyStyles as body } from "../../../assets/styles/typography";
+import {
+  bodyTypographyStyles as body,
+  bodyTypographyStyles,
+} from "../../../assets/styles/typography";
 
 import navLogo from "../../../assets/images/nav_logo.png";
 import { NavLink } from "react-router-dom";
 import CartPopup from "../../components/cartPopup";
+import { updateSelected } from "../../../state/slices/currencySelector";
 
 export default function NavBar() {
   const navLinks = [
@@ -70,49 +74,40 @@ export default function NavBar() {
 
   const [cart, setCart] = React.useState([]);
 
-  const [anchorElCollection, setAnchorElCollection] = React.useState(null);
-  const [anchorElPiece, setAnchorElPiece] = React.useState(null);
+  const popularCurrencies = useSelector(
+    (state) => state.currencySelector.popularCurrencies
+  );
+
+  const selectedCurrency = useSelector(
+    (state) => state.currencySelector.selectedCurrency
+  );
+
+  const dispatch = useDispatch();
+
+  const [anchorElCurrency, setAnchorElCurrency] = React.useState(null);
   const [anchorElCart, setAnchorElCart] = React.useState(null);
   const [drawerState, setDrawerState] = React.useState(false);
   const [openCartSubMenu, setOpenCartSubMenu] = React.useState(false);
-  const [openPieceSubMenu, setOpenPieceSubMenu] = React.useState(false);
-  const [openCollectionSubMenu, setOpenCollectionSubMenu] =
-    React.useState(false);
 
   const menuOpenCart = Boolean(anchorElCart);
-  const menuOpenPiece = Boolean(anchorElPiece);
-  const menuOpenCollection = Boolean(anchorElCollection);
+  const menuOpenCurrency = Boolean(anchorElCurrency);
 
   const openCartMenu = (event) => {
     setAnchorElCart(event.currentTarget);
   };
-  const openPieceMenu = (event) => {
-    setAnchorElPiece(event.currentTarget);
-  };
-  const openCollectionMenu = (event) => {
-    setAnchorElCollection(event.currentTarget);
+  const openCurrencyMenu = (event) => {
+    setAnchorElCurrency(event.currentTarget);
   };
 
   const closeCartMenu = () => {
     setAnchorElCart(null);
   };
-  const closePieceMenu = () => {
-    setAnchorElPiece(null);
-  };
-  const closeCollectionMenu = () => {
-    setAnchorElCollection(null);
+  const closeCurrencyMenu = () => {
+    setAnchorElCurrency(null);
   };
 
   const handleCartSubMenu = () => {
     setOpenCartSubMenu(!openCartSubMenu);
-  };
-
-  const handlePieceSubMenu = () => {
-    setOpenPieceSubMenu(!openPieceSubMenu);
-  };
-
-  const handleCollectionSubMenu = () => {
-    setOpenCollectionSubMenu(!openCollectionSubMenu);
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -125,6 +120,32 @@ export default function NavBar() {
 
     setDrawerState({ ...drawerState, [anchor]: open });
   };
+
+  function setCurrency(selectedCurrency) {
+    dispatch(updateSelected(selectedCurrency));
+  }
+
+  function cartDropdown() {
+    return (
+      <Collapse in={openCartSubMenu} timeout="auto" unmountOnExit>
+        <CartPopup cart={cart} width="100%" />
+      </Collapse>
+    );
+  }
+
+  function currencyDropdown() {
+    <Collapse in={openCurrencyMenu} timeout="auto" unmountOnExit>
+      {popularCurrencies.map((currency) => {
+        const index = popularCurrencies.indexOf(currency);
+
+        return (
+          <MenuItem key={index} onClick={() => setCurrency(currency)}>
+            {currency.countryName}
+          </MenuItem>
+        );
+      })}
+    </Collapse>;
+  }
 
   function drawerComponent() {
     return (
@@ -176,19 +197,28 @@ export default function NavBar() {
               width: "50%",
               margin: "20px auto",
             }}
+            onClick={() => setAnchorElCurrency(!openCurrencyMenu)}
+          >
+            <Typography>{selectedCurrency.flag}</Typography>
+          </IconButton>
+
+          <IconButton
+            sx={{
+              color: system_colors.primary,
+              width: "50%",
+              margin: "20px auto",
+            }}
             onClick={handleCartSubMenu}
           >
             <ShoppingCartIcon />{" "}
             {openCartSubMenu ? <ExpandLess /> : <ExpandMore />}
           </IconButton>
         </Box>
-        <Collapse in={openCartSubMenu} timeout="auto" unmountOnExit>
-          <CartPopup cart={cart} width="100%" />
-        </Collapse>
+        {cartDropdown()}
         {!openCartSubMenu && (
           <List>
             {navLinks.map((navLink) => {
-              return !navLink.hasChildren ? (
+              return (
                 <ListItem
                   sx={{
                     display: "flex",
@@ -218,92 +248,6 @@ export default function NavBar() {
                       {navLink.text}
                     </Typography>
                   </NavLink>
-                </ListItem>
-              ) : (
-                <ListItem
-                  sx={{ display: "flex", flexDirection: "column" }}
-                  key={navLink.id}
-                >
-                  <ListItemButton
-                    onClick={
-                      navLink.text === "Collections"
-                        ? handleCollectionSubMenu
-                        : handlePieceSubMenu
-                    }
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      width: "100%",
-                    }}
-                  >
-                    <ListItemText>
-                      <Typography
-                        sx={{
-                          textDecoration: "none",
-                          fontSize: body.extraLargeNormal,
-                          textAlign: "start",
-                        }}
-                      >
-                        {navLink.text}
-                      </Typography>{" "}
-                    </ListItemText>
-                    {navLink.text === "Collection" ? (
-                      openCollectionSubMenu ? (
-                        <ExpandLess />
-                      ) : (
-                        <ExpandMore />
-                      )
-                    ) : openPieceSubMenu ? (
-                      <ExpandLess />
-                    ) : (
-                      <ExpandMore />
-                    )}
-                  </ListItemButton>
-                  <Collapse
-                    in={
-                      navLink.text === "Collections"
-                        ? openCollectionSubMenu
-                        : openPieceSubMenu
-                    }
-                    timeout="auto"
-                    unmountOnExit
-                  >
-                    <List component="div" disablePadding>
-                      {navLink.children.map((child) => {
-                        return (
-                          <ListItem
-                            onClick={toggleDrawer("right", false)}
-                            key={child.text}
-                          >
-                            <ListItemText>
-                              <NavLink
-                                to={child.path}
-                                onClick={
-                                  navLink.text === "Collections"
-                                    ? handleCollectionSubMenu
-                                    : handlePieceSubMenu
-                                }
-                                style={{
-                                  textDecoration: "none",
-                                }}
-                              >
-                                <Typography
-                                  sx={{
-                                    textDecoration: "none",
-                                    color: system_colors.primary,
-                                    fontSize: body.smallBold,
-                                  }}
-                                >
-                                  {child.text}
-                                </Typography>
-                              </NavLink>
-                            </ListItemText>
-                          </ListItem>
-                        );
-                      })}
-                    </List>
-                  </Collapse>
                 </ListItem>
               );
             })}
@@ -364,7 +308,7 @@ export default function NavBar() {
         }}
       >
         {navLinks.map((navLink) => {
-          return navLink.hasChildren === false ? (
+          return (
             <React.Fragment key={navLink.id}>
               <NavLink
                 to={navLink.path}
@@ -379,118 +323,6 @@ export default function NavBar() {
                   {navLink.text}
                 </Typography>
               </NavLink>
-            </React.Fragment>
-          ) : (
-            <React.Fragment key={navLink.id}>
-              <Button
-                sx={{
-                  textTransform: "none",
-                  textDecoration: "none",
-                  fontSize: body.extraLargeLight,
-                  color: system_colors.primary,
-                }}
-                id={`${navLink.text}-button`}
-                aria-controls={
-                  navLink.text === "Collections"
-                    ? menuOpenCollection
-                      ? "collection-menu"
-                      : undefined
-                    : menuOpenCollection
-                    ? "piece-menu"
-                    : undefined
-                }
-                aria-haspopup="true"
-                aria-expanded={
-                  navLink.text === "Collections"
-                    ? menuOpenCollection
-                      ? "true"
-                      : undefined
-                    : menuOpenPiece
-                    ? "piece-menu"
-                    : undefined
-                }
-                onClick={
-                  navLink.text === "Collections"
-                    ? openCollectionMenu
-                    : openPieceMenu
-                }
-              >
-                {navLink.text}{" "}
-                {navLink.text === "Collection" ? (
-                  menuOpenCollection ? (
-                    <ExpandLess />
-                  ) : (
-                    <ExpandMore />
-                  )
-                ) : menuOpenPiece ? (
-                  <ExpandLess />
-                ) : (
-                  <ExpandMore />
-                )}
-              </Button>
-              <Menu
-                id={`${navLink.text}-menu`}
-                anchorEl={
-                  navLink.text === "Collections"
-                    ? anchorElCollection
-                    : anchorElPiece
-                }
-                open={
-                  navLink.text === "Collections"
-                    ? menuOpenCollection
-                    : menuOpenPiece
-                }
-                onClose={
-                  navLink.text === "Collections"
-                    ? closeCollectionMenu
-                    : closePieceMenu
-                }
-                sx={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                }}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
-              >
-                {navLink.children.map((child) => {
-                  return (
-                    <MenuItem
-                      key={child.text}
-                      onClick={
-                        navLink.text === "Collections"
-                          ? closeCollectionMenu
-                          : closePieceMenu
-                      }
-                      sx={{
-                        color: system_colors.primary,
-                        width: "100%",
-                      }}
-                    >
-                      <NavLink
-                        to={child.path}
-                        style={{
-                          textDecoration: "none",
-                          width: "100%",
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            fontSize: body.largeLight,
-                            textDecoration: "none",
-                            color: system_colors.primary,
-                            width: "100%",
-                          }}
-                        >
-                          {child.text}
-                        </Typography>
-                      </NavLink>
-                    </MenuItem>
-                  );
-                })}
-              </Menu>
             </React.Fragment>
           );
         })}
@@ -530,6 +362,48 @@ export default function NavBar() {
           }}
         >
           <CartPopup cart={cart} width="450px" />
+        </Menu>
+        <IconButton
+          sx={{
+            color: system_colors.primary,
+            margin: "auto 10px",
+            fontSize: bodyTypographyStyles.largeBold,
+          }}
+          aria-controls={menuOpenCurrency ? "currency-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={menuOpenCurrency ? "true" : undefined}
+          onClick={openCurrencyMenu}
+        >
+          {`${selectedCurrency.flag}`}{" "}
+        </IconButton>
+        <Menu
+          id={`currency-menu`}
+          anchorEl={anchorElCurrency}
+          open={menuOpenCurrency}
+          onClose={closeCurrencyMenu}
+          sx={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+          MenuListProps={{
+            "aria-labelledby": "currency-button",
+          }}
+        >
+          {popularCurrencies.map((currency) => {
+            const index = popularCurrencies.indexOf(currency);
+
+            return (
+              <MenuItem
+                key={index}
+                sx={{ fontSize: bodyTypographyStyles.defaultBold }}
+                onClick={() => setCurrency(currency)}
+              >
+                {`${currency.currencyName.toUpperCase()}  ${currency.flag}`}
+              </MenuItem>
+            );
+          })}
         </Menu>
         <IconButton sx={{ color: system_colors.primary, margin: "auto 10px" }}>
           <SearchIcon />
