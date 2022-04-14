@@ -29,7 +29,7 @@ export default function ShopAllProductsPage(props) {
     return () => {
       setProducts([]);
     };
-  }, []);
+  }, [loadData]);
 
   return (
     <ProductsGridLayout
