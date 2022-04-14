@@ -150,8 +150,8 @@ export default function CartCheckout(props) {
                         height: props.width === "80%" ? "85px" : "100px",
                         objectFit: "contain",
                       }}
-                      src={item.url}
-                      alt={item.name}
+                      src={item.image}
+                      alt={item.title}
                     />
                   </Box>
                 </Badge>
@@ -174,7 +174,7 @@ export default function CartCheckout(props) {
                       textTransform: "capitalize",
                     }}
                   >
-                    {item.name}
+                    {item.title}
                   </Typography>
                   <Typography
                     sx={{
@@ -182,7 +182,7 @@ export default function CartCheckout(props) {
                       width: "100%",
                     }}
                   >
-                    {item.size}
+                    Size: {item.size}
                   </Typography>
                   <Box
                     sx={{
@@ -221,32 +221,6 @@ export default function CartCheckout(props) {
             );
           })}
         </Box>
-      </Box>
-      <Box
-        sx={{
-          width: "100%",
-
-          padding: "5px 10px",
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        <Typography sx={{ fontSize: bodyTypographyStyles.largeExtraLight }}>
-          Cart Total:{" " + grandTotal}
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          width: "100%",
-
-          padding: "5px 10px",
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        <Typography sx={{ fontSize: bodyTypographyStyles.largeExtraLight }}>
-          Shipping to{" 'Nairobi Kenya' : " + grandTotal}
-        </Typography>
       </Box>
       <Box
         sx={{

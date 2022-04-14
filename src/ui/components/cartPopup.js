@@ -1,6 +1,9 @@
-import { Badge, Button, Grid, Typography, OutlinedInput } from "@mui/material";
+import { Badge, Button, Grid, Typography, IconButton } from "@mui/material";
+import RemoveCircleSharp from "@mui/icons-material/RemoveCircleSharp";
 import { Box } from "@mui/system";
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeCartItem } from "../../state/slices/cartSlice";
 
 import { palette } from "../../assets/styles/colors";
 
@@ -10,51 +13,38 @@ import {
 } from "../../assets/styles/typography";
 
 export default function CartPopup(props) {
-  const [cartItems, setCartItems] = React.useState([]);
+  const dispatch = useDispatch();
+
+  const cartState = useSelector((state) => {
+    return state.cart.items;
+  });
+
+  function handleRemoveItemFromCart(item) {
+    const data = {
+      id: item.product_id,
+      size: item.size,
+    };
+    console.log(data);
+    dispatch(removeCartItem(data));
+  }
+
   const [grandTotal, setGrandTotal] = React.useState(0);
 
-  const calculateGrandTotal = React.useCallback(() => {
-    let subTotal = 0;
-
-    cartItems.forEach((item) => {
-      subTotal = subTotal + item.price * item.count;
-    });
-
-    setGrandTotal(Math.round(subTotal * 100) / 100);
-  }, [cartItems]);
-
   React.useEffect(() => {
-    setCartItems(props.cart);
-    calculateGrandTotal();
-    return () => {
-      setCartItems([]);
-      calculateGrandTotal();
-    };
-  }, [props.cart, calculateGrandTotal]);
+    let total = 0;
 
-  function handleCartIncrease(e) {
-    const currentItemIndex = e.target.id;
-
-    console.log(e.target);
-    let currentItem = cartItems[currentItemIndex];
-
-    if (e.target.value < 1) {
-      const newCart = cartItems;
-      newCart.splice(currentItemIndex, 1);
-      console.log(newCart);
-      setCartItems(newCart);
-      calculateGrandTotal();
-    } else {
-      currentItem.count = e.target.value;
-
-      let allItems = cartItems;
-
-      allItems[currentItemIndex] = currentItem;
-
-      setCartItems(allItems);
-      calculateGrandTotal();
+    if (cartState.length > 0) {
+      cartState.forEach((item) => {
+        total = total + item.price * item.count;
+      });
     }
-  }
+
+    setGrandTotal(total);
+
+    return () => {
+      setGrandTotal(0);
+    };
+  }, [cartState]);
 
   return (
     <Grid
@@ -107,118 +97,146 @@ export default function CartPopup(props) {
             margin: "20px 5px",
           }}
         >
-          {cartItems.map((item) => {
-            return (
-              <Box
-                key={cartItems.indexOf(item)}
-                sx={{
-                  display: "flex",
-                  flexDirection: props.width === "80%" ? "column" : "row",
-                  justifyContent:
-                    props.width === "80%" ? "center" : "space-between",
-                  width: "100%",
-                  backgroundColor: palette.accentLight,
-                  margin: "10px auto",
-                }}
-              >
-                <Badge
-                  sx={{
-                    "& 	.MuiBadge-badge": {
-                      backgroundColor: palette.primary,
-                      color: palette.secondary,
-                      fonSize: bodyTypographyStyles.smallBold,
-                    },
-                  }}
-                >
-                  <Box
-                    sx={{
-                      border: {
-                        xs: "none",
-                        lg: `1px ${palette.primary} solid`,
-                      },
-                      width: { xs: "100px", lg: "100px" },
-                      heigh: { xs: "100px", lg: "100px" },
-                      margin: { xs: "auto", lg: 0 },
-                      padding: "10px",
-                    }}
-                  >
-                    <img
-                      style={{
-                        width: props.width === "80%" ? "85px" : "100px",
-                        height: props.width === "80%" ? "85px" : "100px",
-                        objectFit: "contain",
-                      }}
-                      src={item.url}
-                      alt={item.name}
-                    />
-                  </Box>
-                </Badge>
+          {cartState.length > 0 ? (
+            cartState.map((item) => {
+              return (
                 <Box
+                  key={cartState.indexOf(item)}
                   sx={{
-                    width: "100%",
-                    maxHeight: { xs: "100%", lg: "400px" },
                     display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "center",
-                    flexWrap: "nowrap",
-                    padding: "10px",
+                    flexDirection: props.width === "80%" ? "column" : "row",
+                    justifyContent:
+                      props.width === "80%" ? "center" : "space-between",
+                    width: "100%",
+                    backgroundColor: palette.accentLight,
+                    margin: "10px auto",
                   }}
                 >
-                  <Typography
+                  <Badge
                     sx={{
-                      fontSize: bodyTypographyStyles.largeBold,
-                      width: "100%",
-                      textTransform: "capitalize",
+                      "& 	.MuiBadge-badge": {
+                        backgroundColor: palette.primary,
+                        color: palette.secondary,
+                        fonSize: bodyTypographyStyles.smallBold,
+                      },
                     }}
                   >
-                    {item.name}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: bodyTypographyStyles.defaultExtraLight,
-                      width: "100%",
-                    }}
-                  >
-                    {item.size}
-                  </Typography>
+                    <Box
+                      sx={{
+                        border: {
+                          xs: "none",
+                          lg: `1px ${palette.primary} solid`,
+                        },
+                        width: { xs: "100px", lg: "100px" },
+                        heigh: { xs: "100px", lg: "100px" },
+                        margin: { xs: "auto", lg: 0 },
+                        padding: "10px",
+                      }}
+                    >
+                      <img
+                        style={{
+                          width: props.width === "80%" ? "85px" : "100px",
+                          height: props.width === "80%" ? "85px" : "100px",
+                          objectFit: "contain",
+                        }}
+                        src={item.image}
+                        alt={item.title}
+                      />
+                    </Box>
+                  </Badge>
                   <Box
                     sx={{
-                      display: "flex",
-                      flexDirection: "row",
                       width: "100%",
-                      justifyContent: "space-between",
-                      alignItems: "center",
+                      maxHeight: { xs: "100%", lg: "400px" },
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      justifyContent: "center",
+                      flexWrap: "nowrap",
+                      padding: "10px",
                     }}
                   >
                     <Typography
                       sx={{
                         fontSize: bodyTypographyStyles.largeBold,
                         width: "100%",
+                        textTransform: "capitalize",
                       }}
                     >
-                      {item.price}
+                      {item.title}
                     </Typography>
-
-                    <OutlinedInput
+                    <Typography
                       sx={{
-                        padding: 0,
-                        width: "80px",
-                        borderRadius: 0,
-                        textAlign: "center",
-                        fontSize: bodyTypographyStyles.largeBold,
+                        fontSize: bodyTypographyStyles.defaultExtraLight,
+                        width: "100%",
                       }}
-                      focused
-                      type="number"
-                      id={cartItems.indexOf(item)}
-                      value={item.count}
-                      onChange={handleCartIncrease}
-                    />
+                    >
+                      <span
+                        style={{ fontSize: bodyTypographyStyles.defaultBold }}
+                      >
+                        Size:
+                      </span>
+                      {item.size}
+                    </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        width: "100%",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          fontSize: bodyTypographyStyles.largeBold,
+                          width: "100%",
+                        }}
+                      >
+                        {item.price}
+                      </Typography>
+
+                      <IconButton
+                        sx={{
+                          padding: 0,
+                          borderRadius: 0,
+                          textAlign: "center",
+                          fontSize: bodyTypographyStyles.largeBold,
+                        }}
+                        onClick={() => handleRemoveItemFromCart(item)}
+                      >
+                        <RemoveCircleSharp color="error" />
+                      </IconButton>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            );
-          })}
+              );
+            })
+          ) : (
+            <Box
+              sx={{
+                width: "100%",
+                height: "50px",
+                padding: "10px",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: bodyTypographyStyles.smallBold,
+                  // margin: "auto",
+                  width: "100%",
+                  textAlign: "center",
+                  color: "#a0a0a0",
+                }}
+              >
+                There are no items in your cart
+              </Typography>{" "}
+            </Box>
+          )}
         </Box>
       </Box>
       <Box
@@ -230,7 +248,7 @@ export default function CartPopup(props) {
         }}
       >
         <Typography sx={{ fontSize: headingTypographyStyles.h4 }}>
-          Grand Total:{" " + grandTotal}
+          Grand Total: {grandTotal}
         </Typography>
       </Box>
       <Button
