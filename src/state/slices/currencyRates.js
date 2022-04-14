@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const collectionSlice = createSlice({
+export const currencyRates = createSlice({
   name: "collection",
   initialState: localStorage.getItem("currencyRates")
     ? JSON.parse(localStorage.getItem("currencyRates"))
@@ -20,6 +20,6 @@ export const collectionSlice = createSlice({
   },
 });
 
-export const { loadCurrenciesData } = collectionSlice.actions;
+export const { loadCurrenciesData } = currencyRates.actions;
 
-export default collectionSlice.reducer;
+export default currencyRates.reducer;
