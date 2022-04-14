@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-
 import { palette } from "../../assets/styles/colors";
 import {
   bodyTypographyStyles,
@@ -46,7 +45,7 @@ export default function ProductItemCard(props) {
           alt={""}
         />
       </Box>
-      <Box sx={{ padding: "5px", margin: "auto 5px " }}>
+      <Box sx={{ padding: "5px 20px", margin: "auto 5px " }}>
         <Box
           sx={{
             display: "flex",
@@ -54,7 +53,7 @@ export default function ProductItemCard(props) {
             justifyContent: "space-between",
             alignItems: "center",
             width: "100%",
-            marginBottom: "10px",
+            marginBottom: "5px",
           }}
         >
           <Typography
@@ -90,12 +89,12 @@ export default function ProductItemCard(props) {
         >
           <Typography
             sx={{
-              fontSize: bodyTypographyStyles.largeLight,
+              fontSize: bodyTypographyStyles.defaultExtraLight,
               //   fontWeight: 800,
               textAlign: "start",
             }}
           >
-            {"  " + props.product.collection.collection_name}
+            {"  " + props.product.collection.collection_name} Collection
           </Typography>
         </Box>
         <Box
@@ -116,7 +115,7 @@ export default function ProductItemCard(props) {
               fontSize: bodyTypographyStyles.defaultBold,
               //   fontWeight: 800,
               textAlign: "start",
-              marginLeft: "5px",
+              // marginLeft: "5px",
             }}
           >
             Select canvas size:
@@ -146,12 +145,15 @@ export default function ProductItemCard(props) {
                 fontWeight: 400,
               }}
               value={selectedSize}
+              defaultValue={"none"}
               onChange={handleChange}
+              placeholder="Select size to view price"
             >
+              <MenuItem value="none">Select size to view price</MenuItem>;
               {props.product.variants.map((size) => {
                 return (
                   <MenuItem
-                    key={props.product.variants.indexOf(size)}
+                    key={props.product.variants.indexOf(size) + 1}
                     value={size}
                   >
                     {size.title}
@@ -191,15 +193,20 @@ export default function ProductItemCard(props) {
           >
             View Piece
           </Button>
-          <Button
+          {/* <Button
+            disabled={selectedSize ? false : true}
             fullWidth
-            onClick={props.handleAddToCart}
+            onClick={() => handleAddToCart(props.product, selectedSize)}
             sx={{
-              backgroundColor: palette.primary,
+              backgroundColor: selectedSize
+                ? palette.primary
+                : palette.accentDark,
               color: palette.secondary,
               fontSize: bodyTypographyStyles.smallBold,
               "&:hover": {
-                backgroundColor: palette.secondary,
+                backgroundColor: selectedSize
+                  ? palette.secondary
+                  : palette.accentDark,
                 color: palette.primary,
               },
               margin: "5px 5px",
@@ -207,7 +214,7 @@ export default function ProductItemCard(props) {
             }}
           >
             Add to Cart
-          </Button>
+          </Button> */}
         </Box>
       </Box>
     </Grid>
