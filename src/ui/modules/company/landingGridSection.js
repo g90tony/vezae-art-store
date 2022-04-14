@@ -121,6 +121,7 @@ export default function LandingGridSection() {
             <ProductGridItemCard
               key={gridImages.indexOf(image)}
               piece={image}
+              index={gridImages.indexOf(image)}
             />
           );
         })}
