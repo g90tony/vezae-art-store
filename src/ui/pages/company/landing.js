@@ -15,7 +15,7 @@ import {
   getPopularCurrencyInfo,
 } from "../../../api/currencyConverter";
 import { useDispatch } from "react-redux";
-import { loadCurrenciesData } from "../../../state/slices/currencyCoversion";
+import { loadCurrenciesData } from "../../../state/slices/currencyRates";
 import { getUseLocation } from "../../../api/useLocation";
 import { setUserLocation } from "../../../state/slices/userLocation";
 import {
@@ -44,6 +44,8 @@ export default function LandingPage() {
           setLatestCollection(latestCollection);
         }
         const userLocationData = await getUseLocation();
+
+        popularCurrencies.push(userLocationData);
 
         dispatch(updateSelected(userLocationData));
         dispatch(loadPopular(popularCurrencies));
