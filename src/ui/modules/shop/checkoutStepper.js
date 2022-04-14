@@ -6,13 +6,14 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import CartCheckout from "../../components/cartCheckout";
-import { cart } from "../../../helpers/data/dummyData";
 import { palette } from "../../../assets/styles/colors";
 import CheckoutBillingAddress from "./checkoutBillingAddress";
 import CheckoutShippingAddress from "./checkoutShippingAddress";
 import CheckoutCreditCard from "./checkoutCreditCard";
 import { CircularProgress } from "@mui/material";
 
+import { useSelector } from "react-redux";
+import { bodyTypographyStyles } from "../../../assets/styles/typography";
 const steps = [
   "Confirm Products",
   "Billing Address",
@@ -23,6 +24,7 @@ const steps = [
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  const cartItems = useSelector((state) => state.cart.items);
 
   const isStepOptional = (step) => {
     return step === 2;
@@ -62,10 +64,36 @@ export default function HorizontalLinearStepper() {
     });
   };
 
-  function currentStepper() {
+  function currentStepper(cart) {
     switch (activeStep) {
       case 0:
-        return <CartCheckout cart={cart} width="100%" />;
+        return cart.length > 0 ? (
+          <CartCheckout cart={cart} width="100%" />
+        ) : (
+          <Box
+            sx={{
+              width: "100%",
+              height: "50vh",
+              padding: "10px",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: bodyTypographyStyles.smallBold,
+                // margin: "auto",
+                width: "100%",
+                textAlign: "center",
+                color: "#a0a0a0",
+              }}
+            >
+              There are no items in your cart
+            </Typography>{" "}
+          </Box>
+        );
 
       case 1:
         return <CheckoutBillingAddress />;
@@ -139,7 +167,7 @@ export default function HorizontalLinearStepper() {
         </React.Fragment>
       ) : (
         <Box sx={{ height: "100%" }}>
-          {currentStepper()}
+          {currentStepper(cartItems)}
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"
