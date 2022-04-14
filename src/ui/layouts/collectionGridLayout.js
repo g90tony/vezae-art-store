@@ -16,7 +16,7 @@ export default function CollectionsGridLayout(props) {
         padding: "10px",
       }}
     >
-      <Box
+      {/* <Box
         sx={{
           width: { xs: "100%", lg: "25%" },
           display: "flex",
@@ -26,10 +26,10 @@ export default function CollectionsGridLayout(props) {
         }}
       >
         {props.child1}
-      </Box>
+      </Box> */}
       <Box
         sx={{
-          width: { xs: "100%", lg: "75%" },
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start",
