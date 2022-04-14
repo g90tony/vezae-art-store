@@ -43,7 +43,7 @@ export default function ProductsGridLayout(props) {
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
-            justifyContent: { xs: "center", lg: "start" },
+            justifyContent: { xs: "center", lg: "center" },
             alignItems: "flex-start",
             width: "100%",
             padding: "10px",
@@ -52,13 +52,12 @@ export default function ProductsGridLayout(props) {
         >
           {props.products.map((product) => {
             return (
-              <React.Fragment key={product.id}>
-                <ProductItemCard
-                  product={product}
-                  index={props.products.indexOf(product)}
-                  width={props.width}
-                />
-              </React.Fragment>
+              <ProductItemCard
+                key={props.products.indexOf(product)}
+                product={product}
+                index={props.products.indexOf(product) + 1}
+                width={props.width}
+              />
             );
           })}
         </Box>
