@@ -28,8 +28,6 @@ import navLogo from "../../../assets/images/nav_logo.png";
 import { NavLink } from "react-router-dom";
 import CartPopup from "../../components/cartPopup";
 
-import { cart } from "../../../helpers/data/dummyData";
-
 export default function NavBar() {
   const navLinks = [
     {
@@ -69,6 +67,8 @@ export default function NavBar() {
       hasChildren: false,
     },
   ];
+
+  const [cart, setCart] = React.useState([]);
 
   const [anchorElCollection, setAnchorElCollection] = React.useState(null);
   const [anchorElPiece, setAnchorElPiece] = React.useState(null);
