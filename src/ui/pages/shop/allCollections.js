@@ -1,11 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import { useParams } from "react-router-dom";
+
 import { getAllCollections } from "../../../api/collections";
 
-import { dummyProductsData as dummyProducts } from "../../../helpers/data/dummyData";
 import CollectionsGridLayout from "../../layouts/collectionGridLayout";
 import CollectionsSearchBar from "../../modules/shop/collectionsSearchBar";
-import FilterCollectionsCard from "../../modules/shop/filterCollectionsCard";
+// import FilterCollectionsCard from "../../modules/shop/filterCollectionsCard";
 
 export default function ShopAllCollectionsPage(props) {
   const [collections, setCollections] = React.useState([]);
