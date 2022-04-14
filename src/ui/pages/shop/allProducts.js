@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getAllProducts } from "../../../api/products";
 
 import ProductsGridLayout from "../../layouts/productsGridLayout";
-import FilterProductsCard from "../../modules/shop/filterProductsCard";
+// import FilterProductsCard from "../../modules/shop/filterProductsCard";
 import ProductsSearchBar from "../../modules/shop/productsSearchBar";
 
 export default function ShopAllProductsPage(props) {
