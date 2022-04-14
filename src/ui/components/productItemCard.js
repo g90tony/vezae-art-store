@@ -13,6 +13,7 @@ import {
   bodyTypographyStyles,
   headingTypographyStyles,
 } from "../../assets/styles/typography";
+import PriceConverter from "./priceConverter";
 
 export default function ProductItemCard(props) {
   const [selectedSize, setSelectedSize] = React.useState();
@@ -51,7 +52,7 @@ export default function ProductItemCard(props) {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: "space-evenly",
             width: "100%",
             marginBottom: "5px",
           }}
@@ -59,20 +60,15 @@ export default function ProductItemCard(props) {
           <Typography
             sx={{
               fontSize: headingTypographyStyles.h5,
+              width: "75%",
               fontWeight: 800,
               textAlign: "start",
             }}
           >
             {props.product.title}
           </Typography>
-          <Typography
-            sx={{
-              fontSize: bodyTypographyStyles.defaultBold,
-              //   fontWeight: 800,
-              textAlign: "start",
-            }}
-          >
-            {selectedSize && selectedSize.price}
+          <Typography>
+            <PriceConverter view={false} selectedSize={selectedSize} />
           </Typography>
         </Box>
         <Box
