@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartSlice from "./slices/cartSlice";
-import currencySlice from "./slices/currencyCoversion";
+import currencyRates from "./slices/currencyRates";
 import userLocationSlice from "./slices/userLocation";
 import currencySelector from "./slices/currencySelector";
 import productsSlice from "./slices/productsSlice";
@@ -12,7 +12,7 @@ export default configureStore({
     products: productsSlice,
     userLocation: userLocationSlice,
     currencySelector: currencySelector,
-    currencies: currencySlice,
+    currencyRates: currencyRates,
     searchResults: searchSlice,
   },
 });
