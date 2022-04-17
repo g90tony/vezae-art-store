@@ -3,21 +3,21 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import ViewProductLayout from "../../layouts/viewProductLayout";
 
-import { dummyProductsData as dummyProducts } from "../../../helpers/data/dummyData";
-
 // import RelatedSection from "../../modules/shop/relatedSection";
 import CollectionDetailsSection from "../../modules/shop/collectionDetailsSection";
 import CollectionImageGrid from "../../modules/shop/collectionImageGrid";
 import { getSingleCollection } from "../../../api/collections";
+import LoadingScreen from "../../modules/global/loading";
 
 export default function ShopViewCollectionPage(props) {
   let { id } = useParams();
   let history = useNavigate();
+  const [hasLoaded, setHasLoaded] = React.useState(false);
 
   const [currentCollection, setCurrentCollection] = React.useState({});
   const [collectionPieces, setCollectionPieces] = React.useState([]);
 
-  const [relatedPieces, setRelatedPieces] = React.useState();
+  // const [relatedPieces, setRelatedPieces] = React.useState();
 
   const loadData = React.useCallback(async (id) => {
     try {
@@ -25,7 +25,7 @@ export default function ShopViewCollectionPage(props) {
 
       setCurrentCollection(data);
       setCollectionPieces(data.products);
-      setRelatedPieces(dummyProducts.slice(0, 4));
+      // setRelatedPieces(dummyProducts.slice(0, 4));
     } catch (error) {
       alert("There was a problem fetching the collection");
       console.error(error);
@@ -48,17 +48,26 @@ export default function ShopViewCollectionPage(props) {
   }, [history, id, loadData]);
 
   return (
-    <ViewProductLayout
-      history={history}
-      child1={<CollectionImageGrid images={collectionPieces} />}
-      child2={<CollectionDetailsSection productDetails={currentCollection} />}
-      // child3={
-      //   <RelatedSection
-      //     sectionHeader="Related Collections"
-      //     itemButtonText="View Collection"
-      //     related={relatedPieces}
-      //   />
-      // }
-    />
+    <>
+      <ViewProductLayout
+        history={history}
+        child1={
+          <CollectionImageGrid
+            images={collectionPieces}
+            manageLoader={setHasLoaded}
+          />
+        }
+        child2={<CollectionDetailsSection productDetails={currentCollection} />}
+        // child3={
+        //   <RelatedSection
+        //     sectionHeader="Related Collections"
+        //     itemButtonText="View Collection"
+        //     related={relatedPieces}
+        //   />
+        // }
+      />
+
+      {hasLoaded !== true && <LoadingScreen />}
+    </>
   );
 }

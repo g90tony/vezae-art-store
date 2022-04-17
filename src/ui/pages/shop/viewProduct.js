@@ -1,23 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import ViewProductLayout from "../../layouts/viewProductLayout";
 
-import { dummyProductsData as dummyProducts } from "../../../helpers/data/dummyData";
 import ProductDetailsSection from "../../modules/shop/productDetailsSection";
 import ProductImageGrid from "../../modules/shop/productImageGrid";
-import RelatedSection from "../../modules/shop/relatedSection";
+// import RelatedSection from "../../modules/shop/relatedSection";
 import { getSingleProduct } from "../../../api/products";
+import LoadingScreen from "../../modules/global/loading";
 
 export default function ShopViewProductPage(props) {
   const product_id = useParams().id;
   let history = useNavigate();
 
+  const [hasLoaded, setHasLoaded] = React.useState(false);
+
   const [currentPiece, setCurrentPiece] = React.useState();
   const [currentVariant, setCurrentVariant] = React.useState();
 
   const [productImages, setProductImages] = React.useState();
-  const [relatedPieces, setRelatedPieces] = React.useState();
+  // const [relatedPieces, setRelatedPieces] = React.useState();
 
   React.useEffect(() => {
     async function loadData() {
@@ -49,7 +52,12 @@ export default function ShopViewProductPage(props) {
       {currentPiece && (
         <ViewProductLayout
           history={history}
-          child1={<ProductImageGrid images={productImages} />}
+          child1={
+            <ProductImageGrid
+              manageLoader={setHasLoaded}
+              images={productImages}
+            />
+          }
           child2={
             <ProductDetailsSection
               productDetails={currentPiece}
@@ -57,16 +65,17 @@ export default function ShopViewProductPage(props) {
               changeSize={(value) => setCurrentVariant(value)}
             />
           }
-          child3={
-            <RelatedSection
-              related={relatedPieces}
-              // selectedSize={currentVariant}
-              sectionHEader="Related Pieces"
-              itemButtonText="View Piece"
-            />
-          }
+          // child3={
+          //   <RelatedSection
+          //     // related={relatedPieces}
+          //     // selectedSize={currentVariant}
+          //     sectionHEader="Related Pieces"
+          //     itemButtonText="View Piece"
+          //   />
+          // }
         />
       )}
+      {hasLoaded !== true && <LoadingScreen />}
     </>
   );
 }
