@@ -49,7 +49,7 @@ async function getPopularCurrencyInfo() {
       countries_data.push(country_data);
     } catch (error) {
       console.error(
-        "There was a problem loading the popular currencies",
+        "There was a problem loading the all popular currencies",
         error
       );
     }
