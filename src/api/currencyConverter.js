@@ -9,7 +9,7 @@ async function getCurrencyInfo(name) {
 
     // const rateKeys = Object.keys(rates);
 
-    if (response.status === 200) {
+    if (response.status === 200 && rates) {
       const currency_keys = Object.keys(response.data[0].currencies);
 
       const currency_symbol = currency_keys[0];
