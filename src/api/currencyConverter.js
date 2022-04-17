@@ -5,7 +5,8 @@ async function getCurrencyInfo(name) {
   console.log("new_currency", info_url);
   try {
     const response = await axios.get(info_url);
-    const rates = JSON.parse(localStorage.getItem("currencyRates"));
+    const rates = await getConversionRates();
+
     // const rateKeys = Object.keys(rates);
 
     if (response.status === 200) {
@@ -25,16 +26,11 @@ async function getCurrencyInfo(name) {
       }
     }
   } catch (error) {
-    console.error(error);
+    console.error("There was a problem loading the currency info", error);
   }
 }
 
 async function getPopularCurrencyInfo() {
-  try {
-    await getConversionRates();
-  } catch (error) {
-    console.error(error);
-  }
   const popularCountries = [
     "usa",
     "gb",
@@ -52,7 +48,10 @@ async function getPopularCurrencyInfo() {
 
       countries_data.push(country_data);
     } catch (error) {
-      console.error(error);
+      console.error(
+        "There was a problem loading the popular currencies",
+        error
+      );
     }
   });
 
