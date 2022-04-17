@@ -1,8 +1,48 @@
+/* eslint-disable array-callback-return */
 import { Box, Grid } from "@mui/material";
 import React from "react";
 
 export default function ProductImageGrid(props) {
   const [selectedImage, setSelectedImage] = React.useState();
+  const [loadingImages, setLoadingImage] = React.useState();
+
+  React.useEffect(() => {
+    if (props.images) {
+      const imagesArr = props.images.map((item) => {
+        return {
+          image_src: item.url,
+          hasLoaded: false,
+        };
+      });
+
+      setLoadingImage(imagesArr);
+    }
+    return () => {
+      setLoadingImage([]);
+    };
+  }, [props.images]);
+
+  function hasLoaded(image) {
+    const updatedImages = loadingImages.map((img) => {
+      if (img.image_src === image.url) {
+        img.hasLoaded = true;
+      }
+
+      return img;
+    });
+
+    setLoadingImage(updatedImages);
+
+    const completedImages = loadingImages.map((img) => {
+      if (img.hasLoaded === true) {
+        return img;
+      }
+    });
+
+    if (completedImages.length === loadingImages.length) {
+      props.manageLoader(true);
+    }
+  }
 
   return (
     <Grid
@@ -76,6 +116,7 @@ export default function ProductImageGrid(props) {
                 src={image.url}
                 alt="product preview"
                 onClick={() => setSelectedImage(image)}
+                onLoad={() => hasLoaded(image)}
               />
             );
           })}
