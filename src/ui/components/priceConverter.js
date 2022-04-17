@@ -20,7 +20,7 @@ export default function PriceConverter(props) {
 
   return (
     <Typography sx={props.view ? viewStyle : shopStyle}>
-      {`${selectedCurrency.symbol.toUpperCase()}`}{" "}
+      {`${selectedCurrency.symbol}`}{" "}
       {props.selectedSize
         ? Math.round(props.selectedSize.price * selectedCurrency.rate * 100) /
           100
