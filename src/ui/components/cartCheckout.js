@@ -8,6 +8,7 @@ import {
   bodyTypographyStyles,
   headingTypographyStyles,
 } from "../../assets/styles/typography";
+import PriceConverter from "./priceConverter";
 
 export default function CartCheckout(props) {
   const [cartItems, setCartItems] = React.useState([]);
@@ -199,7 +200,7 @@ export default function CartCheckout(props) {
                         width: "100%",
                       }}
                     >
-                      {item.price}
+                      <PriceConverter selectedSize={{ price: item.price }} />
                     </Typography>
 
                     <OutlinedInput
@@ -232,7 +233,8 @@ export default function CartCheckout(props) {
         }}
       >
         <Typography sx={{ fontSize: headingTypographyStyles.h3 }}>
-          Grand Total:{" " + grandTotal}
+          Grand Total:
+          <PriceConverter view={true} selectedSize={{ price: grandTotal }} />
         </Typography>
       </Box>
     </Grid>

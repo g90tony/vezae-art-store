@@ -11,6 +11,7 @@ import {
   bodyTypographyStyles,
   headingTypographyStyles,
 } from "../../assets/styles/typography";
+import PriceConverter from "./priceConverter";
 
 export default function CartPopup(props) {
   const dispatch = useDispatch();
@@ -193,7 +194,7 @@ export default function CartPopup(props) {
                           width: "100%",
                         }}
                       >
-                        {item.price}
+                        <PriceConverter selectedSize={{ price: item.price }} />
                       </Typography>
 
                       <IconButton
@@ -248,7 +249,7 @@ export default function CartPopup(props) {
         }}
       >
         <Typography sx={{ fontSize: headingTypographyStyles.h4 }}>
-          Grand Total: {grandTotal}
+          Grand Total: <PriceConverter selectedSize={{ price: grandTotal }} />
         </Typography>
       </Box>
       <Button
