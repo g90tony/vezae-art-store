@@ -22,16 +22,20 @@ import {
   loadPopular,
   updateSelected,
 } from "../../../state/slices/currencySelector";
+import LoadingScreen from "../../modules/global/loading";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
   const [featuredCollection, setFeaturedCollection] = React.useState({});
   const [trendingCollection, setTrendingCollection] = React.useState({});
   const [latestCollection, setLatestCollection] = React.useState({});
+  const [hasLoaded, setHasLoaded] = React.useState();
 
   React.useEffect(() => {
     async function loadData() {
       try {
+        setHasLoaded(false);
+
         const featuredCollection = await getFeaturedCollection();
         const latestCollection = await getLatestCollection();
         const trendingCollection = await getTrendingCollection();
@@ -51,6 +55,8 @@ export default function LandingPage() {
         dispatch(loadPopular(popularCurrencies));
         dispatch(setUserLocation(userLocationData));
         dispatch(loadCurrenciesData(currencies));
+
+        setTimeout(setHasLoaded(true), 1000);
       } catch (error) {
         console.error(error);
 
@@ -62,40 +68,43 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <Grid
-      container
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        marginBottom: "20px",
-      }}
-    >
-      <LandingGridSection />
-      {latestCollection && (
-        <LandingCollectionSection
-          isAlternate={false}
-          darkBg={false}
-          collection={latestCollection}
-          sectionTitle="Latest Collection"
-        />
-      )}
-      {featuredCollection && (
-        <LandingCollectionSection
-          isAlternate={true}
-          darkBg={true}
-          collection={featuredCollection}
-          sectionTitle="Featured Collection"
-        />
-      )}
-      {trendingCollection && (
-        <LandingCollectionSection
-          isAlternate={false}
-          darkBg={false}
-          collection={trendingCollection}
-          sectionTitle="Trending Collection"
-        />
-      )}
-    </Grid>
+    <>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          marginBottom: "20px",
+        }}
+      >
+        <LandingGridSection />
+        {latestCollection && (
+          <LandingCollectionSection
+            isAlternate={false}
+            darkBg={false}
+            collection={latestCollection}
+            sectionTitle="Latest Collection"
+          />
+        )}
+        {featuredCollection && (
+          <LandingCollectionSection
+            isAlternate={true}
+            darkBg={true}
+            collection={featuredCollection}
+            sectionTitle="Featured Collection"
+          />
+        )}
+        {trendingCollection && (
+          <LandingCollectionSection
+            isAlternate={false}
+            darkBg={false}
+            collection={trendingCollection}
+            sectionTitle="Trending Collection"
+          />
+        )}
+      </Grid>
+      {hasLoaded === false && <LoadingScreen />}
+    </>
   );
 }
