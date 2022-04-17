@@ -31,6 +31,7 @@ export default function CollectionItemCard(props) {
           }}
           src={props.product.image}
           alt={""}
+          onLoad={props.isLoading}
         />
       </Box>
       <Box sx={{ padding: "10px", margin: "auto 5px " }}>

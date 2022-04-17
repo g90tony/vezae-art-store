@@ -45,6 +45,7 @@ export default function ProductItemCard(props) {
           }}
           src={props.product.images[0].url}
           alt={""}
+          onLoad={props.isLoading}
         />
       </Box>
       <Box sx={{ padding: "5px 20px", margin: "auto 5px " }}>
