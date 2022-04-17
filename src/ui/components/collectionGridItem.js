@@ -29,6 +29,7 @@ export default function CollectionGridItem(props) {
         }}
         src={props.product.image}
         alt={props.product.title}
+        onLoad={() => props.hasLoaded()}
       />
       <div className="collection-grid-info">
         <Typography
