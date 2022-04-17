@@ -88,6 +88,7 @@ export default function NavBar() {
   const [anchorElCart, setAnchorElCart] = React.useState(null);
   const [drawerState, setDrawerState] = React.useState(false);
   const [openCartSubMenu, setOpenCartSubMenu] = React.useState(false);
+  const [openCurrencySubMenu, setOpenCurrencySubMenu] = React.useState(false);
 
   const menuOpenCart = Boolean(anchorElCart);
   const menuOpenCurrency = Boolean(anchorElCurrency);
@@ -108,6 +109,10 @@ export default function NavBar() {
 
   const handleCartSubMenu = () => {
     setOpenCartSubMenu(!openCartSubMenu);
+  };
+
+  const handleCurrencySubMenu = () => {
+    setOpenCurrencySubMenu(!openCurrencySubMenu);
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -134,17 +139,34 @@ export default function NavBar() {
   }
 
   function currencyDropdown() {
-    <Collapse in={openCurrencyMenu} timeout="auto" unmountOnExit>
-      {popularCurrencies.map((currency) => {
-        const index = popularCurrencies.indexOf(currency);
+    return (
+      <Collapse in={openCurrencySubMenu} timeout="auto" unmountOnExit>
+        {popularCurrencies.map((currency) => {
+          const index = popularCurrencies.indexOf(currency);
 
-        return (
-          <MenuItem key={index} onClick={() => setCurrency(currency)}>
-            {currency.countryName}
-          </MenuItem>
-        );
-      })}
-    </Collapse>;
+          return (
+            <MenuItem
+              sx={{
+                padding: "10px 50px ",
+              }}
+              key={index}
+              onClick={handleCurrencySubMenu}
+            >
+              <Box sx={{ margin: "auto 10px" }}>{currency.flag}</Box>
+              <Box
+                sx={{
+                  margin: "auto 10px",
+                  fontWeight: "600",
+                  fontSize: bodyTypographyStyles.defaultBold,
+                }}
+              >
+                {currency.countryName}
+              </Box>
+            </MenuItem>
+          );
+        })}
+      </Collapse>
+    );
   }
 
   function drawerComponent() {
@@ -185,7 +207,7 @@ export default function NavBar() {
           <IconButton
             sx={{
               color: system_colors.primary,
-              width: "50%",
+              width: "33.3%",
               margin: "20px auto",
             }}
           >
@@ -194,10 +216,10 @@ export default function NavBar() {
           <IconButton
             sx={{
               color: system_colors.primary,
-              width: "50%",
+              width: "33.3%",
               margin: "20px auto",
             }}
-            onClick={() => setAnchorElCurrency(!openCurrencyMenu)}
+            onClick={handleCurrencySubMenu}
           >
             <Typography>{selectedCurrency.flag}</Typography>
           </IconButton>
@@ -205,7 +227,7 @@ export default function NavBar() {
           <IconButton
             sx={{
               color: system_colors.primary,
-              width: "50%",
+              width: "33.3%",
               margin: "20px auto",
             }}
             onClick={handleCartSubMenu}
@@ -215,7 +237,8 @@ export default function NavBar() {
           </IconButton>
         </Box>
         {cartDropdown()}
-        {!openCartSubMenu && (
+        {currencyDropdown()}
+        {!openCartSubMenu && !openCurrencySubMenu && (
           <List>
             {navLinks.map((navLink) => {
               return (
