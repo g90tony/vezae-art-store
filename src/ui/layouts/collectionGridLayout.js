@@ -3,6 +3,45 @@ import React from "react";
 import CollectionItemCard from "../components/collectionItemCard";
 
 export default function CollectionsGridLayout(props) {
+  const [loadingImages, setLoadingImages] = React.useState([]);
+
+  React.useEffect(() => {
+    const collectionImages = props.collections.map((item) => {
+      return {
+        collection_id: item.collection_id,
+        hasLoaded: false,
+      };
+    });
+
+    setLoadingImages(collectionImages);
+
+    return setLoadingImages([]);
+  }, []);
+
+  function handleHasLoaded(collection) {
+    const updatedList = loadingImages.map((item) => {
+      if (item.collection_id === collection.collection_id) {
+        item.hasLoaded = true;
+      }
+
+      return item;
+    });
+
+    setLoadingImages(updatedList);
+
+    const loadedImages = loadingImages.map((item) => {
+      if (item.hasLoaded === true) {
+        return item;
+      }
+    });
+
+    if (loadedImages.length === loadingImages.length) {
+      setTimeout(() => {
+        props.loadingController(true);
+      }, 1500);
+    }
+  }
+
   return (
     <Grid
       container
@@ -57,6 +96,7 @@ export default function CollectionsGridLayout(props) {
                 product={product}
                 width={props.width}
                 index={props.collections.indexOf(product)}
+                isLoading={() => handleHasLoaded(product)}
               />
             );
           })}

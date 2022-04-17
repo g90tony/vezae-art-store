@@ -3,6 +3,45 @@ import React from "react";
 import ProductItemCard from "../components/productItemCard";
 
 export default function ProductsGridLayout(props) {
+  const [loadingImages, setLoadingImages] = React.useState([]);
+
+  React.useEffect(() => {
+    const productImages = props.products.map((item) => {
+      return {
+        product_id: item.product_id,
+        hasLoaded: false,
+      };
+    });
+
+    setLoadingImages(productImages);
+
+    return setLoadingImages([]);
+  }, []);
+
+  function handleHasLoaded(product) {
+    const updatedList = loadingImages.map((item) => {
+      if (item.product_id === product.product_id) {
+        item.hasLoaded = true;
+      }
+
+      return item;
+    });
+
+    setLoadingImages(updatedList);
+
+    const loadedImages = loadingImages.map((item) => {
+      if (item.hasLoaded === true) {
+        return item;
+      }
+    });
+
+    if (loadedImages.length === loadingImages.length) {
+      setTimeout(() => {
+        props.loadingController(true);
+      }, 1500);
+    }
+  }
+
   return (
     <Grid
       container
@@ -58,6 +97,7 @@ export default function ProductsGridLayout(props) {
                 product={product}
                 index={props.products.indexOf(product) + 1}
                 width={props.width}
+                isLoading={() => handleHasLoaded(product)}
               />
             );
           })}
