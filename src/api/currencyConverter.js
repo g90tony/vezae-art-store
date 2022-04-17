@@ -30,6 +30,11 @@ async function getCurrencyInfo(name) {
 }
 
 async function getPopularCurrencyInfo() {
+  try {
+    await getConversionRates();
+  } catch (error) {
+    console.error(error);
+  }
   const popularCountries = [
     "usa",
     "gb",
