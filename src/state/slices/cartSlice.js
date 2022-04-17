@@ -1,20 +1,19 @@
+/* eslint-disable array-callback-return */
 import { createSlice } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    items: localStorage.getItem("cartItems")
-      ? JSON.parse(localStorage.getItem("cartItems"))
-      : [],
+    items: [],
   },
   reducers: {
     addCart: (state, actions) => {
       let items = state.items;
       items.push(actions.payload);
+      state.items = items;
 
       try {
         localStorage.setItem("cartItems", JSON.stringify(items));
-        state.items = items;
       } catch (error) {
         console.error(error);
       }
@@ -41,9 +40,10 @@ export const cartSlice = createSlice({
         }
       });
 
+      state.items = updatedItems;
+
       try {
         localStorage.setItem("cartItems", JSON.stringify(updatedItems));
-        state.items = updatedItems;
       } catch (error) {
         console.error(error);
       }
@@ -58,10 +58,11 @@ export const cartSlice = createSlice({
         }
       });
 
+      state.items = editedItems;
+
       if (editedItems.length > 0) {
         try {
           localStorage.setItem("cartItems", JSON.stringify(editedItems));
-          state.items = editedItems;
         } catch (error) {
           console.error(error);
         }

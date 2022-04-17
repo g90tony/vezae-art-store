@@ -2,9 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const currencyRates = createSlice({
   name: "collection",
-  initialState: localStorage.getItem("currencyRates")
-    ? JSON.parse(localStorage.getItem("currencyRates"))
-    : [],
+  initialState: [],
   reducers: {
     loadCurrenciesData: (state, action) => {
       localStorage.setItem("currencyRates", JSON.stringify(action.payload));
@@ -14,8 +12,13 @@ export const currencyRates = createSlice({
       const { payload } = action;
       const updated_rates = [...state, ...payload];
 
-      localStorage.setItem("currencyRates", JSON.stringify(updated_rates));
       state = updated_rates;
+
+      try {
+        localStorage.setItem("currencyRates", JSON.stringify(updated_rates));
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 });

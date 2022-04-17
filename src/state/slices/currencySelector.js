@@ -3,33 +3,29 @@ import { createSlice } from "@reduxjs/toolkit";
 export const currencySelector = createSlice({
   name: "product",
   initialState: {
-    selectedCurrency: localStorage.getItem("selectedCurrency")
-      ? JSON.parse(localStorage.getItem("selectedCurrency"))
-      : {},
-    popularCurrencies: localStorage.getItem("popularCurrencies")
-      ? JSON.parse(localStorage.getItem("popularCurrencies"))
-      : [],
+    selectedCurrency: {},
+    popularCurrencies: [],
   },
   reducers: {
     loadPopular: (state, action) => {
       const popularCurrencies = action.payload;
 
+      state.popularCurrencies = popularCurrencies;
+
       localStorage.setItem(
         "popularCurrencies",
         JSON.stringify(popularCurrencies)
       );
-
-      state.popularCurrencies = popularCurrencies;
     },
     updateSelected: (state, action) => {
       const selectedCurrency = action.payload;
+
+      state.selectedCurrency = selectedCurrency;
 
       localStorage.setItem(
         "selectedCurrency",
         JSON.stringify(selectedCurrency)
       );
-
-      state.selectedCurrencies = selectedCurrency;
     },
   },
 });
