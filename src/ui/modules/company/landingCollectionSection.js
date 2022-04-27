@@ -13,12 +13,45 @@ import CollectionGridItem from "../../components/collectionGridItem";
 
 export default function LandingCollectionSection(props) {
   const [currentCollection, setCurrentCollection] = React.useState();
+  const [loadingImages, setLoadingImages] = React.useState();
 
   React.useEffect(() => {
-    if (props.collection) {
+    if (props.collection.products) {
       setCurrentCollection(props.collection);
+
+      const imagesArr = props.collection.products.map((img) => {
+        return {
+          product_id: img.product_id,
+          hasLoaded: false,
+        };
+      });
+
+      setLoadingImages(imagesArr);
     }
   }, [props.collection, currentCollection]);
+
+  function handleHasLoaded(product) {
+    const updatedImages = loadingImages.map((img) => {
+      if (product.product_id === img.product_id) {
+        img.hasLoaded = true;
+      }
+      return img;
+    });
+
+    setLoadingImages(updatedImages);
+
+    // eslint-disable-next-line array-callback-return
+    const completedImages = loadingImages.map((img) => {
+      if (img.hasLoaded === true) {
+        return img;
+      }
+    });
+
+    if (completedImages.length === loadingImages.length) {
+      props.loadingManager(true);
+    }
+  }
+
   return (
     <Grid
       container
@@ -62,6 +95,7 @@ export default function LandingCollectionSection(props) {
                       product={piece}
                       index={currentCollection.products.indexOf(piece) + 1}
                       key={currentCollection.products.indexOf(piece)}
+                      hasLoaded={() => handleHasLoaded(piece)}
                     />
                   );
                 })}
