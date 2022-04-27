@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import ScrollToTop from "./helpers/scrollToTop";
 
@@ -11,34 +12,63 @@ import { Grid } from "@mui/material";
 import NavBar from "./ui/modules/global/navbar";
 import FooterBar from "./ui/modules/global/footer";
 
-import store from "./state/store";
+import { loadCurrenciesData } from "./state/slices/currencyRates";
+import {
+  getConversionRates,
+  getPopularCurrencyInfo,
+} from "./api/currencyConverter";
+import { getUseLocation } from "./api/useLocation";
+import { loadPopular, updateSelected } from "./state/slices/currencySelector";
+import { setUserLocation } from "./state/slices/userLocation";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const loadData = React.useCallback(async () => {
+    try {
+      const currencies = await getConversionRates();
+      const popularCurrencies = await getPopularCurrencyInfo();
+      const userLocationData = await getUseLocation();
+
+      popularCurrencies.push(userLocationData);
+
+      dispatch(updateSelected(userLocationData));
+      dispatch(loadPopular(popularCurrencies));
+      dispatch(setUserLocation(userLocationData));
+      dispatch(loadCurrenciesData(currencies));
+    } catch (err) {
+      console.error("There was a problem setting up currencies", err);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    loadData();
+    return () => {};
+  }, []);
+
   return (
-    <Provider store={store}>
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "100vh",
-          width: "100%",
-          margin: 0,
-          overFlowX: "hidden",
-          backgroundColor: palette.accentLight,
-        }}
-        className="App"
-      >
-        <Router>
-          <ScrollToTop />
-          <NavBar />
-          <Grid container sx={{ marginTop: "100px", padding: "20px" }}>
-            <RoutingTable />
-          </Grid>
-          <FooterBar />
-        </Router>
-      </Grid>
-    </Provider>
+    <Grid
+      container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        width: "100%",
+        margin: 0,
+        overFlowX: "hidden",
+        backgroundColor: palette.accentLight,
+      }}
+      className="App"
+    >
+      <Router>
+        <ScrollToTop />
+        <NavBar />
+        <Grid container sx={{ marginTop: "100px", padding: "20px" }}>
+          <RoutingTable />
+        </Grid>
+        <FooterBar />
+      </Router>
+    </Grid>
   );
 }
 
