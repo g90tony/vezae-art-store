@@ -11,7 +11,7 @@ function loadState(stateName, returnType) {
     return returnType;
   }
 
-  return localStorage.getItem(stateName) !== undefined
+  return localStorage.getItem(stateName)
     ? JSON.parse(localStorage.getItem(stateName))
     : returnType === "array"
     ? []
