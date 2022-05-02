@@ -11,11 +11,11 @@ function loadState(stateName, returnType) {
     return returnType;
   }
 
-  const returnedType = returnType === "array" ? [] : {};
-
   return localStorage.getItem(stateName) !== undefined
     ? JSON.parse(localStorage.getItem(stateName))
-    : returnedType;
+    : returnType === "array"
+    ? []
+    : {};
 }
 
 const preloadedState = {
