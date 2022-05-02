@@ -11,20 +11,22 @@ function loadState(stateName, returnType) {
     return returnType;
   }
 
+  const returnedType = returnType === "array" ? [] : {};
+
   return localStorage.getItem(stateName) !== undefined
     ? JSON.parse(localStorage.getItem(stateName))
-    : returnType;
+    : returnedType;
 }
 
 const preloadedState = {
   cart: {
-    items: loadState("cartItems", []),
+    items: loadState("cartItems", "array"),
   },
-  userLocation: loadState("userLocation", []),
-  currencyRates: loadState("currencyRates", []),
+  userLocation: loadState("userLocation", "array"),
+  currencyRates: loadState("currencyRates", "array"),
   currencySelector: {
-    selectedCurrency: loadState("selectedCurrency", {}),
-    popularCurrencies: loadState("popularCurrencies", []),
+    selectedCurrency: loadState("selectedCurrency", "object"),
+    popularCurrencies: loadState("popularCurrencies", "array"),
   },
 };
 
