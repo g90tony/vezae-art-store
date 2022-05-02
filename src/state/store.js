@@ -11,7 +11,7 @@ function loadState(stateName, returnType) {
     return returnType;
   }
 
-  return localStorage.getItem(stateName)
+  return localStorage.getItem(stateName) !== undefined
     ? JSON.parse(localStorage.getItem(stateName))
     : returnType;
 }
