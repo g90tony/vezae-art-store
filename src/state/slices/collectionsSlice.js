@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const productsSlice = createSlice({
-  name: "products",
+export const collectionsSlice = createSlice({
+  name: "collections",
   initialState: [],
   reducers: {
-    fetchProducts: (state, action) => {
+    fetchCollections: (state, action) => {
       state = action.payload;
       try {
-        localStorage.setItem("allProducts", JSON.stringify(state));
+        localStorage.setItem("allCollections", JSON.stringify(state));
       } catch (error) {
         console.log("There was a problem persisting all products");
       }
     },
-    filterProducts: (state, action) => {
+    filterCollections: (state, action) => {
       const currentOrder = action.payload;
       switch (currentOrder) {
         case "popular":
@@ -40,7 +40,7 @@ export const productsSlice = createSlice({
           break;
 
         case "newest":
-          state = state.sort((a, b) => b.product_id - a.product_id);
+          state = state.sort((a, b) => b.collection_id - a.collection_id);
           break;
 
         case "nasc":
@@ -76,12 +76,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const {
-  fetchProducts,
-  fetchMoreProducts,
-  updateSingleProduct,
-  filterProducts,
-  emptyProducts,
-} = productsSlice.actions;
+export const { fetchCollections, filterCollections } = collectionsSlice.actions;
 
-export default productsSlice.reducer;
+export default collectionsSlice.reducer;

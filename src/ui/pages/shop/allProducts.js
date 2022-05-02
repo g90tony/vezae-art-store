@@ -1,6 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getAllProducts } from "../../../api/products";
+// import { getAllProducts } from "../../../api/products";
 
 import ProductsGridLayout from "../../layouts/productsGridLayout";
 import LoadingScreen from "../../modules/global/loading";
@@ -10,33 +11,14 @@ import ProductsSearchBar from "../../modules/shop/productsSearchBar";
 export default function ShopAllProductsPage(props) {
   let { filter } = useParams();
 
-  const [products, setProducts] = React.useState([]);
   const [hasLoaded, setHasLoaded] = React.useState(false);
 
-  const loadData = React.useCallback(async () => {
-    try {
-      const data = await getAllProducts();
-
-      if (data) {
-        setProducts(data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
-
-  React.useEffect(() => {
-    loadData();
-
-    return () => {
-      setProducts([]);
-    };
-  }, [loadData]);
+  const ALL_PRODUCTS_STATE = useSelector((state) => state.products);
 
   return (
     <>
       <ProductsGridLayout
-        products={products}
+        products={ALL_PRODUCTS_STATE}
         width="350px"
         pageName={filter}
         loadingController={setHasLoaded}

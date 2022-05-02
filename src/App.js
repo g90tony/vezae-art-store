@@ -20,6 +20,10 @@ import {
 import { getUseLocation } from "./api/useLocation";
 import { loadPopular, updateSelected } from "./state/slices/currencySelector";
 import { setUserLocation } from "./state/slices/userLocation";
+import { fetchProducts } from "./state/slices/productsSlice";
+import { fetchCollections } from "./state/slices/collectionsSlice";
+import { getAllProducts } from "./api/products";
+import { getAllCollections } from "./api/collections";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,13 +33,21 @@ function App() {
       const currencies = await getConversionRates();
       const popularCurrencies = await getPopularCurrencyInfo();
       const userLocationData = await getUseLocation();
+      const collectionsData = await getAllCollections();
+      const productsData = await getAllProducts();
 
       popularCurrencies.push(userLocationData);
 
-      dispatch(updateSelected(userLocationData));
+      if (userLocationData !== null) {
+        dispatch(updateSelected(userLocationData));
+      }
       dispatch(loadPopular(popularCurrencies));
-      dispatch(setUserLocation(userLocationData));
+      if (userLocationData !== null) {
+        dispatch(setUserLocation(userLocationData));
+      }
       dispatch(loadCurrenciesData(currencies));
+      dispatch(fetchProducts(productsData));
+      dispatch(fetchCollections(collectionsData));
     } catch (err) {
       console.error("There was a problem setting up currencies", err);
     }

@@ -5,6 +5,7 @@ import userLocationSlice from "./slices/userLocation";
 import currencySelector from "./slices/currencySelector";
 import productsSlice from "./slices/productsSlice";
 import { searchSlice } from "./slices/searchSilce";
+import collectionsSlice from "./slices/collectionsSlice";
 
 function loadState(stateName, returnType) {
   if (typeof window === undefined) {
@@ -33,6 +34,8 @@ const preloadedState = {
   cart: {
     items: loadState("cartItems", "array"),
   },
+  products: loadState("allProducts", "array"),
+  collections: loadState("allCollections", "array"),
   userLocation: loadState("userLocation", "array"),
   currencyRates: loadState("currencyRates", "array"),
   currencySelector: {
@@ -45,6 +48,7 @@ export default configureStore({
   reducer: {
     cart: cartSlice,
     products: productsSlice,
+    collections: collectionsSlice,
     userLocation: userLocationSlice,
     currencySelector: currencySelector,
     currencyRates: currencyRates,
