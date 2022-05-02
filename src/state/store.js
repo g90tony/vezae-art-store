@@ -1,4 +1,4 @@
-import { configureStore, createNextState } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import cartSlice from "./slices/cartSlice";
 import currencyRates from "./slices/currencyRates";
 import userLocationSlice from "./slices/userLocation";
