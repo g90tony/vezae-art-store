@@ -45,7 +45,6 @@ export default function ViewProductLayout(props) {
             <ChevronLeft
               sx={{ margin: "auto", fontSize: headingTypographyStyles.h5 }}
             />{" "}
-            Back
           </Button>
         </Breadcrumbs>
       </Box>

@@ -7,12 +7,14 @@ import ViewProductLayout from "../../layouts/viewProductLayout";
 import ProductDetailsSection from "../../modules/shop/productDetailsSection";
 import ProductImageGrid from "../../modules/shop/productImageGrid";
 // import RelatedSection from "../../modules/shop/relatedSection";
-import { getSingleProduct } from "../../../api/products";
+
 import LoadingScreen from "../../modules/global/loading";
+import { useSelector } from "react-redux";
 
 export default function ShopViewProductPage(props) {
+  const ALL_PRODUCTS_STATE = useSelector((state) => state.products);
+
   const product_id = useParams().id;
-  let history = useNavigate();
 
   const [hasLoaded, setHasLoaded] = React.useState(false);
 
@@ -20,32 +22,23 @@ export default function ShopViewProductPage(props) {
   const [currentVariant, setCurrentVariant] = React.useState();
 
   const [productImages, setProductImages] = React.useState();
-  // const [relatedPieces, setRelatedPieces] = React.useState();
+
+  let history = useNavigate();
 
   React.useEffect(() => {
-    async function loadData() {
-      try {
-        const fetchedProduct = await getSingleProduct(product_id);
+    const current_product = ALL_PRODUCTS_STATE.filter(
+      (product) => product.product_id === product_id
+    );
 
-        if (fetchedProduct.status === 200) {
-          setCurrentPiece(fetchedProduct.data);
-          setCurrentVariant(fetchedProduct.data.variants[0]);
-          setProductImages(fetchedProduct.data.images);
-        } else {
-          history(-1);
-        }
-      } catch (error) {
-        console.error(error);
-        console.log("there was a problem loading the product", error);
-      }
+    if (current_product.length > 0) {
+      const product = current_product[0];
+      setCurrentPiece(product);
+      setProductImages(product.images);
+      setCurrentVariant(product.variants[0]);
     }
-
-    loadData();
-
-    return () => {
-      setCurrentPiece(null);
-    };
   }, []);
+
+  // const [relatedPieces, setRelatedPieces] = React.useState();
 
   return (
     <>
@@ -65,14 +58,6 @@ export default function ShopViewProductPage(props) {
               changeSize={(value) => setCurrentVariant(value)}
             />
           }
-          // child3={
-          //   <RelatedSection
-          //     // related={relatedPieces}
-          //     // selectedSize={currentVariant}
-          //     sectionHEader="Related Pieces"
-          //     itemButtonText="View Piece"
-          //   />
-          // }
         />
       )}
       {hasLoaded !== true && <LoadingScreen />}

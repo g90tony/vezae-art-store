@@ -72,12 +72,18 @@ export const collectionsSlice = createSlice({
       }
     },
   },
-  emptyProducts: (state, action) => {
-    state = action.payload;
-    state.currentPage = 0;
+  updateCollections: (state, action) => {
+    state = state.map((collection) => {
+      if (collection.collection_id === action.payload.collection_id) {
+        collection = action.payload.collection;
+      }
+
+      return collection;
+    });
   },
 });
 
-export const { fetchCollections, filterCollections } = collectionsSlice.actions;
+export const { fetchCollections, filterCollections, updateCollections } =
+  collectionsSlice.actions;
 
 export default collectionsSlice.reducer;

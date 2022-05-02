@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -6,12 +7,16 @@ import ViewProductLayout from "../../layouts/viewProductLayout";
 // import RelatedSection from "../../modules/shop/relatedSection";
 import CollectionDetailsSection from "../../modules/shop/collectionDetailsSection";
 import CollectionImageGrid from "../../modules/shop/collectionImageGrid";
-import { getSingleCollection } from "../../../api/collections";
 import LoadingScreen from "../../modules/global/loading";
+import { useSelector } from "react-redux";
 
 export default function ShopViewCollectionPage(props) {
   let { id } = useParams();
   let history = useNavigate();
+
+  const ALL_COLLECTIONS_STATE = useSelector((state) => state.collections);
+  const ALL_PRODUCTS_STATE = useSelector((state) => state.products);
+
   const [hasLoaded, setHasLoaded] = React.useState(false);
 
   const [currentCollection, setCurrentCollection] = React.useState({});
@@ -19,33 +24,28 @@ export default function ShopViewCollectionPage(props) {
 
   // const [relatedPieces, setRelatedPieces] = React.useState();
 
-  const loadData = React.useCallback(async (id) => {
-    try {
-      const data = await getSingleCollection(id);
-
-      setCurrentCollection(data);
-      setCollectionPieces(data.products);
-      // setRelatedPieces(dummyProducts.slice(0, 4));
-    } catch (error) {
-      alert("There was a problem fetching the collection");
-      console.error(error);
-    }
-  }, []);
-
   React.useEffect(() => {
-    loadData(parseInt(id));
+    const current_collection = ALL_COLLECTIONS_STATE.filter(
+      (collection) => collection.collection_id === id
+    );
 
-    // if (found === false) {
-    //   history(-1);
-    // } else {
-    //   const related = dummyProducts.slice(0, 4);
-    //   setRelatedPieces(related);
-    // }
+    const collection = current_collection[0];
+
+    const collection_products = [];
+
+    ALL_PRODUCTS_STATE.forEach((product) => {
+      if (product.collection.collection_id === `${id}`) {
+        collection_products.push(product);
+      }
+    });
+
+    setCurrentCollection(collection);
+    setCollectionPieces(collection_products);
 
     return () => {
       setCurrentCollection(null);
     };
-  }, [history, id, loadData]);
+  }, []);
 
   return (
     <>

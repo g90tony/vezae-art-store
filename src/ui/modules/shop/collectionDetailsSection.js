@@ -68,7 +68,9 @@ export default function CollectionDetailsSection(props) {
             fontWeight: 400,
             marginTop: "20px",
           }}
-          dangerouslySetInnerHTML={{ __html: props.productDetails.description }}
+          dangerouslySetInnerHTML={{
+            __html: props.productDetails.description,
+          }}
         />
       </Box>
       <Box
