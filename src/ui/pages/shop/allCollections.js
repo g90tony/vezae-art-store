@@ -2,8 +2,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { getAllCollections } from "../../../api/collections";
-
 import CollectionsGridLayout from "../../layouts/collectionGridLayout";
 import LoadingScreen from "../../modules/global/loading";
 import CollectionsSearchBar from "../../modules/shop/collectionsSearchBar";

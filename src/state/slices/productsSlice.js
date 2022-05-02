@@ -25,6 +25,8 @@ export const productsSlice = createSlice({
           state = state.sort((a, b) => {
             if (a.variants[0].price - b.variants[0].price) {
               return -1;
+            } else {
+              return 1;
             }
           });
           break;
