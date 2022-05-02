@@ -48,7 +48,13 @@ export default function LandingGridSection() {
         }}
       >
         <div className="landing-grid-hero">
-          <Typography sx={{ fontSize: marketing.subHero, width: "100%" }}>
+          <Typography
+            sx={{
+              fontFamily: marketing.subHero,
+              fontSize: { md: "3rem", lg: "4rem" },
+              width: "100%",
+            }}
+          >
             Adding a splash of AI onto every wall
           </Typography>
           <Typography
