@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import ProductItemCard from "../components/productItemCard";
