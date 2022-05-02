@@ -34,12 +34,12 @@ import { updateSelected } from "../../../state/slices/currencySelector";
 
 export default function NavBar() {
   const navLinks = [
-    {
-      id: 5,
-      text: "Home",
-      path: "/",
-      hasChildren: false,
-    },
+    // {
+    //   id: 5,
+    //   text: "Home",
+    //   path: "/",
+    //   hasChildren: false,
+    // },
     {
       id: 1,
       text: "Collections",
@@ -52,12 +52,12 @@ export default function NavBar() {
       hasChildren: false,
       path: "/shop/pieces/all",
     },
-    {
-      id: 2,
-      text: "Gallery",
-      path: "/gallery",
-      hasChildren: false,
-    },
+    // {
+    //   id: 2,
+    //   text: "Gallery",
+    //   path: "/gallery",
+    //   hasChildren: false,
+    // },
     {
       id: 3,
       text: "About",
@@ -185,7 +185,7 @@ export default function NavBar() {
         }}
         role="presentation"
       >
-        <NavLink
+        {/* <NavLink
           to="/"
           style={{ width: "100%", display: "flex", flexDirection: "row" }}
         >
@@ -198,7 +198,7 @@ export default function NavBar() {
             }}
             alt="nav_logo"
           />
-        </NavLink>
+        </NavLink> */}
         <Box
           sx={{
             display: "flex",
@@ -303,7 +303,7 @@ export default function NavBar() {
     >
       <Box
         sx={{
-          display: { xs: "none", lg: "flex" },
+          display: "flex",
           padding: "10px",
           width: { xs: "100%", lg: "100%%" },
         }}
@@ -439,7 +439,11 @@ export default function NavBar() {
 
       <Box sx={{ display: { xs: "flex", lg: "none" } }}>
         <IconButton
-          sx={{ color: system_colors.primary }}
+          sx={{
+            color: system_colors.primary,
+            padding: "5px 40px",
+            fontSize: "1.25rem",
+          }}
           onClick={toggleDrawer("right", true)}
         >
           <MenuIcon />
