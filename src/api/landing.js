@@ -1,13 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = `${process.env.REACT_APP_VEZAE_API_URL}landing`;
-const headers = {
-  "Access-Control-Allow-Origin": [
-    "test.vezae.com",
-    "vezae.com",
-    "localhost:3000",
-  ],
-};
+const headers = { "Access-Control-Allow-Origin": "*" };
 
 async function getLandingGrid() {
   const url = `${BASE_URL}/landingGrid`;
@@ -28,11 +22,14 @@ async function getLandingGrid() {
 
 async function getFeaturedCollection() {
   const url = `${BASE_URL}/featuredCollection`;
+  try {
+    const response = await axios.get(url, { headers });
 
-  const response = await axios.get(url, { headers });
-
-  if (response.status === 200) {
-    return response.data;
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    console.error("There was a problem fething featured the collection", error);
   }
 }
 
