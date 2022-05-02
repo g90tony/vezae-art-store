@@ -397,7 +397,7 @@ export default function NavBar() {
           aria-expanded={menuOpenCurrency ? "true" : undefined}
           onClick={openCurrencyMenu}
         >
-          {`${selectedCurrency.flag}`}{" "}
+          {selectedCurrency.flag && `${selectedCurrency.flag}`}{" "}
         </IconButton>
         <Menu
           id={`currency-menu`}
