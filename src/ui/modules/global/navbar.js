@@ -72,7 +72,7 @@ export default function NavBar() {
     },
   ];
 
-  const [cart, setCart] = React.useState([]);
+  const [cart] = React.useState([]);
 
   const popularCurrencies = useSelector(
     (state) => state.currencySelector.popularCurrencies
@@ -152,7 +152,9 @@ export default function NavBar() {
               key={index}
               onClick={handleCurrencySubMenu}
             >
-              <Box sx={{ margin: "auto 10px" }}>{currency.flag}</Box>
+              <Box sx={{ margin: "auto 10px" }}>
+                {currency && `${currency.flag}`}
+              </Box>
               <Box
                 sx={{
                   margin: "auto 10px",
@@ -213,16 +215,18 @@ export default function NavBar() {
           >
             <SearchIcon />
           </IconButton>
-          <IconButton
-            sx={{
-              color: system_colors.primary,
-              width: "33.3%",
-              margin: "20px auto",
-            }}
-            onClick={handleCurrencySubMenu}
-          >
-            <Typography>{selectedCurrency.flag}</Typography>
-          </IconButton>
+          {selectedCurrency.currencyName && (
+            <IconButton
+              sx={{
+                color: system_colors.primary,
+                width: "33.3%",
+                margin: "20px auto",
+              }}
+              onClick={handleCurrencySubMenu}
+            >
+              <Typography>{`${selectedCurrency.flag}`}</Typography>
+            </IconButton>
+          )}
 
           <IconButton
             sx={{
