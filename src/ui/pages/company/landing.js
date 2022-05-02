@@ -47,21 +47,21 @@ export default function LandingPage() {
   function handleFeaturedHasLoaded() {
     setFeaturedHasLoaded(true);
 
-    if (setFeaturedHasLoaded && setTrendingHasLoaded && setLatestHasLoaded) {
+    if (featuredHasLoaded && trendingHasLoaded && latestHasLoaded) {
       setHasLoaded(true);
     }
   }
   function handleTrendingHasLoaded() {
     setTrendingHasLoaded(true);
 
-    if (setFeaturedHasLoaded && setTrendingHasLoaded && setLatestHasLoaded) {
+    if (featuredHasLoaded && trendingHasLoaded && latestHasLoaded) {
       setHasLoaded(true);
     }
   }
   function handleLatestHasLoaded() {
     setLatestHasLoaded(true);
 
-    if (setFeaturedHasLoaded && setTrendingHasLoaded && setLatestHasLoaded) {
+    if (featuredHasLoaded && trendingHasLoaded && latestHasLoaded) {
       setHasLoaded(true);
     }
   }
