@@ -2,12 +2,9 @@ import axios from "axios";
 
 async function getCurrencyInfo(name) {
   const info_url = `https://restcountries.com/v3.1/name/${name}?fields=name,flag,currencies`;
-  console.log("new_currency", info_url);
   try {
     const response = await axios.get(info_url);
     const rates = await getConversionRates();
-
-    // const rateKeys = Object.keys(rates);
 
     if (response.status === 200 && rates) {
       const currency_keys = Object.keys(response.data[0].currencies);
