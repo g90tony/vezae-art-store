@@ -99,6 +99,31 @@ export default function LandingCollectionSection(props) {
                     />
                   );
                 })}
+              <Button
+                href={`/shop/collections/view/${currentCollection.collection_id}`}
+                sx={{
+                  display: { xs: "flex", lg: "none" },
+                  "&:hover": {
+                    backgroundColor: props.darkBg
+                      ? palette.primary
+                      : palette.secondary,
+                    color: props.darkBg ? palette.secondary : palette.primary,
+                  },
+                  backgroundColor: props.darkBg
+                    ? palette.secondary
+                    : palette.primary,
+                  color: props.darkBg ? palette.primary : palette.secondary,
+                  padding: "10px",
+                  textDecoration: "none",
+                  fontWeight: 900,
+                  fontSize: body.defaultBold,
+                  margin: { xs: "20px auto", lg: "0 20px 0 0" },
+                  borderRadius: 0,
+                  width: { xs: "80%", lg: "fit-content" },
+                }}
+              >
+                View Collection
+              </Button>
             </Box>
           </Box>
           <Box
@@ -109,7 +134,10 @@ export default function LandingCollectionSection(props) {
               margin: "auto",
               justifyContent: "center",
               alignItems: "center",
-              textAlign: props.isAlternate ? "end" : "start",
+              textAlign: {
+                xs: "start",
+                lg: props.isAlternate ? "end" : "start",
+              },
             }}
           >
             <Typography
@@ -117,7 +145,10 @@ export default function LandingCollectionSection(props) {
                 padding: "20px",
                 fontSize: marketing.title,
                 color: props.darkBg ? palette.secondary : palette.primary,
-                textAlign: props.isAlternate ? "end" : "start",
+                textAlign: {
+                  xs: "start",
+                  lg: props.isAlternate ? "end" : "start",
+                },
                 width: "100%",
               }}
             >
@@ -130,7 +161,10 @@ export default function LandingCollectionSection(props) {
                   alignText: "start",
                   marginBottom: "20px",
                   color: props.darkBg ? palette.secondary : palette.primary,
-                  textAlign: props.isAlternate ? "end" : "start",
+                  textAlign: {
+                    xs: "start",
+                    lg: props.isAlternate ? "end" : "start",
+                  },
                 }}
               >
                 {currentCollection.title}
@@ -139,7 +173,10 @@ export default function LandingCollectionSection(props) {
                 sx={{
                   fontSize: body.defaultExtraLight,
                   color: props.darkBg ? palette.secondary : palette.primary,
-                  textAlign: props.isAlternate ? "end" : "start",
+                  textAlign: {
+                    xs: "start",
+                    lg: props.isAlternate ? "end" : "start",
+                  },
                 }}
                 dangerouslySetInnerHTML={{
                   __html: currentCollection.description,
@@ -159,6 +196,7 @@ export default function LandingCollectionSection(props) {
                 <Button
                   href={`/shop/collections/view/${currentCollection.collection_id}`}
                   sx={{
+                    display: { xs: "none", lg: "flex" },
                     "&:hover": {
                       backgroundColor: props.darkBg
                         ? palette.primary
@@ -180,7 +218,7 @@ export default function LandingCollectionSection(props) {
                 >
                   View Collection
                 </Button>
-                <Button
+                {/* <Button
                   sx={{
                     backgroundColor: props.darkBg
                       ? palette.secondary
@@ -202,7 +240,7 @@ export default function LandingCollectionSection(props) {
                   }}
                 >
                   Add to Cart
-                </Button>
+                </Button> */}
               </Box>
             </Box>
           </Box>

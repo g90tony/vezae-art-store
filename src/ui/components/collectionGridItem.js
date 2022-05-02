@@ -14,9 +14,9 @@ export default function CollectionGridItem(props) {
       className={`collection-grid-photo${props.index}`}
       style={{
         padding: "20px",
-        width: "300px",
-        height: "300px",
-        margin: "auto",
+        maxWidth: { xs: "100%", lg: "300px" },
+        maxHeight: { xs: "100%", lg: "300px" },
+        margin: { xs: "10px", lg: "auto" },
         position: "relative",
       }}
     >

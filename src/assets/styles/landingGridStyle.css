@@ -209,7 +209,7 @@
 
   background-color: rgba(0, 0, 0, 0.75);
 }
-.landing-grid-image18:hover .landing-grid-image-info {
+.landing-grid-image0:hover .landing-grid-image-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -340,7 +340,7 @@
   height: "100%";
 }
 
-.landing-grid-image18 {
+.landing-grid-image0 {
   grid-area: thumbnail18;
   position: relative;
   width: "100%";

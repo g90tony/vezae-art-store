@@ -8,13 +8,13 @@ export default function ProductGridItemCard(props) {
   return (
     <div
       className={`landing-grid-image${props.piece.index}`}
-      styles={{ width: props.width }}
+      styles={{ width: { xs: "100%", lg: props.width } }}
       key={props.piece.index}
     >
       <img
         style={{
-          width: "100%",
-          height: "100%",
+          maxWidth: "100%",
+          maxHeight: "100%",
           objectFit: "cover",
           objectPosition: "center",
         }}

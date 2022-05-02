@@ -35,10 +35,11 @@ export default function LandingGridSection() {
     <>
       <Grid
         sx={{
-          width: "80%",
+          width: "90%",
           margin: "0 auto",
-          display: { xs: "none", lg: "grid" },
-          gridTemplateColumns: "250px 250px 250px 250px 250px 250px",
+          display: { xs: "none", md: "grid" },
+          gridTemplateColumns:
+            "repeat(6, [col-start] minmax(100px, 250px) [col-end])",
           gridTemplateRows: "250px 250px 250px 250px",
           gridTemplateAreas: `"thumbnail1 thumbnail2 thumbnail3 thumbnail4 thumbnail5 thumbnail6"
     "hero_text hero_text hero_text thumbnail7 thumbnail8 thumbnail9"
@@ -53,7 +54,7 @@ export default function LandingGridSection() {
           <Typography
             sx={{
               fontSize: body.extraLargeExtraLight,
-              width: "70%",
+              width: { md: "100%", lg: "70%" },
               textAlign: "start",
               marginTop: "10px",
             }}
@@ -129,7 +130,7 @@ export default function LandingGridSection() {
 
       <Grid
         sx={{
-          display: { xs: "flex", lg: "none" },
+          display: { xs: "flex", md: "none" },
           flexDirection: "column",
           padding: "20px",
           width: "100%",

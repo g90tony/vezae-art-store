@@ -85,7 +85,7 @@ export default function ProductsGridLayout(props) {
             flexWrap: "wrap",
             justifyContent: { xs: "center", lg: "center" },
             alignItems: "flex-start",
-            width: "100%",
+            width: { xs: "100%", md: "80%", lg: "100%" },
             padding: "10px",
             margin: "0 auto",
           }}
