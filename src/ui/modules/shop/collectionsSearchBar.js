@@ -11,22 +11,29 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { palette } from "../../../assets/styles/colors";
 
 import { headingTypographyStyles } from "../../../assets/styles/typography";
+import { filterCollections } from "../../../state/slices/collectionsSlice";
 
 const OrderOptions = [
-  { text: "Most Recent", value: "most_recent" },
-  { text: "Alphabetic Ascending", value: "alpha_asc" },
-  { text: "Alphabetic Descending", value: "alpha_dsc" },
-  { text: "Price Ascending", value: "price_asc" },
-  { text: "Price Descend", value: "price_dsc" },
+  { text: "Most Popular", value: "popular" },
+  { text: "Latest", value: "newest" },
+  { text: "Name Ascending", value: "nasc" },
+  { text: "Name Descending", value: "ndes" },
+  // { text: "Price Ascending", value: "cheap" },
+  // { text: "Price Descending", value: "expensive" },
+  // { text: "Created Date Ascending", value: "oldest" },
 ];
 
 export default function CollectionsSearchBar(props) {
-  const [sort, setSort] = React.useState("most_recent");
+  const dispatch = useDispatch();
+
+  const [sort, setSort] = React.useState("popular");
 
   function handleChange(e) {
+    dispatch(filterCollections(e.target.value));
     setSort(e.target.value);
   }
 
