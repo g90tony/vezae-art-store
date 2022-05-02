@@ -39,8 +39,8 @@ export default function LandingGridSection() {
           margin: "0 auto",
           display: { xs: "none", md: "grid" },
           gridTemplateColumns:
-            "repeat(6, [col-start] minmax(100px, 250px) [col-end])",
-          gridTemplateRows: "250px 250px 250px 250px",
+            "repeat(6, [col-start] minmax(100px, 300px) [col-end])",
+          gridTemplateRows: "auto auto auto auto",
           gridTemplateAreas: `"thumbnail1 thumbnail2 thumbnail3 thumbnail4 thumbnail5 thumbnail6"
     "hero_text hero_text hero_text thumbnail7 thumbnail8 thumbnail9"
     "hero_text hero_text hero_text thumbnail10 thumbnail11 thumbnail12"

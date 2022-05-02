@@ -27,7 +27,7 @@ export default function ProductItemCard(props) {
     <Grid
       container
       sx={{
-        maxWidth: "100",
+        maxWidth: { lg: "350px", xs: "100%" },
         backgroundColor: palette.secondary,
         margin: { xs: "10px auto", lg: "10px 20px" },
         display: "flex",

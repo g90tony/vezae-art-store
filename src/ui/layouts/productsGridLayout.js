@@ -49,9 +49,10 @@ export default function ProductsGridLayout(props) {
         display: "flex",
         flexDirection: { xs: "column", lg: "row" },
         flexWrap: { xs: "wrap", lg: "nowrap" },
+        justifyContent: { xs: "center", lg: "space-between" },
         minHeight: "100vh",
         width: "100%",
-        marginTop: "00px",
+        // marginTop: "00px",
         padding: "10px",
       }}
     >
@@ -72,8 +73,9 @@ export default function ProductsGridLayout(props) {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           alignItems: "center",
+          padding: "10px",
         }}
       >
         {props.child2}
