@@ -1,13 +1,15 @@
 import React from "react";
 
-import { Grid, Typography } from "@mui/material";
+import { Grid, Link, Typography } from "@mui/material";
 
 import { Box } from "@mui/system";
 
 import { palette } from "../../../assets/styles/colors";
 import { bodyTypographyStyles as body } from "../../../assets/styles/typography";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
 import footerLogo from "../../../assets/images/footer_logo.png";
-import { Link } from "react-router-dom";
 
 export default function FooterBar() {
   const topCollections = [
@@ -38,26 +40,27 @@ export default function FooterBar() {
     },
   ];
 
-  const categories = [
+  const socials = [
     {
       id: 1,
-      path: "/shop/pieces/category=disco+diffusion",
-      text: "Disco Diffusion ",
+      path: "https://www.facebook.com/vazae.art/",
+      text: () => (
+        <FacebookIcon sx={{ color: palette.secondary, fontSize: "1.5rem" }} />
+      ),
     },
     {
       id: 2,
-      path: "/shop/pieces/category=speed+painting",
-      text: "Speed Painting",
+      path: "https://www.instagram.com/vezae.art/",
+      text: () => (
+        <InstagramIcon sx={{ color: palette.secondary, fontSize: "1.5rem" }} />
+      ),
     },
     {
       id: 3,
-      path: "/shop/pieces/category=concept+art",
-      text: "Concept Art",
-    },
-    {
-      id: 4,
-      path: "/shop/pieces/category=romanticism+art",
-      text: "Romanticism Art",
+      path: "https://twitter.com/VezaeArt/",
+      text: () => (
+        <TwitterIcon sx={{ color: palette.secondary, fontSize: "1.5rem" }} />
+      ),
     },
   ];
 
@@ -171,21 +174,24 @@ export default function FooterBar() {
         <Typography
           sx={{ fontSize: body.extraLargeBold, color: palette.secondary }}
         >
-          Category
+          Social Links
         </Typography>
         <Box
           sx={{
             width: "100%",
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
+            justifyContent: { xs: "space-evenly", lg: "space-between" },
             marginTop: "20px",
+            textAlign: "start",
           }}
         >
-          {categories.map((collection) => {
+          {socials.map((collection) => {
             return (
               <Link
-                key={categories.indexOf(collection)}
-                to={collection.path}
+                key={socials.indexOf(collection)}
+                href={collection.path}
+                target="_blank"
                 style={{
                   textDecoration: "none",
                   fontSize: body.smallLight,
@@ -193,11 +199,7 @@ export default function FooterBar() {
                   color: palette.secondary,
                 }}
               >
-                <Typography
-                  sx={{ color: palette.secondary, fontSize: body.smallLight }}
-                >
-                  {collection.text}
-                </Typography>
+                {collection.text()}
               </Link>
             );
           })}
@@ -231,7 +233,8 @@ export default function FooterBar() {
             return (
               <Link
                 key={topCollections.indexOf(collection)}
-                to={collection.path}
+                href={collection.path}
+                target="_blank"
                 style={{
                   textDecoration: "none",
                   fontSize: body.smallLight,
@@ -276,7 +279,8 @@ export default function FooterBar() {
             return (
               <Link
                 key={quickLinks.indexOf(link)}
-                to={link.path}
+                href={link.path}
+                target="_blank"
                 style={{
                   textDecoration: "none",
                   fontSize: body.smallLight,
