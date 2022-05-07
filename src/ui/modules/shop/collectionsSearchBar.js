@@ -6,7 +6,6 @@ import {
   Link,
   MenuItem,
   Select,
-  TextField,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -16,6 +15,7 @@ import { palette } from "../../../assets/styles/colors";
 
 import { headingTypographyStyles } from "../../../assets/styles/typography";
 import { filterCollections } from "../../../state/slices/collectionsSlice";
+import SearchInput from "../../components/searchInput";
 
 const OrderOptions = [
   { text: "Most Popular", value: "popular" },
@@ -97,16 +97,8 @@ export default function CollectionsSearchBar(props) {
           width: { xs: "100%", lg: "auto" },
         }}
       >
-        <TextField
-          size="small"
-          id="collectionSearchInput"
-          variant="outlined"
-          label="Search collections"
-          sx={{
-            width: { xs: "80%", lg: "250px" },
-            margin: { xs: "10px auto", lg: "10px" },
-          }}
-        />
+        <SearchInput searchType="collections" />
+
         <FormControl
           sx={{
             width: {
