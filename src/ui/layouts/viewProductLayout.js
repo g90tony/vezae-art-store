@@ -23,7 +23,7 @@ export default function ViewProductLayout(props) {
           display: "flex",
           flexDirection: "row",
           width: "100%",
-          margin: "0 10px 10px 10px",
+          margin: { xs: 0, lg: "0 10px 10px 10px" },
         }}
       >
         <Breadcrumbs
@@ -31,7 +31,7 @@ export default function ViewProductLayout(props) {
           sx={{
             color: palette.primary,
             fontSize: headingTypographyStyles.h4,
-            marginLeft: "10px",
+            marginLeft: { xs: 0, lg: "10px" },
           }}
         >
           <Button
@@ -42,23 +42,32 @@ export default function ViewProductLayout(props) {
             }}
             onClick={() => props.history(-1)}
           >
-            <ChevronLeft sx={{ margin: "auto", fontSize: "2.5rem" }} />{" "}
+            <ChevronLeft
+              sx={{ margin: { xs: 0, lg: "auto" }, fontSize: "2.5rem" }}
+            />{" "}
           </Button>
         </Breadcrumbs>
       </Box>
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", lg: "row" },
-          justifyContent: "space-between",
+          flexDirection: { xs: "column-reverse", lg: "row" },
+          justifyContent: { xs: "center", lg: "space-between" },
           flexWrap: "nowrap",
           width: "100%",
           padding: "10px",
           margin: "0 auto",
         }}
       >
-        <Box sx={{ width: "80%", margin: "0 20px" }}>{props.child1}</Box>
-        <Box sx={{ width: "80%" }}>{props.child2}</Box>
+        <Box
+          sx={{
+            width: { xs: "100%", lg: "80%" },
+            margin: { xs: "0 auto", lg: "0 20px" },
+          }}
+        >
+          {props.child1}
+        </Box>
+        <Box sx={{ width: { xs: "100%", lg: "80%" } }}>{props.child2}</Box>
       </Box>
       <Box
         sx={{

@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
@@ -82,7 +82,7 @@ export default function CollectionItemCard(props) {
           />
         </Box>
 
-        <Box
+        {/* <Box
           sx={{
             display: "flex",
             flexDirection: "row",
@@ -112,7 +112,7 @@ export default function CollectionItemCard(props) {
           >
             View Collection
           </Button>
-        </Box>
+        </Box> */}
       </Box>
     </Grid>
   );

@@ -1,15 +1,6 @@
-import {
-  Box,
-  Button,
-  //   FormControl,
-  Grid,
-  //   InputLabel,
-  //   MenuItem,
-  //   Select,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import { palette } from "../../../assets/styles/colors";
+
 import {
   bodyTypographyStyles,
   marketingTypographyStyles,
@@ -140,7 +131,7 @@ export default function CollectionDetailsSection(props) {
         >
           Add to Cart
         </Button> */}
-        <Button
+        {/* <Button
           sx={{
             fontSize: bodyTypographyStyles.defaultBold,
             backgroundColor: palette.primary,
@@ -154,7 +145,7 @@ export default function CollectionDetailsSection(props) {
           }}
         >
           Visit Gallery
-        </Button>
+        </Button> */}
       </Box>
     </Grid>
   );
