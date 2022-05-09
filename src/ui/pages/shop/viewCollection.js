@@ -25,7 +25,7 @@ export default function ShopViewCollectionPage(props) {
   // const [relatedPieces, setRelatedPieces] = React.useState();
 
   React.useEffect(() => {
-    if (id === undefined) {
+    if (id === undefined || !id) {
       history(-1);
     }
 
@@ -37,24 +37,24 @@ export default function ShopViewCollectionPage(props) {
 
     if (current_collection) {
       collection = current_collection[0];
+
+      const collection_products = ALL_PRODUCTS_STATE.filter(
+        (product) => product.collection.collection_id === id
+      );
+
+      if (collection && collection_products) {
+        setCurrentCollection(collection);
+        setCollectionPieces(collection_products);
+      } else {
+        history(-1);
+      }
     } else {
       history(-1);
-
-      const collection_products = [];
-
-      ALL_PRODUCTS_STATE.forEach((product) => {
-        if (product.collection.collection_id === `${id}`) {
-          collection_products.push(product);
-        }
-      });
-
-      setCurrentCollection(collection);
-      setCollectionPieces(collection_products);
     }
     return () => {
       setCurrentCollection(null);
     };
-  }, []);
+  }, [id]);
 
   return (
     <>
