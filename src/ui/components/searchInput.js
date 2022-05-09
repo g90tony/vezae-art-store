@@ -62,14 +62,24 @@ export default function SearchInput(props) {
   }, [title]);
 
   const label_text =
-    props.searchType === "products" ? "Search pieces" : "Search collections";
+    props.searchType === "products"
+      ? "Search pieces"
+      : props.searchType === "collections"
+      ? "Search collections"
+      : "Search Catalogue";
 
   function handleSelect(e, value) {
-    history(
-      props.searchType === "products"
-        ? `/shop/pieces/view/${value.product_id}`
-        : `/shop/collections/view/${value.collection_id}`
-    );
+    if (props.searchType === "products") {
+      history(`/shop/pieces/view/${value.product_id}`);
+    } else if (props.searchType === "collections") {
+      history(`/shop/collections/view/${value.collection_id}`);
+    } else {
+      if (value.title == "(Product)") {
+        history(`/shop/pieces/view/${value.product_id}`);
+      } else {
+        history(`/shop/collections/view/${value.product_id}`);
+      }
+    }
   }
 
   return (
@@ -83,7 +93,7 @@ export default function SearchInput(props) {
       isOptionEqualToValue={(option, value) =>
         option.product_id === value.product_id
       }
-      sx={{ width: 300, margin: "auto 10px" }}
+      sx={{ width: props.fullWidth ? "100%" : 300, margin: "auto 10px" }}
       renderInput={(params) => <TextField {...params} label={label_text} />}
     />
   );
