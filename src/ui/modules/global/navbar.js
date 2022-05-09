@@ -9,6 +9,7 @@ import {
   ListItem,
   Menu,
   MenuItem,
+  Modal,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -21,18 +22,37 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 
-import { palette as system_colors } from "../../../assets/styles/colors";
+import {
+  palette,
+  palette as system_colors,
+} from "../../../assets/styles/colors";
 import {
   bodyTypographyStyles as body,
   bodyTypographyStyles,
+  headingTypographyStyles,
 } from "../../../assets/styles/typography";
 
 import navLogo from "../../../assets/images/nav_logo.png";
 import { NavLink } from "react-router-dom";
 import CartPopup from "../../components/cartPopup";
 import { updateSelected } from "../../../state/slices/currencySelector";
+import SearchInput from "../../components/searchInput";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "40%",
+  bgcolor: palette.secondary,
+  // border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function NavBar() {
+  const [open, setOpen] = React.useState(false);
+
   const navLinks = [
     // {
     //   id: 5,
@@ -138,6 +158,14 @@ export default function NavBar() {
     );
   }
 
+  function handleOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
   function currencyDropdown() {
     return (
       <Collapse in={openCurrencySubMenu} timeout="auto" unmountOnExit>
@@ -212,6 +240,7 @@ export default function NavBar() {
               width: "33.3%",
               margin: "20px auto",
             }}
+            onClick={handleOpen}
           >
             <SearchIcon />
           </IconButton>
@@ -432,7 +461,10 @@ export default function NavBar() {
             );
           })}
         </Menu>
-        <IconButton sx={{ color: system_colors.primary, margin: "auto 10px" }}>
+        <IconButton
+          onClick={handleOpen}
+          sx={{ color: system_colors.primary, margin: "auto 10px" }}
+        >
           <SearchIcon />
         </IconButton>
       </Box>
@@ -457,6 +489,25 @@ export default function NavBar() {
           {drawerComponent("right")}
         </Drawer>
       </Box>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography
+            variant="h5"
+            sx={{
+              fontFamily: headingTypographyStyles.h6,
+              marginBottom: "10px",
+            }}
+          >
+            Search products and collections:
+          </Typography>
+          <SearchInput fullWidth closeModal={handleClose} />
+        </Box>
+      </Modal>
     </Grid>
   );
 }
