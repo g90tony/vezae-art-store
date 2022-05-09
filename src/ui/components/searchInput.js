@@ -74,6 +74,7 @@ export default function SearchInput(props) {
     } else if (props.searchType === "collections") {
       history(`/shop/collections/view/${value.collection_id}`);
     } else {
+      // eslint-disable-next-line eqeqeq
       if (value.title == "(Product)") {
         history(`/shop/pieces/view/${value.product_id}`);
       } else {
@@ -93,7 +94,10 @@ export default function SearchInput(props) {
       isOptionEqualToValue={(option, value) =>
         option.product_id === value.product_id
       }
-      sx={{ width: props.fullWidth ? "100%" : 300, margin: "auto 10px" }}
+      sx={{
+        width: { xs: "80%", lg: props.fullWidth ? "100%" : 300 },
+        margin: { xs: "10px auto", lg: "10px" },
+      }}
       renderInput={(params) => <TextField {...params} label={label_text} />}
     />
   );
