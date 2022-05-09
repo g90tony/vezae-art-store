@@ -75,11 +75,15 @@ export default function SearchInput(props) {
       history(`/shop/collections/view/${value.collection_id}`);
     } else {
       // eslint-disable-next-line eqeqeq
-      if (value.title == "(Product)") {
+      if (value.product_id) {
         history(`/shop/pieces/view/${value.product_id}`);
       } else {
-        history(`/shop/collections/view/${value.product_id}`);
+        history(`/shop/collections/view/${value.collection_id}`);
       }
+    }
+
+    if (props.searchType !== "products" && props.searchType !== "collections") {
+      props.dismissModal();
     }
   }
 
