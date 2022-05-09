@@ -160,6 +160,7 @@ export default function NavBar() {
 
   function handleOpen() {
     setOpen(true);
+    setDrawerState(false);
   }
 
   function handleClose() {
@@ -505,7 +506,11 @@ export default function NavBar() {
           >
             Search products and collections:
           </Typography>
-          <SearchInput fullWidth closeModal={handleClose} />
+          <SearchInput
+            fullWidth
+            closeModal={handleClose}
+            dismissModal={handleClose}
+          />
         </Box>
       </Modal>
     </Grid>
