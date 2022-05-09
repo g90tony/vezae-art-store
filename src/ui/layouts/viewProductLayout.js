@@ -42,9 +42,7 @@ export default function ViewProductLayout(props) {
             }}
             onClick={() => props.history(-1)}
           >
-            <ChevronLeft
-              sx={{ margin: "auto", fontSize: headingTypographyStyles.h5 }}
-            />{" "}
+            <ChevronLeft sx={{ margin: "auto", fontSize: "2.5rem" }} />{" "}
           </Button>
         </Breadcrumbs>
       </Box>
@@ -52,15 +50,15 @@ export default function ViewProductLayout(props) {
         sx={{
           display: "flex",
           flexDirection: { xs: "column", lg: "row" },
-          justifyContent: "center",
+          justifyContent: "space-between",
           flexWrap: "nowrap",
           width: "100%",
           padding: "10px",
           margin: "0 auto",
         }}
       >
-        <Box sx={{ width: "100%", margin: "0 auto" }}>{props.child1}</Box>
-        <Box sx={{ width: "100%" }}>{props.child2}</Box>
+        <Box sx={{ width: "80%", margin: "0 20px" }}>{props.child1}</Box>
+        <Box sx={{ width: "80%" }}>{props.child2}</Box>
       </Box>
       <Box
         sx={{
