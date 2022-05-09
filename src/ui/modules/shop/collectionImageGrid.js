@@ -70,7 +70,7 @@ export default function CollectionImageGrid(props) {
           return (
             <CollectionGridItem
               key={props.images.indexOf(piece)}
-              index={props.images.indexOf(piece)}
+              index={props.images.indexOf(piece) + 1}
               hasLoaded={() => hasLoaded(piece)}
               product={piece}
             />
