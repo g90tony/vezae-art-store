@@ -9,7 +9,7 @@ import { bodyTypographyStyles as body } from "../../../assets/styles/typography"
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import footerLogo from "../../../assets/images/footer_logo.png";
+import footerLogo from "../../../assets/images/logo.svg";
 
 export default function FooterBar() {
   const topCollections = [
@@ -91,31 +91,33 @@ export default function FooterBar() {
     <Grid
       container
       sx={{
-        height: { xs: "auto", lg: "300px" },
+        // height: { xs: "auto", lg: "300px" },
         backgroundColor: palette.primary,
         display: "flex",
         // position: "absolute",
-        width: "100vw",
+        width: "100%",
         flexDirection: { xs: "column", md: "row" },
         justifyContent: "space-around",
+        alignItems: "flex-start",
         flexWrap: "nowrap",
-        padding: "20px 50px",
+        padding: "20px 40px",
         bottom: 0,
       }}
     >
       <Box
         sx={{
           width: "auto",
-          margin: "10px 20px",
+          margin: "20px",
           display: "flex",
           flexDirection: "column",
           textAlign: "start",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <img
           style={{
-            width: "150px",
+            width: "125px",
             objectFit: "contain",
             objectPosition: "center",
           }}
@@ -124,7 +126,7 @@ export default function FooterBar() {
         />
         <Typography
           sx={{
-            fontSize: body.defaultExtraLight,
+            fontSize: body.largeLight,
             marginTop: "20px",
             color: palette.secondary,
           }}
@@ -151,8 +153,9 @@ export default function FooterBar() {
 
         <Typography
           sx={{
-            fontSize: body.defaultLight,
+            fontSize: body.defaultExtraLight,
             marginTop: "20px",
+            width: "100%",
             color: palette.secondary,
           }}
         >

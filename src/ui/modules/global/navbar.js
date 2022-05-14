@@ -32,7 +32,7 @@ import {
   headingTypographyStyles,
 } from "../../../assets/styles/typography";
 
-import navLogo from "../../../assets/images/nav_logo.png";
+import navLogo from "../../../assets/images/horizontal_logoHD.svg";
 import { NavLink } from "react-router-dom";
 import CartPopup from "../../components/cartPopup";
 import { updateSelected } from "../../../state/slices/currencySelector";
@@ -347,8 +347,8 @@ export default function NavBar() {
             src={navLogo}
             style={{
               objectFit: "contain",
-              width: "225px",
-              margin: "aut0 20px",
+              width: "130px",
+              margin: "10px",
             }}
             alt="nav_logo"
           />

@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import React from "react";
 import { palette } from "../../../assets/styles/colors";
-import footerLogo from "../../../assets/images/footer_logo.png";
+import footerLogo from "../../../assets/images/footer_logo.svg";
 import { LinearProgress } from "@mui/material";
 
 export default function LoadingScreen() {
