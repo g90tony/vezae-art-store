@@ -33,13 +33,6 @@ const parameterResolverObj = new parameterResolver();
 
 export const routes = [
   {
-    path: "**",
-    exact: true,
-    hasParams: false,
-    loadData: (data) => parameterResolverObj.setParameters(data),
-    component: <Error404Page />,
-  },
-  {
     path: "/",
     exact: true,
     hasParams: false,
@@ -104,6 +97,13 @@ export const routes = [
     hasParams: true,
     loadData: (data) => parameterResolverObj.setParameters(data),
     component: <ShopCheckoutPage />,
+  },
+  {
+    path: "*",
+    exact: false,
+    hasParams: false,
+    loadData: (data) => parameterResolverObj.setParameters(data),
+    component: <Error404Page />,
   },
 ];
 export function RoutingTable(props) {

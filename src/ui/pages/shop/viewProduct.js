@@ -36,7 +36,7 @@ export default function ShopViewProductPage(props) {
       setProductImages(product.images);
       setCurrentVariant(product.variants[0]);
     }
-  }, []);
+  }, [product_id]);
 
   // const [relatedPieces, setRelatedPieces] = React.useState();
 

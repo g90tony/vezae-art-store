@@ -7,6 +7,7 @@ export default function ProductImageGrid(props) {
   const [loadingImages, setLoadingImage] = React.useState();
 
   React.useEffect(() => {
+    setSelectedImage(undefined);
     if (props.images) {
       const imagesArr = props.images.map((item) => {
         return {
