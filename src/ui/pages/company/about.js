@@ -1,7 +1,8 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 
-import logoWaterMark from "../../../assets/images/logo_watermark.png";
+import logoWaterMark from "../../../assets/images/watermark_logo.svg";
+
 import {
   headingTypographyStyles as headings,
   bodyTypographyStyles as body,
@@ -40,6 +41,7 @@ export default function AboutPage() {
               width: "80%",
               heigh: "fit-content",
               objectFit: "contain",
+              opacity: "30%",
             }}
             alt=""
           />

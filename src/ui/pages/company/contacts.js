@@ -1,7 +1,7 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 
-import logoWaterMark from "../../../assets/images/logo_watermark.png";
+import logoWaterMark from "../../../assets/images/watermark_logo.svg";
 import {
   headingTypographyStyles as headings,
   bodyTypographyStyles as body,
@@ -38,6 +38,7 @@ export default function ContactsPage() {
             src={logoWaterMark}
             style={{
               width: "100%",
+              opacity: "30%",
               objectFit: "contain",
             }}
             alt=""

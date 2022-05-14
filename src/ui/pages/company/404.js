@@ -10,7 +10,7 @@ import {
   bodyTypographyStyles as body,
 } from "../../../assets/styles/typography";
 import { palette } from "../../../assets/styles/colors";
-import logoWaterMark from "../../../assets/images/logo_watermark.png";
+import logoWaterMark from "../../../assets/images/watermark_logo.svg";
 
 export default function Error404Page() {
   let history = useNavigate();
@@ -38,9 +38,16 @@ export default function Error404Page() {
         padding: "20px",
         display: "flex",
         flexDirection: "column",
+        maxHeight: { xs: "100%", lg: "70vh" },
       }}
     >
-      <Box sx={{ display: "flex", flexDirection: "row" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", lg: "row" },
+          justifyContent: "center",
+        }}
+      >
         <Box
           sx={{
             width: { xs: "100%", lg: "50%" },
@@ -50,8 +57,9 @@ export default function Error404Page() {
           <img
             src={logoWaterMark}
             style={{
-              width: "100%",
-              heigh: "fit-content",
+              width: "60%",
+              opacity: "30%",
+
               objectFit: "contain",
             }}
             alt=""
