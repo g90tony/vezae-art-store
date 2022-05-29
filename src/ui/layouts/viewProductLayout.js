@@ -51,7 +51,7 @@ export default function ViewProductLayout(props) {
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column-reverse", lg: "row" },
+          flexDirection: { xs: "column", lg: "row" },
           justifyContent: { xs: "center", lg: "space-between" },
           flexWrap: "nowrap",
           width: "100%",

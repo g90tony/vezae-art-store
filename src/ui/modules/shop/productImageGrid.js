@@ -1,6 +1,13 @@
 /* eslint-disable array-callback-return */
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
+import { palette } from "../../../assets/styles/colors";
+import {
+  headingTypographyStyles,
+  marketingTypographyStyles,
+} from "../../../assets/styles/typography";
+import PriceConverter from "../../components/priceConverter";
 
 export default function ProductImageGrid(props) {
   const [selectedImage, setSelectedImage] = React.useState();
@@ -58,7 +65,7 @@ export default function ProductImageGrid(props) {
     >
       <Box
         sx={{
-          display: "flex",
+          display: { xs: "none", lg: "flex" },
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
@@ -93,7 +100,7 @@ export default function ProductImageGrid(props) {
       </Box>
       <Box
         sx={{
-          display: "flex",
+          display: { xs: "none", lg: "flex" },
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
@@ -121,6 +128,79 @@ export default function ProductImageGrid(props) {
               />
             );
           })}
+      </Box>
+      <Box
+        sx={{
+          display: { xs: "flex", lg: "none" },
+          flexDirection: "row",
+          width: "100%",
+          marginBottom: "20px",
+        }}
+      >
+        <Typography sx={{ fontSize: marketingTypographyStyles.subTitle }}>
+          {props.productTitle}
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: {
+            xs: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            justifyContent: "center",
+            alignItems: "center",
+            maxWidth: "100%",
+            maxHeight: "400px",
+            marginBottom: "30px",
+          },
+        }}
+      >
+        <Box sx={{ width: "25%", maxHeight: "350px", overflowY: "auto" }}>
+          {props.images &&
+            props.images.map((image) => {
+              return (
+                <img
+                  key={props.images.indexOf(image)}
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    objectFit: "cover",
+                    margin: "5px",
+                    objectPosition: "center",
+                  }}
+                  src={image.url}
+                  alt="product preview"
+                  onClick={() => setSelectedImage(image)}
+                  onLoad={() => hasLoaded(image)}
+                />
+              );
+            })}
+        </Box>
+        <Box sx={{ width: "75%" }}>
+          {selectedImage ? (
+            <img
+              style={{
+                objectFit: "contain",
+                objectPosition: "center",
+                width: "100%",
+                height: "100%",
+              }}
+              src={selectedImage.url}
+              alt="product"
+            />
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              Select an Image to view
+            </Box>
+          )}
+        </Box>
       </Box>
     </Grid>
   );

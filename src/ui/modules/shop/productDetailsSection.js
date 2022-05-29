@@ -78,7 +78,7 @@ export default function ProductDetailsSection(props) {
     >
       <Box
         sx={{
-          display: "flex",
+          display: { xs: "none", lg: "flex" },
           flexDirection: "row",
           width: "100%",
           marginBottom: "20px",
