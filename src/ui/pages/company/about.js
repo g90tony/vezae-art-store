@@ -35,7 +35,8 @@ export default function AboutPage() {
             position: "relative",
           }}
         >
-          <img
+          <Box
+            component="img"
             src={logoWaterMark}
             style={{
               width: "80%",

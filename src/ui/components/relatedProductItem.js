@@ -19,7 +19,8 @@ export default function RelatedProductItem(props) {
           position: "relative",
         }}
       >
-        <img
+        <Box
+          component="img"
           style={{
             objectFit: "cover",
             objectPosition: "center",

@@ -366,7 +366,8 @@ export default function NavBar() {
           to="/"
           style={{ width: "100%", display: "flex", flexDirection: "row" }}
         >
-          <img
+          <Box
+            component="img"
             src={navLogo}
             style={{
               objectFit: "contain",

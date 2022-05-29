@@ -34,7 +34,8 @@ export default function ContactsPage() {
             position: "relative",
           }}
         >
-          <img
+          <Box
+            component="img"
             src={logoWaterMark}
             style={{
               width: "100%",

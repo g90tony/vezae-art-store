@@ -134,7 +134,8 @@ export default function CartPopup(props) {
                         padding: "10px",
                       }}
                     >
-                      <img
+                      <Box
+                        component="img"
                         style={{
                           width: props.width === "80%" ? "85px" : "100px",
                           height: props.width === "80%" ? "85px" : "100px",

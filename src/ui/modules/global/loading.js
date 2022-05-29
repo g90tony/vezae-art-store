@@ -24,7 +24,7 @@ export default function LoadingScreen() {
         top: 0,
       }}
     >
-      <img src={footerLogo} width="15%" alt="" />
+      <Box component="img" src={footerLogo} width="15%" alt="" />
 
       <Box sx={{ width: "25%", marginTop: "50px" }}>
         <LinearProgress

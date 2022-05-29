@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { palette } from "../../assets/styles/colors";
 import {
@@ -20,7 +20,8 @@ export default function CollectionGridItem(props) {
         position: "relative",
       }}
     >
-      <img
+      <Box
+        component="img"
         style={{
           objectFit: "cover",
           objectPosition: "center",

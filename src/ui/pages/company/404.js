@@ -54,7 +54,8 @@ export default function Error404Page() {
             display: { xs: "none", lg: "flex" },
           }}
         >
-          <img
+          <Box
+            component="img"
             src={logoWaterMark}
             style={{
               width: "60%",

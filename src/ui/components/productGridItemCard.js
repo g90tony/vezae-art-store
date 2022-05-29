@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { palette } from "../../assets/styles/colors";
 import { bodyTypographyStyles } from "../../assets/styles/typography";
@@ -11,7 +11,8 @@ export default function ProductGridItemCard(props) {
       styles={{ width: { xs: "100%", lg: props.width } }}
       key={props.piece.index}
     >
-      <img
+      <Box
+        component="img"
         style={{
           maxWidth: "100%",
           maxHeight: "100%",

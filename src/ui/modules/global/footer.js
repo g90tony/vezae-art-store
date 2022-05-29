@@ -115,7 +115,8 @@ export default function FooterBar() {
           justifyContent: "center",
         }}
       >
-        <img
+        <Box
+          component="img"
           style={{
             width: "125px",
             objectFit: "contain",

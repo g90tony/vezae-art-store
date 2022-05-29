@@ -70,7 +70,8 @@ export default function ProductImageGrid(props) {
         }}
       >
         {selectedImage ? (
-          <img
+          <Box
+            component="img"
             style={{
               objectFit: "contain",
               objectPosition: "center",
@@ -107,7 +108,8 @@ export default function ProductImageGrid(props) {
         {props.images &&
           props.images.map((image) => {
             return (
-              <img
+              <Box
+                component="img"
                 key={props.images.indexOf(image)}
                 style={{
                   width: "100px",
@@ -159,14 +161,15 @@ export default function ProductImageGrid(props) {
             justifyContent: "flex-start",
             maxWidth: "20%",
             // margin: "auto",
-            maxHeight: { xs: "350px", md: "500px" },
+            height: { xs: "350px", md: "500px" },
             overflowY: "auto",
           }}
         >
           {props.images &&
             props.images.map((image) => {
               return (
-                <img
+                <Box
+                  component="img"
                   key={props.images.indexOf(image)}
                   style={{
                     width: { xs: "50px", md: "75px" },
@@ -192,7 +195,8 @@ export default function ProductImageGrid(props) {
           }}
         >
           {selectedImage ? (
-            <img
+            <Box
+              component="img"
               style={{
                 objectFit: { xs: "contain", md: "cover" },
                 objectPosition: "center",

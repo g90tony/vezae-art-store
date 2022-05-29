@@ -22,7 +22,8 @@ export default function CollectionItemCard(props) {
       }}
     >
       <Box sx={{ margin: "0 0 5px 0", width: "100%", maxHeight: "55%" }}>
-        <img
+        <Box
+          component="img"
           style={{
             objectFit: "contain",
             objectPosition: "center",
