@@ -172,7 +172,7 @@ export default function ProductImageGrid(props) {
                     width: { xs: "50px", md: "75px" },
                     height: { xs: "50px", md: "75px" },
                     objectFit: "contain",
-                    margin: { xs: "5px", md: "20px 10px" },
+                    margin: { xs: "5px", md: "10px" },
                     objectPosition: "center",
                   }}
                   src={image.url}
