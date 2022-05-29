@@ -140,14 +140,15 @@ export default function ProductImageGrid(props) {
         sx={{
           display: {
             xs: "flex",
-            flexDirection: "row-reverse",
-            flexWrap: "nowrap",
-            justifyContent: "center",
-            alignItems: "center",
-            maxWidth: "100%",
-            maxHeight: "400px",
-            marginBottom: "30px",
+            lg: "none",
           },
+          flexDirection: "row-reverse",
+          flexWrap: "nowrap",
+          justifyContent: "center",
+          alignItems: "center",
+          maxWidth: "100%",
+          maxHeight: "400px",
+          marginBottom: "30px",
         }}
       >
         <Box
