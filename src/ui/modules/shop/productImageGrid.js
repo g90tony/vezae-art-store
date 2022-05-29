@@ -129,6 +129,7 @@ export default function ProductImageGrid(props) {
           display: { xs: "flex", lg: "none" },
           flexDirection: "row",
           width: "100%",
+          height: "100%",
           marginBottom: "20px",
         }}
       >
@@ -147,7 +148,7 @@ export default function ProductImageGrid(props) {
           justifyContent: { xs: "center", md: "space-between" },
           alignItems: "center",
           width: "100%",
-          height: { xs: "400px", md: "500px" },
+          minHeight: { xs: "400px", md: "500px" },
           marginBottom: "30px",
         }}
       >
@@ -170,7 +171,7 @@ export default function ProductImageGrid(props) {
                   style={{
                     width: { xs: "50px", md: "75px" },
                     height: { xs: "50px", md: "75px" },
-                    objectFit: "cover",
+                    objectFit: "contain",
                     margin: { xs: "5px", md: "20px 10px" },
                     objectPosition: "center",
                   }}
