@@ -145,7 +145,7 @@ export default function ProductImageGrid(props) {
         sx={{
           display: {
             xs: "flex",
-            flexDirection: "row",
+            flexDirection: "row-reverse",
             flexWrap: "nowrap",
             justifyContent: "center",
             alignItems: "center",
