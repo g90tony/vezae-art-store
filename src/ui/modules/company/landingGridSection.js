@@ -88,7 +88,7 @@ export default function LandingGridSection() {
                   color: palette.primary,
                   borderColor: palette.primary,
                 },
-                fontSize: body.largeBold,
+                fontSize: body.defaultBold,
                 textDecoration: "none",
                 height: "fit-content",
                 padding: "15px",
@@ -97,7 +97,7 @@ export default function LandingGridSection() {
                 borderRadius: 0,
               }}
             >
-              View Art Collections
+              View Collections
             </Button>
             <Button
               href="/shop/pieces/all"
@@ -109,7 +109,7 @@ export default function LandingGridSection() {
                   color: palette.primary,
                   borderColor: palette.primary,
                 },
-                fontSize: body.largeBold,
+                fontSize: body.defaultBold,
                 textDecoration: "none",
                 height: "fit-content",
                 padding: "15px",
@@ -118,7 +118,7 @@ export default function LandingGridSection() {
                 borderRadius: 0,
               }}
             >
-              View Art Pieces
+              View Pieces
             </Button>
           </Box>
         </div>
@@ -170,14 +170,14 @@ export default function LandingGridSection() {
                 backgroundColor: palette.secondary,
                 color: palette.primary,
               },
-              fontSize: { md: body.smallBold, lg: body.largeBold },
+              fontSize: body.defaultBold,
               textDecoration: "none",
               height: "fit-content",
               padding: "10px",
               margin: "5px",
             }}
           >
-            View Art Collections
+            View Collections
           </Button>
           <Button
             href="/shop/pieces/all"
@@ -188,14 +188,14 @@ export default function LandingGridSection() {
                 backgroundColor: palette.secondary,
                 color: palette.primary,
               },
-              fontSize: body.largeBold,
+              fontSize: body.defaultBold,
               textDecoration: "none",
               height: "fit-content",
               padding: "10px",
               margin: "5px",
             }}
           >
-            View Art Pieces
+            View Pieces
           </Button>
         </Box>
       </Grid>
