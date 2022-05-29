@@ -1,7 +1,10 @@
-import { Box, Breadcrumbs, Button, Grid } from "@mui/material";
+import { Box, Breadcrumbs, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import { palette } from "../../assets/styles/colors";
-import { headingTypographyStyles } from "../../assets/styles/typography";
+import {
+  bodyTypographyStyles,
+  headingTypographyStyles,
+} from "../../assets/styles/typography";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 
 export default function ViewProductLayout(props) {
@@ -46,7 +49,17 @@ export default function ViewProductLayout(props) {
             <ChevronLeft
               sx={{ margin: { xs: 0, lg: "auto" }, fontSize: "2.5rem" }}
             />{" "}
-            Back
+            <Typography
+              sx={{
+                fontSize: {
+                  xs: bodyTypographyStyles.defaultBold,
+                  lg: bodyTypographyStyles.largeBold,
+                },
+                fontWeight: 600,
+              }}
+            >
+              Back
+            </Typography>
           </Button>
         </Breadcrumbs>
       </Box>

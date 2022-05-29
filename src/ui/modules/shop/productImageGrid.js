@@ -144,18 +144,21 @@ export default function ProductImageGrid(props) {
           },
           flexDirection: "row-reverse",
           flexWrap: "nowrap",
-          justifyContent: "center",
+          justifyContent: { xs: "center", md: "space-between" },
           alignItems: "center",
-          maxWidth: "100%",
-          maxHeight: "400px",
+          width: "100%",
+          height: { xs: "400px", md: "500px" },
           marginBottom: "30px",
         }}
       >
         <Box
           sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
             maxWidth: "20%",
             margin: "auto",
-            maxHeight: "350px",
+            maxHeight: { xs: "350px", md: "500px" },
             overflowY: "auto",
           }}
         >
@@ -165,10 +168,10 @@ export default function ProductImageGrid(props) {
                 <img
                   key={props.images.indexOf(image)}
                   style={{
-                    width: "50px",
-                    height: "50px",
+                    width: { xs: "50px", md: "75px" },
+                    height: { xs: "50px", md: "75px" },
                     objectFit: "cover",
-                    margin: "5px",
+                    margin: { xs: "5px", md: "20px 10px" },
                     objectPosition: "center",
                   }}
                   src={image.url}
@@ -179,14 +182,21 @@ export default function ProductImageGrid(props) {
               );
             })}
         </Box>
-        <Box sx={{ width: "75%" }}>
+        <Box
+          sx={{
+            width: "75%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
           {selectedImage ? (
             <img
               style={{
-                objectFit: "contain",
+                objectFit: { xs: "contain", md: "cover" },
                 objectPosition: "center",
-                width: "100%",
-                height: "100%",
+                maxWidth: "500px",
+                maxHeight: "500px",
               }}
               src={selectedImage.url}
               alt="product"

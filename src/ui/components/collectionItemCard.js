@@ -74,7 +74,7 @@ export default function CollectionItemCard(props) {
               //   fontWeight: 800,
               textAlign: "start",
               height: "4rem",
-              overflow: "clip",
+              overflow: "hidden",
               textOverflow: "ellipsis",
               lineBreak: "strict",
             }}

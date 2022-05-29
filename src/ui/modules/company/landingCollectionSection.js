@@ -150,7 +150,7 @@ export default function LandingCollectionSection(props) {
               width: { xs: "100%", lg: "50%" },
               margin: "auto",
               justifyContent: "center",
-              alignItems: "center",
+              alignItems: "flex-start",
               textAlign: {
                 xs: "start",
                 lg: props.isAlternate ? "end" : "start",

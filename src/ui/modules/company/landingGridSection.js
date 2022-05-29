@@ -170,7 +170,7 @@ export default function LandingGridSection() {
                 backgroundColor: palette.secondary,
                 color: palette.primary,
               },
-              fontSize: body.largeBold,
+              fontSize: { md: body.smallBold, lg: body.largeBold },
               textDecoration: "none",
               height: "fit-content",
               padding: "10px",
