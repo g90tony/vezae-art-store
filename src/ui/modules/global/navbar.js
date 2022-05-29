@@ -3,6 +3,7 @@ import React from "react";
 import {
   Collapse,
   Drawer,
+  Fade,
   Grid,
   IconButton,
   List,
@@ -109,6 +110,7 @@ export default function NavBar() {
   const [drawerState, setDrawerState] = React.useState(false);
   const [openCartSubMenu, setOpenCartSubMenu] = React.useState(false);
   const [openCurrencySubMenu, setOpenCurrencySubMenu] = React.useState(false);
+  const [openSearchSubMenu, setOpenSearchSubMenu] = React.useState(false);
 
   const menuOpenCart = Boolean(anchorElCart);
   const menuOpenCurrency = Boolean(anchorElCurrency);
@@ -128,11 +130,26 @@ export default function NavBar() {
   };
 
   const handleCartSubMenu = () => {
+    if (openCurrencySubMenu === true) {
+      setOpenCurrencySubMenu(false);
+    }
     setOpenCartSubMenu(!openCartSubMenu);
   };
 
   const handleCurrencySubMenu = () => {
+    if (openCartSubMenu === true) {
+      setOpenCartSubMenu(false);
+    }
+
     setOpenCurrencySubMenu(!openCurrencySubMenu);
+  };
+
+  const handleSidebarSearch = () => {
+    if (openSearchSubMenu === false) {
+      setOpenSearchSubMenu(true);
+    } else {
+      setOpenSearchSubMenu(false);
+    }
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -179,7 +196,10 @@ export default function NavBar() {
                 padding: "10px 50px ",
               }}
               key={index}
-              onClick={handleCurrencySubMenu}
+              onClick={() => {
+                setCurrency(currency);
+                handleCurrencySubMenu();
+              }}
             >
               <Box sx={{ margin: "auto 10px" }}>
                 {currency && `${currency.flag}`}
@@ -200,6 +220,23 @@ export default function NavBar() {
     );
   }
 
+  function sidebarSearch() {
+    return (
+      <div
+        style={{
+          display: openSearchSubMenu ? "flex" : "none",
+          transition: "750ms ease-in-out",
+        }}
+      >
+        <SearchInput
+          fullWidth
+          closeModal={handleClose}
+          dismissModal={handleClose}
+        />
+      </div>
+    );
+  }
+
   function drawerComponent() {
     return (
       <Box
@@ -214,20 +251,6 @@ export default function NavBar() {
         }}
         role="presentation"
       >
-        {/* <NavLink
-          to="/"
-          style={{ width: "100%", display: "flex", flexDirection: "row" }}
-        >
-          <img
-            src={navLogo}
-            style={{
-              objectFit: "contain",
-              width: "225px",
-              margin: " 20px auto",
-            }}
-            alt="nav_logo"
-          />
-        </NavLink> */}
         <Box
           sx={{
             display: "flex",
@@ -241,7 +264,7 @@ export default function NavBar() {
               width: "33.3%",
               margin: "20px auto",
             }}
-            onClick={handleOpen}
+            onClick={handleSidebarSearch}
           >
             <SearchIcon />
           </IconButton>
@@ -267,11 +290,12 @@ export default function NavBar() {
             onClick={handleCartSubMenu}
           >
             <ShoppingCartIcon />{" "}
-            {openCartSubMenu ? <ExpandLess /> : <ExpandMore />}
           </IconButton>
         </Box>
+        {sidebarSearch()}
         {cartDropdown()}
         {currencyDropdown()}
+
         {!openCartSubMenu && !openCurrencySubMenu && (
           <List>
             {navLinks.map((navLink) => {
