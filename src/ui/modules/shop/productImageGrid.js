@@ -158,7 +158,7 @@ export default function ProductImageGrid(props) {
             flexDirection: "column",
             justifyContent: "flex-start",
             maxWidth: "20%",
-            margin: "auto",
+            // margin: "auto",
             maxHeight: { xs: "350px", md: "500px" },
             overflowY: "auto",
           }}
