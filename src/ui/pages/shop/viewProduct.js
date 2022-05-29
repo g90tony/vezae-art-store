@@ -10,7 +10,6 @@ import ProductImageGrid from "../../modules/shop/productImageGrid";
 
 import LoadingScreen from "../../modules/global/loading";
 import { useSelector } from "react-redux";
-import { Box } from "@mui/system";
 
 export default function ShopViewProductPage(props) {
   const ALL_PRODUCTS_STATE = useSelector((state) => state.products);

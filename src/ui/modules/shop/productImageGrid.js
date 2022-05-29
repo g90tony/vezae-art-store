@@ -1,13 +1,8 @@
 /* eslint-disable array-callback-return */
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
-import { palette } from "../../../assets/styles/colors";
-import {
-  headingTypographyStyles,
-  marketingTypographyStyles,
-} from "../../../assets/styles/typography";
-import PriceConverter from "../../components/priceConverter";
+
+import { marketingTypographyStyles } from "../../../assets/styles/typography";
 
 export default function ProductImageGrid(props) {
   const [selectedImage, setSelectedImage] = React.useState();
@@ -155,7 +150,14 @@ export default function ProductImageGrid(props) {
           },
         }}
       >
-        <Box sx={{ width: "25%", maxHeight: "350px", overflowY: "auto" }}>
+        <Box
+          sx={{
+            width: "25%",
+            margin: "auto",
+            maxHeight: "350px",
+            overflowY: "auto",
+          }}
+        >
           {props.images &&
             props.images.map((image) => {
               return (
