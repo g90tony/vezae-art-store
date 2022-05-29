@@ -200,8 +200,8 @@ export default function ProductImageGrid(props) {
               style={{
                 objectFit: { xs: "contain", md: "cover" },
                 objectPosition: "center",
-                maxWidth: "500px",
-                maxHeight: "500px",
+                maxWidth: "100%",
+                maxHeight: "550px",
               }}
               src={selectedImage.url}
               alt="product"
