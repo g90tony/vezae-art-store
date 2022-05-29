@@ -1,6 +1,7 @@
 /* eslint-disable array-callback-return */
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import { marketingTypographyStyles } from "../../../assets/styles/typography";
 import CollectionGridItem from "../../components/collectionGridItem";
 
 export default function CollectionImageGrid(props) {
@@ -59,7 +60,7 @@ export default function CollectionImageGrid(props) {
     >
       <Box
         sx={{
-          display: "grid",
+          display: { xs: "none", lg: "grid" },
           gridTemplateColumns: { xs: "100%", lg: "50% 50%" },
           gridTemplateRows: "auto",
           columnGap: { xs: "2.5px", lg: "5px" },
@@ -74,6 +75,38 @@ export default function CollectionImageGrid(props) {
               hasLoaded={() => hasLoaded(piece)}
               product={piece}
             />
+          );
+        })}
+      </Box>
+      <Box
+        sx={{
+          display: { xs: "flex", lg: "none" },
+          flexDirection: "row",
+          width: "100%",
+          marginBottom: "20px",
+        }}
+      >
+        <Typography sx={{ fontSize: marketingTypographyStyles.subTitle }}>
+          {props.title}
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: { xs: "flex", lg: "none" },
+          flexDirection: "row",
+          flexWrap: "wrap",
+        }}
+      >
+        {props.images.map((piece) => {
+          return (
+            <Box sx={{ width: "50%" }}>
+              <CollectionGridItem
+                key={props.images.indexOf(piece)}
+                index={props.images.indexOf(piece) + 1}
+                hasLoaded={() => hasLoaded(piece)}
+                product={piece}
+              />
+            </Box>
           );
         })}
       </Box>

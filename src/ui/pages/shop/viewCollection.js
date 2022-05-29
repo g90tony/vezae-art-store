@@ -64,6 +64,7 @@ export default function ShopViewCollectionPage(props) {
           <CollectionImageGrid
             images={collectionPieces}
             manageLoader={setHasLoaded}
+            title={currentCollection.title}
           />
         }
         child2={<CollectionDetailsSection productDetails={currentCollection} />}
