@@ -4,6 +4,7 @@ import { palette } from "../../assets/styles/colors";
 import {
   bodyTypographyStyles,
   headingTypographyStyles,
+  marketingTypographyStyles,
 } from "../../assets/styles/typography";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 
@@ -51,11 +52,12 @@ export default function ViewProductLayout(props) {
             />{" "}
             <Typography
               sx={{
+                fontFamily: marketingTypographyStyles.subTitle,
                 fontSize: {
-                  xs: bodyTypographyStyles.defaultBold,
-                  lg: bodyTypographyStyles.largeBold,
+                  xs: "16px",
+                  lg: "18px",
                 },
-                fontWeight: 600,
+                fontWeight: 700,
               }}
             >
               Back
