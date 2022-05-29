@@ -82,7 +82,8 @@ export default function LandingCollectionSection(props) {
             <Box
               sx={{
                 display: "grid",
-                gridTemplateColumns: { xs: "100%", lg: "50% 50%" },
+                justifyContent: props.isAlternate ? "flex-end" : "flex-start",
+                gridTemplateColumns: "50% 50%",
                 gridTemplateRows: "auto",
                 columnGap: { xs: "2.5px", lg: "5px" },
                 rowGap: { xs: "2.5px", lg: "5px" },
@@ -99,32 +100,48 @@ export default function LandingCollectionSection(props) {
                     />
                   );
                 })}
-              <Button
-                href={`/shop/collections/view/${currentCollection.collection_id}`}
-                sx={{
-                  display: { xs: "flex", lg: "none" },
-                  "&:hover": {
-                    backgroundColor: props.darkBg
-                      ? palette.primary
-                      : palette.secondary,
-                    color: props.darkBg ? palette.secondary : palette.primary,
-                  },
-                  backgroundColor: props.darkBg
-                    ? palette.secondary
-                    : palette.primary,
-                  color: props.darkBg ? palette.primary : palette.secondary,
-                  padding: "10px",
-                  textDecoration: "none",
-                  fontWeight: 900,
-                  fontSize: body.defaultBold,
-                  margin: { xs: "20px auto", lg: "0 20px 0 0" },
-                  borderRadius: 0,
-                  width: { xs: "80%", lg: "fit-content" },
-                }}
-              >
-                View Collection
-              </Button>
             </Box>
+            <Typography
+              sx={{
+                display: { xs: "initial", lg: "none" },
+                fontSize: body.defaultExtraLight,
+                color: props.darkBg ? palette.secondary : palette.primary,
+                textAlign: {
+                  xs: "start",
+                  lg: props.isAlternate ? "end" : "start",
+                },
+                height: "15em",
+                overflowY: "hidden",
+              }}
+              dangerouslySetInnerHTML={{
+                __html: currentCollection.description,
+              }}
+            />
+            <Button
+              href={`/shop/collections/view/${currentCollection.collection_id}`}
+              sx={{
+                display: { xs: "flex", lg: "none" },
+                "&:hover": {
+                  backgroundColor: props.darkBg
+                    ? palette.primary
+                    : palette.secondary,
+                  color: props.darkBg ? palette.secondary : palette.primary,
+                },
+                backgroundColor: props.darkBg
+                  ? palette.secondary
+                  : palette.primary,
+                color: props.darkBg ? palette.primary : palette.secondary,
+                padding: "10px",
+                textDecoration: "none",
+                fontWeight: 900,
+                fontSize: body.defaultBold,
+                margin: { xs: "20px auto", lg: "0 20px 0 0" },
+                borderRadius: 0,
+                width: { xs: "80%", lg: "fit-content" },
+              }}
+            >
+              View Collection
+            </Button>
           </Box>
           <Box
             sx={{
@@ -142,7 +159,7 @@ export default function LandingCollectionSection(props) {
           >
             <Typography
               sx={{
-                padding: "20px",
+                padding: "10px",
                 fontSize: marketing.title,
                 color: props.darkBg ? palette.secondary : palette.primary,
                 textAlign: {
@@ -154,7 +171,7 @@ export default function LandingCollectionSection(props) {
             >
               {props.sectionTitle}
             </Typography>
-            <Box sx={{ padding: "40px" }}>
+            <Box sx={{ padding: "20px" }}>
               <Typography
                 sx={{
                   fontSize: marketing.subTitle,
@@ -171,12 +188,15 @@ export default function LandingCollectionSection(props) {
               </Typography>
               <Typography
                 sx={{
+                  display: { xs: "none", lg: "initial" },
                   fontSize: body.defaultExtraLight,
                   color: props.darkBg ? palette.secondary : palette.primary,
                   textAlign: {
                     xs: "start",
                     lg: props.isAlternate ? "end" : "start",
                   },
+                  height: "15em",
+                  overflowY: "hidden",
                 }}
                 dangerouslySetInnerHTML={{
                   __html: currentCollection.description,
