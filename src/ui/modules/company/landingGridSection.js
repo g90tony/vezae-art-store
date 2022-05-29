@@ -118,7 +118,7 @@ export default function LandingGridSection() {
                 borderRadius: 0,
               }}
             >
-              View Art Pieces
+              View Art Peices
             </Button>
           </Box>
         </div>
