@@ -171,7 +171,7 @@ export default function ProductImageGrid(props) {
                 <Box
                   component="img"
                   key={props.images.indexOf(image)}
-                  style={{
+                  sx={{
                     width: { xs: "50px", md: "75px" },
                     height: { xs: "50px", md: "75px" },
                     objectFit: "contain",
