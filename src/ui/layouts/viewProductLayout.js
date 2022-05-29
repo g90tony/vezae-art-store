@@ -39,12 +39,14 @@ export default function ViewProductLayout(props) {
             sx={{
               color: palette.primary,
               fontSize: headingTypographyStyles.h4,
+              padding: "auto",
             }}
             onClick={() => props.history(-1)}
           >
             <ChevronLeft
               sx={{ margin: { xs: 0, lg: "auto" }, fontSize: "2.5rem" }}
             />{" "}
+            Back
           </Button>
         </Breadcrumbs>
       </Box>
