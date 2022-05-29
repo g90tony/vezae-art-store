@@ -147,7 +147,7 @@ export default function ProductImageGrid(props) {
           },
           flexDirection: "row-reverse",
           flexWrap: "nowrap",
-          justifyContent: { xs: "center", md: "space-between" },
+          justifyContent: { xs: "center", md: "space-around" },
           alignItems: "center",
           width: "100%",
           minHeight: { xs: "400px", md: "500px" },
