@@ -152,7 +152,7 @@ export default function ProductImageGrid(props) {
       >
         <Box
           sx={{
-            width: "25%",
+            maxWidth: "20%",
             margin: "auto",
             maxHeight: "350px",
             overflowY: "auto",
