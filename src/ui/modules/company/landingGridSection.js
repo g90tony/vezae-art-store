@@ -79,6 +79,27 @@ export default function LandingGridSection() {
             }}
           >
             <Button
+              href="/shop/collections/all"
+              sx={{
+                backgroundColor: palette.primary,
+                color: palette.secondary,
+                "&:hover": {
+                  backgroundColor: palette.secondary,
+                  color: palette.primary,
+                  borderColor: palette.primary,
+                },
+                fontSize: body.largeBold,
+                textDecoration: "none",
+                height: "fit-content",
+                padding: "15px",
+                marginRight: "5px",
+                fontWeight: 900,
+                borderRadius: 0,
+              }}
+            >
+              View Art Collections
+            </Button>
+            <Button
               href="/shop/pieces/all"
               sx={{
                 backgroundColor: palette.primary,
@@ -97,28 +118,7 @@ export default function LandingGridSection() {
                 borderRadius: 0,
               }}
             >
-              Visit Shop
-            </Button>
-            <Button
-              href="/gallery"
-              sx={{
-                backgroundColor: palette.primary,
-                color: palette.secondary,
-                "&:hover": {
-                  backgroundColor: palette.secondary,
-                  color: palette.primary,
-                  borderColor: palette.primary,
-                },
-                fontSize: body.largeBold,
-                textDecoration: "none",
-                height: "fit-content",
-                padding: "15px",
-                marginRight: "5px",
-                fontWeight: 900,
-                borderRadius: 0,
-              }}
-            >
-              Visit Gallery
+              View Art Peices
             </Button>
           </Box>
         </div>
@@ -162,7 +162,7 @@ export default function LandingGridSection() {
           }}
         >
           <Button
-            href="/"
+            href="/shop/collections/all"
             sx={{
               backgroundColor: palette.primary,
               color: palette.secondary,
@@ -177,10 +177,10 @@ export default function LandingGridSection() {
               margin: "5px",
             }}
           >
-            Visit Shop
+            View Art Collections
           </Button>
           <Button
-            href="/gallery"
+            href="/shop/pieces/all"
             sx={{
               backgroundColor: palette.primary,
               color: palette.secondary,
@@ -195,7 +195,7 @@ export default function LandingGridSection() {
               margin: "5px",
             }}
           >
-            Visit Gallery
+            View Art Pieces
           </Button>
         </Box>
       </Grid>

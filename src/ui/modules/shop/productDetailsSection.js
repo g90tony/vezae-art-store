@@ -204,7 +204,7 @@ export default function ProductDetailsSection(props) {
         >
           Add to Cart
         </Button>
-        <Button
+        {/* <Button
           sx={{
             fontSize: bodyTypographyStyles.defaultBold,
             backgroundColor: palette.primary,
@@ -218,7 +218,7 @@ export default function ProductDetailsSection(props) {
           }}
         >
           Visit Gallery
-        </Button>
+        </Button> */}
       </Box>
     </Grid>
   );
