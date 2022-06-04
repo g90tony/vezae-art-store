@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const BASE_URL = `${process.env.REACT_APP_VEZAE_API_URL}landing`;
-const headers = { "Access-Control-Allow-Origin": "*" };
+const headers = {
+  "Access-Control-Allow-Origin": process.env.REACT_APP_ALLOW_HEADER,
+};
 
 async function getLandingGrid() {
   const url = `${BASE_URL}/landingGrid`;
