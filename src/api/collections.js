@@ -5,7 +5,7 @@ const headers = { "Access-Control-Allow-Origin": "*" };
 
 async function getAllCollections() {
   try {
-    const url = `${BASE_URL}/shop/collections`;
+    const url = `${BASE_URL}shop/collections`;
     const response = await axios.get(url, { headers });
 
     if (response.status === 200) {
@@ -20,7 +20,7 @@ async function getAllCollections() {
 
 async function getSingleCollection(collection_id) {
   try {
-    const url = `${BASE_URL}/view/collection/${collection_id}`;
+    const url = `${BASE_URL}view/collection/${collection_id}`;
 
     const response = await axios.get(url, { headers });
 

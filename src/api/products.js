@@ -7,7 +7,7 @@ const headers = {
 
 async function getAllProducts() {
   try {
-    const url = `${BASE_URL}/shop/products`;
+    const url = `${BASE_URL}shop/products`;
     const response = await axios.get(url, { headers });
 
     if (response.status === 200) {
@@ -22,7 +22,7 @@ async function getAllProducts() {
 
 async function getSingleProduct(productID) {
   try {
-    const url = `${BASE_URL}/view/product/${productID}`;
+    const url = `${BASE_URL}view/product/${productID}`;
 
     const response = await axios.get(url, { headers });
 
