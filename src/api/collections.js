@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = `${process.env.REACT_APP_VEZAE_API_URL}`;
 const headers = {
-  "Access-Control-Allow-Origin": process.env.REACT_APP_ALLOW_HEADER,
+  "Access-Control-Allow-Origin": "*",
 };
 
 async function getAllCollections() {
