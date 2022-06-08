@@ -9,7 +9,7 @@ import { bodyTypographyStyles as body } from "../../../assets/styles/typography"
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import footerLogo from "../../../assets/images/logo.svg";
+// import footerLogo from "../../../assets/images/logo.svg";
 
 export default function FooterBar() {
   const topCollections = [
@@ -122,7 +122,7 @@ export default function FooterBar() {
             objectFit: "contain",
             objectPosition: "center",
           }}
-          src={footerLogo}
+          src="/images/logo.svg"
           alt="footer logo"
         />
         <Typography

@@ -10,7 +10,7 @@ import {
   bodyTypographyStyles as body,
 } from "../../../assets/styles/typography";
 import { palette } from "../../../assets/styles/colors";
-import logoWaterMark from "../../../assets/images/watermark_logo.svg";
+// import logoWaterMark from "../../../assets/images/watermark_logo.svg";
 
 export default function Error404Page() {
   let history = useNavigate();
@@ -56,7 +56,7 @@ export default function Error404Page() {
         >
           <Box
             component="img"
-            src={logoWaterMark}
+            src="/images/watermark_logo.svg"
             style={{
               width: "60%",
               opacity: "30%",
@@ -70,7 +70,7 @@ export default function Error404Page() {
           sx={{
             width: { xs: "100%", lg: "50%" },
             backgroundImage: {
-              xs: `url(${logoWaterMark}) center center`,
+              xs: `url('/watermark_logo.svg') center center`,
               lg: "none",
             },
 

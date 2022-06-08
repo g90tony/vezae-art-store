@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import React from "react";
 import { palette } from "../../../assets/styles/colors";
-import footerLogo from "../../../assets/images/footer_logo.svg";
+// import footerLogo from "../../../assets/images/footer_logo.svg";
 import { LinearProgress } from "@mui/material";
 
 export default function LoadingScreen() {
@@ -24,7 +24,7 @@ export default function LoadingScreen() {
         top: 0,
       }}
     >
-      <Box component="img" src={footerLogo} width="15%" alt="" />
+      <Box component="img" src="/images/footer_logo.svg" width="15%" alt="" />
 
       <Box sx={{ width: "25%", marginTop: "50px" }}>
         <LinearProgress

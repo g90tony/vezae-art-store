@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 
-import logoWaterMark from "../../../assets/images/watermark_logo.svg";
+// import logoWaterMark from "../../../assets/images/watermark_logo.svg";
 
 import {
   headingTypographyStyles as headings,
@@ -37,7 +37,7 @@ export default function AboutPage() {
         >
           <Box
             component="img"
-            src={logoWaterMark}
+            src="/images/watermark_logo.svg"
             style={{
               width: "80%",
               heigh: "fit-content",

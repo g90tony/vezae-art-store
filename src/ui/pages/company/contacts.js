@@ -1,7 +1,7 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 
-import logoWaterMark from "../../../assets/images/watermark_logo.svg";
+// import logoWaterMark from "../../../assets/images/watermark_logo.svg";
 import {
   headingTypographyStyles as headings,
   bodyTypographyStyles as body,
@@ -36,7 +36,7 @@ export default function ContactsPage() {
         >
           <Box
             component="img"
-            src={logoWaterMark}
+            src="/images/watermark_logo.svg"
             style={{
               width: "100%",
               opacity: "30%",
