@@ -2,12 +2,12 @@ import axios from "axios";
 
 const BASE_URL = `${process.env.REACT_APP_VEZAE_API_URL}`;
 const headers = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": `${process.env.REACT_APP_ALLOW_HEADER}`,
 };
 
 async function getAllProducts() {
   try {
-    const url = `${BASE_URL}shop/products`;
+    const url = `${BASE_URL}products`;
     const response = await axios.get(url, { headers });
 
     if (response.status === 200) {
@@ -22,12 +22,12 @@ async function getAllProducts() {
 
 async function getSingleProduct(productID) {
   try {
-    const url = `${BASE_URL}view/product/${productID}`;
+    const url = `${BASE_URL}products/${productID}`;
 
     const response = await axios.get(url, { headers });
 
     if (response.status === 200) {
-      return response;
+      return response.data;
     }
   } catch (error) {
     console.error(error);

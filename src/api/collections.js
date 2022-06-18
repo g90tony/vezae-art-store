@@ -2,12 +2,12 @@ import axios from "axios";
 
 const BASE_URL = `${process.env.REACT_APP_VEZAE_API_URL}`;
 const headers = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": `${process.env.REACT_APP_ALLOW_HEADER}`,
 };
 
 async function getAllCollections() {
   try {
-    const url = `${BASE_URL}shop/collections`;
+    const url = `${BASE_URL}collections`;
     const response = await axios.get(url, { headers });
 
     if (response.status === 200) {
@@ -15,25 +15,20 @@ async function getAllCollections() {
     }
   } catch (error) {
     console.error(error);
-
-    alert("There was a problem loading the collections");
   }
 }
 
 async function getSingleCollection(collection_id) {
   try {
-    const url = `${BASE_URL}view/collection/${collection_id}`;
+    const url = `${BASE_URL}collections/${collection_id}`;
 
     const response = await axios.get(url, { headers });
 
     if (response.status === 200) {
-      // console.log(response.data);
       return response.data;
     }
   } catch (error) {
     console.error(error);
-
-    alert("There was a problem loading the collection");
   }
 }
 export { getAllCollections, getSingleCollection };

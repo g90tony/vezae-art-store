@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const BASE_URL = `${process.env.REACT_APP_VEZAE_API_URL}landing`;
+const BASE_URL = `${process.env.REACT_APP_VEZAE_API_URL}`;
 const headers = {
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": `${process.env.REACT_APP_ALLOW_HEADER}`,
 };
 
 async function getLandingGrid() {
-  const url = `${BASE_URL}/landingGrid`;
+  const url = `${BASE_URL}landingGrid`;
 
   try {
     const response = await axios.get(url, { headers });
@@ -23,7 +23,7 @@ async function getLandingGrid() {
 }
 
 async function getFeaturedCollection() {
-  const url = `${BASE_URL}/featuredCollection`;
+  const url = `${BASE_URL}featuredCollection`;
   try {
     const response = await axios.get(url, { headers });
 
@@ -31,12 +31,15 @@ async function getFeaturedCollection() {
       return response.data;
     }
   } catch (error) {
-    console.error("There was a problem fething featured the collection", error);
+    console.error(
+      "There was a problem fetching featured the collection",
+      error
+    );
   }
 }
 
 async function getLatestCollection() {
-  const url = `${BASE_URL}/latestCollection`;
+  const url = `${BASE_URL}latestCollection`;
 
   try {
     const response = await axios.get(url, { headers });
@@ -49,7 +52,7 @@ async function getLatestCollection() {
   }
 }
 async function getTrendingCollection() {
-  const url = `${BASE_URL}/trendingCollection`;
+  const url = `${BASE_URL}trendingCollection`;
 
   try {
     const response = await axios.get(url, { headers });

@@ -9,52 +9,61 @@ import ProductImageGrid from "../../modules/shop/productImageGrid";
 // import RelatedSection from "../../modules/shop/relatedSection";
 
 import LoadingScreen from "../../modules/global/loading";
-import { useSelector } from "react-redux";
+import { getSingleProduct } from "../../../api/products";
 
 export default function ShopViewProductPage(props) {
-  const ALL_PRODUCTS_STATE = useSelector((state) => state.products);
-
-  const product_id = useParams().id;
+  const { id } = useParams();
 
   const [hasLoaded, setHasLoaded] = React.useState(false);
 
-  const [currentPiece, setCurrentPiece] = React.useState();
   const [currentVariant, setCurrentVariant] = React.useState();
 
+  const [product, setProduct] = React.useState();
   const [productImages, setProductImages] = React.useState();
 
   let history = useNavigate();
 
-  React.useEffect(() => {
-    const current_product = ALL_PRODUCTS_STATE.filter(
-      (product) => product.product_id === product_id
-    );
+  const loadData = React.useCallback(async () => {
+    try {
+      const fetchedData = await getSingleProduct(id);
 
-    if (current_product.length > 0) {
-      const product = current_product[0];
-      setCurrentPiece(product);
-      setProductImages(product.images);
-      setCurrentVariant(product.variants[0]);
+      if (fetchedData) {
+        setProduct(fetchedData);
+        setProductImages(fetchedData.images);
+        setCurrentVariant(fetchedData.variants[0]);
+      }
+    } catch (error) {
+      console.error("There was a problem loading the collections", error);
     }
-  }, [product_id]);
+  }, []);
+
+  React.useEffect(async () => {
+    await loadData();
+
+    return () => {
+      setProduct({});
+      setProductImages([]);
+    };
+  }, [loadData]);
 
   // const [relatedPieces, setRelatedPieces] = React.useState();
 
   return (
     <>
-      {currentPiece && (
+      {" "}
+      {product && (
         <ViewProductLayout
           history={history}
           child1={
             <ProductImageGrid
               manageLoader={setHasLoaded}
               images={productImages}
-              productTitle={currentPiece.title}
+              productTitle={product.title}
             />
           }
           child2={
             <ProductDetailsSection
-              productDetails={currentPiece}
+              productDetails={product}
               selectedSize={currentVariant}
               changeSize={(value) => setCurrentVariant(value)}
             />

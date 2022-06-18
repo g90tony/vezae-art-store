@@ -34,13 +34,13 @@ const preloadedState = {
   cart: {
     items: loadState("cartItems", "array"),
   },
-  products: loadState("allProducts", "array"),
-  collections: loadState("allCollections", "array"),
-  userLocation: loadState("userLocation", "array"),
-  currencyRates: loadState("currencyRates", "array"),
+  products: [],
+  collections: [],
+  userLocation: {},
+  currencyRates: {},
   currencySelector: {
-    selectedCurrency: loadState("selectedCurrency", "object"),
-    popularCurrencies: loadState("popularCurrencies", "array"),
+    selectedCurrency: {},
+    popularCurrencies: [],
   },
 };
 

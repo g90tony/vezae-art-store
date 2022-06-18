@@ -99,7 +99,7 @@ export default function ProductsGridLayout(props) {
               <ProductItemCard
                 key={props.products.indexOf(product)}
                 product={product}
-                index={props.products.indexOf(product) + 1}
+                index={props.products.indexOf(product)}
                 width={props.width}
                 isLoading={() => handleHasLoaded(product)}
               />

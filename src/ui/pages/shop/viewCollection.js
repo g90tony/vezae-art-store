@@ -8,74 +8,59 @@ import ViewProductLayout from "../../layouts/viewProductLayout";
 import CollectionDetailsSection from "../../modules/shop/collectionDetailsSection";
 import CollectionImageGrid from "../../modules/shop/collectionImageGrid";
 import LoadingScreen from "../../modules/global/loading";
-import { useSelector } from "react-redux";
+import { getSingleCollection } from "../../../api/collections";
 
 export default function ShopViewCollectionPage(props) {
   let { id } = useParams();
   let history = useNavigate();
 
-  const ALL_COLLECTIONS_STATE = useSelector((state) => state.collections);
-  const ALL_PRODUCTS_STATE = useSelector((state) => state.products);
-
   const [hasLoaded, setHasLoaded] = React.useState(false);
+  const [collection, setCollection] = React.useState();
+  const [collectionPieces, setCollectionPieces] = React.useState();
 
-  const [currentCollection, setCurrentCollection] = React.useState({});
-  const [collectionPieces, setCollectionPieces] = React.useState([]);
+  const loadData = React.useCallback(async () => {
+    try {
+      const fetchedData = await getSingleCollection(id);
 
-  // const [relatedPieces, setRelatedPieces] = React.useState();
+      if (fetchedData) {
+        setCollection(fetchedData);
+        setCollectionPieces(fetchedData.products);
+      }
+    } catch (error) {
+      console.error("There was a problem loading the collections", error);
+    }
+  }, []);
 
   React.useEffect(() => {
-    if (id === undefined || !id) {
-      history(-1);
-    }
+    loadData();
 
-    const current_collection = ALL_COLLECTIONS_STATE.filter(
-      (collection) => collection.collection_id === id
-    );
-
-    let collection;
-
-    if (current_collection) {
-      collection = current_collection[0];
-
-      const collection_products = ALL_PRODUCTS_STATE.filter(
-        (product) => product.collection.collection_id === id
-      );
-
-      if (collection && collection_products) {
-        setCurrentCollection(collection);
-        setCollectionPieces(collection_products);
-      } else {
-        history(-1);
-      }
-    } else {
-      history(-1);
-    }
     return () => {
-      setCurrentCollection(null);
+      setCollection([]);
     };
-  }, [id]);
+  }, [loadData]);
 
   return (
     <>
-      <ViewProductLayout
-        history={history}
-        child1={
-          <CollectionImageGrid
-            images={collectionPieces}
-            manageLoader={setHasLoaded}
-            title={currentCollection.title}
-          />
-        }
-        child2={<CollectionDetailsSection productDetails={currentCollection} />}
-        // child3={
-        //   <RelatedSection
-        //     sectionHeader="Related Collections"
-        //     itemButtonText="View Collection"
-        //     related={relatedPieces}
-        //   />
-        // }
-      />
+      {collectionPieces && (
+        <ViewProductLayout
+          history={history}
+          child1={
+            <CollectionImageGrid
+              images={collectionPieces}
+              manageLoader={setHasLoaded}
+              title={collection.title}
+            />
+          }
+          child2={<CollectionDetailsSection productDetails={collection} />}
+          // child3={
+          //   <RelatedSection
+          //     sectionHeader="Related Collections"
+          //     itemButtonText="View Collection"
+          //     related={relatedPieces}
+          //   />
+          // }
+        />
+      )}
 
       {hasLoaded !== true && <LoadingScreen />}
     </>
