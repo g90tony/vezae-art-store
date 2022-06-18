@@ -6,6 +6,7 @@ import currencySelector from "./slices/currencySelector";
 import productsSlice from "./slices/productsSlice";
 import { searchSlice } from "./slices/searchSilce";
 import collectionsSlice from "./slices/collectionsSlice";
+import userLocation from "./slices/userLocation";
 
 function loadState(stateName, returnType) {
   if (typeof window === undefined) {
@@ -36,11 +37,11 @@ const preloadedState = {
   },
   products: [],
   collections: [],
-  userLocation: {},
+  userLocation: loadState("userLocation", "object"),
   currencyRates: {},
   currencySelector: {
     selectedCurrency: {},
-    popularCurrencies: [],
+    popularCurrencies: loadState("popularCurrencies", "array"),
   },
 };
 
