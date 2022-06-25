@@ -101,7 +101,7 @@ export default function SearchInput(props) {
         (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
       );
     }
-  }, [title]);
+  }, [collections, products, title]);
 
   const label_text =
     props.searchType === "products"
