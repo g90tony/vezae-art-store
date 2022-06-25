@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+  Badge,
   Collapse,
   Drawer,
   Grid,
@@ -19,8 +20,6 @@ import { useSelector, useDispatch } from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import ExpandLess from "@mui/icons-material/ExpandLess";
 
 import {
   palette,
@@ -92,6 +91,16 @@ export default function NavBar() {
     },
   ];
 
+  const CartItems = useSelector((state) => state.cart.items);
+
+  React.useEffect(() => {
+    setCartCount(CartItems.length);
+
+    return () => {
+      setCartCount(0);
+    };
+  }, [CartItems.length]);
+
   const [cart] = React.useState([]);
 
   const popularCurrencies = useSelector(
@@ -103,6 +112,8 @@ export default function NavBar() {
   );
 
   const dispatch = useDispatch();
+
+  const [cartCount, setCartCount] = React.useState(0);
 
   const [anchorElCurrency, setAnchorElCurrency] = React.useState(null);
   const [anchorElCart, setAnchorElCart] = React.useState(null);
@@ -169,7 +180,7 @@ export default function NavBar() {
   function cartDropdown() {
     return (
       <Collapse in={openCartSubMenu} timeout="auto" unmountOnExit>
-        <CartPopup cart={cart} width="100%" />
+        <CartPopup cart={cart} width="100%" cartCount={setCartCount} />
       </Collapse>
     );
   }
@@ -257,16 +268,6 @@ export default function NavBar() {
             justifyContent: "space-between",
           }}
         >
-          <IconButton
-            sx={{
-              color: system_colors.primary,
-              width: "33.3%",
-              margin: "20px auto",
-            }}
-            onClick={handleSidebarSearch}
-          >
-            <SearchIcon />
-          </IconButton>
           {selectedCurrency.currencyName && (
             <IconButton
               sx={{
@@ -279,7 +280,16 @@ export default function NavBar() {
               <Typography>{`${selectedCurrency.flag}`}</Typography>
             </IconButton>
           )}
-
+          <IconButton
+            sx={{
+              color: system_colors.primary,
+              width: "33.3%",
+              margin: "20px auto",
+            }}
+            onClick={handleSidebarSearch}
+          >
+            <SearchIcon />
+          </IconButton>
           <IconButton
             sx={{
               color: system_colors.primary,
@@ -288,7 +298,17 @@ export default function NavBar() {
             }}
             onClick={handleCartSubMenu}
           >
-            <ShoppingCartIcon />{" "}
+            <Badge
+              sx={{
+                "&	.MuiBadge-badge": {
+                  backgroundColor: palette.primary,
+                  color: palette.secondary,
+                },
+              }}
+              badgeContent={cartCount}
+            >
+              <ShoppingCartIcon />
+            </Badge>
           </IconButton>
         </Box>
         {sidebarSearch()}
@@ -418,6 +438,26 @@ export default function NavBar() {
           flexWrap: "nowrap",
         }}
       >
+        {" "}
+        <IconButton
+          sx={{
+            color: system_colors.primary,
+            margin: "auto 10px",
+            fontSize: bodyTypographyStyles.largeBold,
+          }}
+          aria-controls={menuOpenCurrency ? "currency-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={menuOpenCurrency ? "true" : undefined}
+          onClick={openCurrencyMenu}
+        >
+          {selectedCurrency.flag && `${selectedCurrency.flag}`}{" "}
+        </IconButton>
+        <IconButton
+          onClick={handleOpen}
+          sx={{ color: system_colors.primary, margin: "auto 10px" }}
+        >
+          <SearchIcon />
+        </IconButton>
         <IconButton
           sx={{ color: system_colors.primary, margin: "auto 10px" }}
           aria-controls={menuOpenCart ? "cart-menu" : undefined}
@@ -425,7 +465,18 @@ export default function NavBar() {
           aria-expanded={menuOpenCart ? "true" : undefined}
           onClick={openCartMenu}
         >
-          <ShoppingCartIcon /> {menuOpenCart ? <ExpandLess /> : <ExpandMore />}
+          <Badge
+            sx={{
+              "&	.MuiBadge-badge": {
+                backgroundColor: palette.primary,
+                color: palette.secondary,
+                fontWeight: 700,
+              },
+            }}
+            badgeContent={cartCount}
+          >
+            <ShoppingCartIcon />
+          </Badge>
         </IconButton>
         <Menu
           id={`cart-menu`}
@@ -442,21 +493,8 @@ export default function NavBar() {
             "aria-labelledby": "cart-button",
           }}
         >
-          <CartPopup cart={cart} width="450px" />
+          <CartPopup cart={cart} width="450px" cartCount={setCartCount} />
         </Menu>
-        <IconButton
-          sx={{
-            color: system_colors.primary,
-            margin: "auto 10px",
-            fontSize: bodyTypographyStyles.largeBold,
-          }}
-          aria-controls={menuOpenCurrency ? "currency-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={menuOpenCurrency ? "true" : undefined}
-          onClick={openCurrencyMenu}
-        >
-          {selectedCurrency.flag && `${selectedCurrency.flag}`}{" "}
-        </IconButton>
         <Menu
           id={`currency-menu`}
           anchorEl={anchorElCurrency}
@@ -486,12 +524,6 @@ export default function NavBar() {
             );
           })}
         </Menu>
-        <IconButton
-          onClick={handleOpen}
-          sx={{ color: system_colors.primary, margin: "auto 10px" }}
-        >
-          <SearchIcon />
-        </IconButton>
       </Box>
 
       <Box sx={{ display: { xs: "flex", lg: "none" } }}>
