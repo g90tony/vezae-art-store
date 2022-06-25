@@ -18,11 +18,13 @@ import {
   marketingTypographyStyles,
 } from "../../../assets/styles/typography";
 import { addCart, updateCart } from "../../../state/slices/cartSlice";
+import AddedToCartAlert from "../../components/addedToCartAlert";
 
 import PriceConverter from "../../components/priceConverter";
 
 export default function ProductDetailsSection(props) {
   const [selectedSize, setSelectedSize] = React.useState();
+  const [addedToCart, setAddedToCart] = React.useState(false);
 
   const cartState = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
@@ -55,6 +57,12 @@ export default function ProductDetailsSection(props) {
       console.log("new cart item", new_cart_item);
 
       dispatch(addCart(new_cart_item));
+
+      setAddedToCart(true);
+
+      setTimeout(() => {
+        setAddedToCart(false);
+      }, 5000);
     } else {
       dispatch(updateCart(foundItem));
     }
@@ -220,6 +228,13 @@ export default function ProductDetailsSection(props) {
           Visit Gallery
         </Button> */}
       </Box>
+
+      {addedToCart && (
+        <AddedToCartAlert
+          productAdded={addedToCart}
+          productHandled={setAddedToCart}
+        />
+      )}
     </Grid>
   );
 }
