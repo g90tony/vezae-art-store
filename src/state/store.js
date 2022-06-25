@@ -38,9 +38,9 @@ const preloadedState = {
   products: [],
   collections: [],
   userLocation: loadState("userLocation", "object"),
-  currencyRates: {},
+  currencyRates: loadState("currencyRates", "object"),
   currencySelector: {
-    selectedCurrency: {},
+    selectedCurrency: loadState("selectedCurrency", "object"),
     popularCurrencies: loadState("popularCurrencies", "array"),
   },
 };
