@@ -6,6 +6,8 @@ import currencySelector from "./slices/currencySelector";
 import productsSlice from "./slices/productsSlice";
 import { searchSlice } from "./slices/searchSilce";
 import collectionsSlice from "./slices/collectionsSlice";
+import checkoutSlice from "./slices/checkoutSlice";
+import paymentSlice from "./slices/paymentSlice";
 // import userLocation from "./slices/userLocation";
 
 function loadState(stateName, returnType) {
@@ -35,6 +37,8 @@ const preloadedState = {
   cart: {
     items: loadState("cartItems", "array"),
   },
+  checkout: loadState("checkout", "object"),
+  payment: loadState("payment", "object"),
   products: [],
   collections: [],
   userLocation: loadState("userLocation", "object"),
@@ -54,6 +58,8 @@ export default configureStore({
     currencySelector: currencySelector,
     currencyRates: currencyRates,
     searchResults: searchSlice,
+    checkout: checkoutSlice,
+    payment: paymentSlice,
   },
   preloadedState: preloadedState,
 });
