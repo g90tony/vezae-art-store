@@ -29,40 +29,46 @@ export const cartSlice = createSlice({
         console.error(error);
       }
     },
-    updateCartItem: (state, actions) => {
-      const updatedItems = state.items.map((item) => {
-        if (
-          item.product_item === actions.payload.id &&
-          item.size === actions.payload.size
-        ) {
-          item.count = actions.payload.newCount;
-          return item;
-        }
-      });
+    increaseCartItemQuantity: (state, actions) => {
+      let index = actions.payload;
+      const item = state.items[index];
+      item.count++;
+      console.log("not updated", state.items);
 
-      state.items = updatedItems;
+      const updatedItems = [...state.items, ...[item]];
+      console.log("updated", updatedItems);
 
       try {
-        localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+        localStorage.setItem("cartItems", JSON.stringify(state.items));
       } catch (error) {
         console.error(error);
       }
     },
-    removeCartItem: (state, action) => {
-      const editedItems = state.items.filter((c) => {
-        if (
-          c.product_id !== action.payload.id &&
-          c.size !== action.payload.size
-        ) {
-          return c;
-        }
-      });
+    reduceCartItemQuantity: (state, actions) => {
+      let index = actions.payload;
+      const item = state.items[index];
+      item.count--;
+      console.log("not updated", state.items);
 
-      state.items = editedItems;
+      const updatedItems = [...state.items, ...[item]];
+      console.log("updated", updatedItems);
 
-      if (editedItems.length > 0) {
+      try {
+        localStorage.setItem("cartItems", JSON.stringify(state.items));
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    removeCartItem: (state, actions) => {
+      let item_index = actions.payload;
+
+      const items = state.items.filter((item, index) => index !== item_index);
+
+      state.items = items;
+
+      if (items.length > 0) {
         try {
-          localStorage.setItem("cartItems", JSON.stringify(editedItems));
+          localStorage.setItem("cartItems", JSON.stringify(items));
         } catch (error) {
           console.error(error);
         }
@@ -77,7 +83,12 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { addCart, updateCart, updateCartItem, removeCartItem } =
-  cartSlice.actions;
+export const {
+  addCart,
+  updateCart,
+  increaseCartItemQuantity,
+  reduceCartItemQuantity,
+  removeCartItem,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
