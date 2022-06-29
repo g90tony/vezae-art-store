@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import CheckoutStepper from "../../modules/shop/checkoutStepper";
+import CartCheckout from "../../components/cartCheckout";
 
 export default function ShopCheckoutPage() {
   return (
@@ -15,7 +15,7 @@ export default function ShopCheckoutPage() {
         overflowY: "hidden",
       }}
     >
-      <CheckoutStepper />
+      <CartCheckout width="80%" />
     </Grid>
   );
 }
