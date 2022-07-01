@@ -201,17 +201,28 @@ export default function CartCheckout(props) {
                   <Box
                     sx={{
                       border: 0,
-                      width: { xs: "200px", lg: "85px" },
-                      height: { xs: "200px", lg: "85px" },
                       margin: { xs: "auto", lg: 0 },
                       padding: "10px",
                     }}
                   >
                     <Box
                       component="img"
-                      style={{
-                        width: { xs: "200px", lg: "85px" },
-                        height: { xs: "200px", lg: "85px" },
+                      sx={{
+                        display: { xs: "none", lg: "block" },
+                        width: "85px",
+                        height: "85px",
+                        margin: "auto",
+                        objectFit: "contain",
+                      }}
+                      src={item.image}
+                      alt={item.title}
+                    />
+                    <Box
+                      component="img"
+                      sx={{
+                        display: { xs: "block", lg: "none" },
+                        width: "200px",
+                        height: "200px",
                         margin: "auto",
                         objectFit: "contain",
                       }}
