@@ -80,6 +80,15 @@ export const cartSlice = createSlice({
         }
       }
     },
+    emptyCart: (state) => {
+      state.items = [];
+
+      try {
+        localStorage.setItem("cartItems", JSON.stringify(state.state));
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 });
 
@@ -89,6 +98,7 @@ export const {
   increaseCartItemQuantity,
   reduceCartItemQuantity,
   removeCartItem,
+  emptyCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
