@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  id: "",
   email: "",
   firstName: "",
   lastName: "",
   checkout: {
-    id: "",
+    checkoutItemIds: [],
     itemsSubTotal: {
       currency: "",
       amount: "",
@@ -27,42 +28,52 @@ const checkoutSlice = createSlice({
   name: "checkout",
   initialState,
   reducers: {
-    loadCheckout: (state, action) => {
-      state.checkout.id = action.payload;
+    loadCheckout: (state, { payload }) => {
+      state.id = payload.checkoutID;
+
+      state = payload;
 
       try {
         localStorage.setItem("checkout", JSON.stringify(state));
       } catch (error) {
-        console.log("There was a problem persisting");
+        console.error("There was a problem persisting");
+      }
+    },
+    updateLineItems: (state, action) => {
+      state = action.payload;
+
+      try {
+        localStorage.setItem("checkout", JSON.stringify(state));
+      } catch (error) {
+        console.error("There was a problem persisting");
+      }
+    },
+    updateShippingAddress: (state, action) => {
+      state = action.payload;
+
+      try {
+        localStorage.setItem("checkout", JSON.stringify(state));
+      } catch (error) {
+        console.error("There was a problem persisting ");
+      }
+    },
+    emptyCheckout: (state) => {
+      state = {};
+
+      try {
+        localStorage.setItem("checkout", JSON.stringify(state));
+      } catch (error) {
+        console.error("There was a problem persisting ");
       }
     },
   },
-  updateLineItems: (state, action) => {
-    state.itemsSubTotal = action.payload;
-
-    try {
-      localStorage.setItem("checkout", JSON.stringify(state));
-    } catch (error) {
-      console.log("There was a problem persisting");
-    }
-  },
-  updateShippingAddress: (state, action) => {
-    state.checkout.shippingAddress = action.payload.shippingAddress;
-    state.checkout.tax = action.payload.tax;
-    state.checkout.itemsSubTotal = action.payload.itemsSubTotal;
-    state.email = action.payload.email;
-    state.firstName = action.payload.firstName;
-    state.lastName = action.payload.lastName;
-
-    try {
-      localStorage.setItem("checkout", JSON.stringify(state));
-    } catch (error) {
-      console.log("There was a problem persisting ");
-    }
-  },
 });
 
-export const { loadCheckout, updateLineItems, updateShippingAddress } =
-  checkoutSlice.actions;
+export const {
+  loadCheckout,
+  updateLineItems,
+  updateShippingAddress,
+  emptyCheckout,
+} = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;
