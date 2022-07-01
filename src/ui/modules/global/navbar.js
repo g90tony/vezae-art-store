@@ -200,7 +200,7 @@ export default function NavBar() {
         {popularCurrencies.map((currency) => {
           const index = popularCurrencies.indexOf(currency);
 
-          return (
+          return currency ? (
             <MenuItem
               sx={{
                 padding: "10px 50px ",
@@ -224,7 +224,7 @@ export default function NavBar() {
                 {currency.countryName}
               </Box>
             </MenuItem>
-          );
+          ) : null;
         })}
       </Collapse>
     );
@@ -513,7 +513,7 @@ export default function NavBar() {
           {popularCurrencies.map((currency) => {
             const index = popularCurrencies.indexOf(currency);
 
-            return (
+            return currency ? (
               <MenuItem
                 key={index}
                 sx={{ fontSize: bodyTypographyStyles.defaultBold }}
@@ -521,7 +521,7 @@ export default function NavBar() {
               >
                 {`${currency.currencyName.toUpperCase()}  ${currency.flag}`}
               </MenuItem>
-            );
+            ) : null;
           })}
         </Menu>
       </Box>
