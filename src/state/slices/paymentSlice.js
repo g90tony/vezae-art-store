@@ -8,7 +8,6 @@ const initialState = {
     country: "",
     zip: "",
   },
-  generatedKey: false,
 };
 
 const paymentSlice = createSlice({
@@ -16,8 +15,26 @@ const paymentSlice = createSlice({
   initialState,
   reducers: {
     preparePayment: (state, action) => {
-      state.id = action.payload.vaultID;
-      state.billingAddress = action.payload.billingAddress;
+      state.id = action.payload;
+      // state.billingAddress = action.payload.billingAddress;
+
+      try {
+        localStorage.setItem("payment", JSON.stringify(state));
+      } catch (error) {
+        console.log("There was a problem persisting");
+      }
+    },
+    updateBillingAddress: (state, action) => {
+      state.billingAddress = action.payload;
+
+      try {
+        localStorage.setItem("payment", JSON.stringify(state));
+      } catch (error) {
+        console.log("There was a problem persisting");
+      }
+    },
+    emptyPayment: (state) => {
+      state = {};
 
       try {
         localStorage.setItem("payment", JSON.stringify(state));
@@ -28,6 +45,7 @@ const paymentSlice = createSlice({
   },
 });
 
-export const { preparePayment } = paymentSlice.actions;
+export const { preparePayment, updateBillingAddress, emptyPayment } =
+  paymentSlice.actions;
 
 export default paymentSlice.reducer;
