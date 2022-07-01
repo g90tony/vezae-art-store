@@ -201,8 +201,8 @@ export default function CartCheckout(props) {
                   <Box
                     sx={{
                       border: 0,
-                      width: "85px",
-                      height: "85px",
+                      width: { xs: "200px", lg: "85px" },
+                      height: { xs: "200px", lg: "85px" },
                       margin: { xs: "auto", lg: 0 },
                       padding: "10px",
                     }}
@@ -210,8 +210,8 @@ export default function CartCheckout(props) {
                     <Box
                       component="img"
                       style={{
-                        width: "85px",
-                        height: "85px",
+                        width: { xs: "200px", lg: "85px" },
+                        height: { xs: "200px", lg: "85px" },
                         margin: "auto",
                         objectFit: "contain",
                       }}
@@ -282,58 +282,49 @@ export default function CartCheckout(props) {
                       display: "flex",
                       flexDirection: "row",
                       flexWrap: "nowrap",
-                      alignItems: "flex-end",
+                      justifyContent: "flex-end",
                       width: "100%",
                     }}
                   >
-                    <Box
+                    <IconButton
                       sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        flexWrap: "nowrap",
-                        alignItems: "flex-end",
+                        backgroundColor: palette.secondary,
+                        margin: "5px",
+                        padding: "2px",
+                      }}
+                      onClick={() => addItemQuantity(item)}
+                    >
+                      <Add
+                        sx={{
+                          fontSize: bodyTypographyStyles.extraLargeBold,
+                          color: palette.primary,
+                          margin: "auto 5px",
+                        }}
+                      />
+                    </IconButton>
+                    <Typography sx={{ fontSize: headingTypographyStyles.h2 }}>
+                      {item.count}
+                    </Typography>
+                    <IconButton
+                      onClick={() => reduceItemQuantity(item)}
+                      sx={{
+                        backgroundColor: palette.secondary,
+                        margin: "5px",
+                        padding: "2px",
                       }}
                     >
-                      <IconButton
+                      {" "}
+                      <Remove
                         sx={{
-                          backgroundColor: palette.secondary,
-                          margin: "5px",
-                          padding: "2px",
+                          fontSize: bodyTypographyStyles.extraLargeBold,
+                          color: palette.primary,
                         }}
-                        onClick={() => addItemQuantity(item)}
-                      >
-                        <Add
-                          sx={{
-                            fontSize: bodyTypographyStyles.extraLargeBold,
-                            color: palette.primary,
-                            margin: "auto 5px",
-                          }}
-                        />
-                      </IconButton>
-                      <Typography sx={{ fontSize: headingTypographyStyles.h2 }}>
-                        {item.count}
-                      </Typography>
-                      <IconButton
-                        onClick={() => reduceItemQuantity(item)}
-                        sx={{
-                          backgroundColor: palette.secondary,
-                          margin: "5px",
-                          padding: "2px",
-                        }}
-                      >
-                        {" "}
-                        <Remove
-                          sx={{
-                            fontSize: bodyTypographyStyles.extraLargeBold,
-                            color: palette.primary,
-                          }}
-                        />{" "}
-                      </IconButton>
-                    </Box>
+                      />{" "}
+                    </IconButton>
+                    <IconButton onClick={() => removeItem(item)}>
+                      <Delete color="error" />
+                    </IconButton>
                   </Box>
-                  <IconButton onClick={() => removeItem(item)}>
-                    <Delete color="error" />
-                  </IconButton>
                 </Box>
               </Box>
             );
