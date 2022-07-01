@@ -81,7 +81,7 @@ export default function CartCheckout(props) {
 
   const [shippingModal, setShippingModal] = React.useState(false);
   const [billingModal, setBillingModal] = React.useState(false);
-  const [diffAddress, setDiffAddress] = React.useState(false);
+  const [diffAddress, setDiffAddress] = React.useState(true);
 
   const [cardModal, setCardModal] = React.useState(false);
 
