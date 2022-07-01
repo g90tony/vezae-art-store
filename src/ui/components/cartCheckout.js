@@ -861,7 +861,7 @@ export default function CartCheckout(props) {
                   <Typography sx={{ fontSize: headingTypographyStyles.h6 }}>
                     Billing Address :
                   </Typography>
-                  {billingAddress.address1 ? (
+                  {billingAddress !== undefined ? (
                     <Typography
                       sx={{ fontSize: bodyTypographyStyles.defaultBold }}
                     >
