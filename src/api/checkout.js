@@ -13,18 +13,21 @@ async function fetchItemsCheckoutIDs(cartItems) {
       return {
         product: item.product_id,
         variant: item.size,
+        count: item.count,
       };
     });
 
     const payload = {
-      checkoutProductIDs,
+      checkoutProducts: checkoutProductIDs,
     };
 
     try {
       const response = await axios.post(url, payload, { headers });
 
-      if (response.status(200)) {
-        console.log("Created item IDs", response.data);
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        console.error("error");
       }
     } catch (error) {
       console.error(error);
@@ -32,47 +35,47 @@ async function fetchItemsCheckoutIDs(cartItems) {
   }
 }
 
-async function createCheckoutSession(
-  checkoutItems,
-  currencyCode,
-  customerEmail
-) {
+async function createCheckoutSession(checkoutItems, currencyCode) {
   const url = `${BASE_URL}checkout/create`;
 
-  if (checkoutItems && currencyCode && customerEmail) {
-    const lineItems = checkoutItems.map((item) => {
-      return {
-        quantity: item.count,
-        variantId: item.variantId,
-      };
-    });
-
-    const payload = {
-      buyerIdentity: {
-        countryCode: currencyCode,
-      },
-      email: customerEmail,
-      lineItems,
+  const lineItems = checkoutItems.map((item) => {
+    return {
+      quantity: item.count,
+      variantId: item.variantId,
     };
-    try {
-      const response = await axios.post(url, payload, { headers });
+  });
 
-      if (response.status(200)) {
-        console.log("Created checkout session", response.data);
-      }
-    } catch (error) {
-      console.error("Failed checkout create", error);
-    }
+  const payload = {
+    buyerIdentity: {
+      countryCode: currencyCode,
+    },
+    lineItems,
+  };
+
+  let response;
+
+  try {
+    response = await axios.post(url, payload, { headers });
+  } catch (error) {
+    console.error("Failed checkout create", error);
+  }
+  if (response.status === 200) {
+    return response.data.data.checkoutLineItemsAdd;
   }
 }
 
-async function updateCheckoutItems(checkoutItems, checkoutID) {
+async function updateCheckoutSessionItems(
+  checkoutItems,
+  checkoutItemsIds,
+  checkoutID
+) {
   const url = `${BASE_URL}checkout/update/items`;
 
   if (checkoutItems && checkoutID) {
-    const lineItems = checkoutItems.map((item) => {
+    const lineItems = checkoutItems.map((item, index) => {
       return {
-        variantID: item.variantId,
+        id: checkoutItemsIds[index],
+        variantId: item.variantId,
         quantity: item.count,
       };
     });
@@ -82,14 +85,16 @@ async function updateCheckoutItems(checkoutItems, checkoutID) {
       lineItems,
     };
 
-    try {
-      const response = await axios.post(url, payload, { headers });
+    let response;
 
-      if (response.status === 200) {
-        return response.data;
-      }
+    try {
+      response = await axios.post(url, payload, { headers });
     } catch (error) {
       console.error("Failed checkout items update", error);
+    }
+
+    if (response.status === 200) {
+      return response.data.data.checkoutLineItemsAdd;
     }
   }
 }
@@ -118,6 +123,6 @@ async function updateCheckoutShipping(checkoutID, shippingAddress) {
 export {
   fetchItemsCheckoutIDs,
   createCheckoutSession,
-  updateCheckoutItems,
+  updateCheckoutSessionItems,
   updateCheckoutShipping,
 };
