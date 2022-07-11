@@ -11,6 +11,7 @@ import { palette } from "../../../assets/styles/colors";
 import { Box } from "@mui/system";
 
 export default function CheckoutBillingAddress(props) {
+  const [billingAddress, setBillingAddress] = React.useState();
   const [address1, setAddress1] = React.useState(undefined);
   const [email, setEmail] = React.useState(undefined);
   const [city, setCity] = React.useState(undefined);
@@ -78,7 +79,7 @@ export default function CheckoutBillingAddress(props) {
     [formErrors]
   );
 
-  const validateForm = React.useCallback(
+  React.useEffect(
     function () {
       const newBillingAddress = {};
       setFormErrors({});
@@ -132,7 +133,7 @@ export default function CheckoutBillingAddress(props) {
       if (hasErrors || formErrors.length > 0) {
         console.log(formErrors);
       } else {
-        return newBillingAddress;
+        setBillingAddress(newBillingAddress);
       }
     },
     [
@@ -154,14 +155,12 @@ export default function CheckoutBillingAddress(props) {
   function processForm(e) {
     e.preventDefault();
 
-    console.log("error", formErrors);
-
     setHasErrors(false);
 
-    let address = validateForm();
+    // let address = validateForm();
 
-    if (!hasErrors && address.email) {
-      props.saveAddress(address);
+    if (!hasErrors && billingAddress.email) {
+      props.saveAddress(billingAddress);
 
       props.handleCloseBillingModal();
     }
@@ -272,7 +271,6 @@ export default function CheckoutBillingAddress(props) {
               justifyContent: "center",
               alignItems: "flex-start",
               margin: "10px ",
-              // padding: "0px 20px",
               width: "100%",
               "& .MuiTextField-label": {
                 fontSize: body.defaultBold,
@@ -340,7 +338,6 @@ export default function CheckoutBillingAddress(props) {
               justifyContent: "center",
               alignItems: "flex-start",
               margin: "10px ",
-              // padding: "0px 20px",
               width: "100%",
               "& .MuiTextField-label": {
                 fontSize: body.defaultBold,
@@ -479,7 +476,7 @@ export default function CheckoutBillingAddress(props) {
         sx={{
           display: "flex",
           flexDirection: { xs: "column", lg: "row" },
-          justifyContent: "flex-end",
+          justifyContent: { xs: "center", lg: "flex-end" },
           padding: "20px",
         }}
       >
@@ -503,10 +500,10 @@ export default function CheckoutBillingAddress(props) {
             borderRadius: 0,
           }}
         >
-          Save Shipping Address
+          Save Billing Address
         </Button>{" "}
         <Button
-          onClick={props.handleCloseShippingModal}
+          onClick={props.handleCloseBillingModal}
           sx={{
             fontSize: bodyTypographyStyles.defaultBold,
             backgroundColor: palette.secondary,

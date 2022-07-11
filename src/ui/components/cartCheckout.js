@@ -82,7 +82,7 @@ export default function CartCheckout(props) {
 
   const [shippingModal, setShippingModal] = React.useState(false);
   const [billingModal, setBillingModal] = React.useState(false);
-  const [diffAddress, setDiffAddress] = React.useState(true);
+  const [diffAddress, setDiffAddress] = React.useState(false);
 
   const [cardModal, setCardModal] = React.useState(false);
 
@@ -374,7 +374,10 @@ export default function CartCheckout(props) {
       }
     }
 
-    if (checkoutState.checkout && checkoutState.checkout.shippingAddress) {
+    if (
+      checkoutState.checkout &&
+      checkoutState.checkout.shippingAddress.address1 !== ""
+    ) {
       setShippingAddress({
         address1: checkoutState.checkout.shippingAddress.address1,
         city: checkoutState.checkout.shippingAddress.city,
@@ -768,7 +771,7 @@ export default function CartCheckout(props) {
               <Typography sx={{ fontSize: headingTypographyStyles.h6 }}>
                 Shipping Address :
               </Typography>
-              {shippingAddress !== undefined ? (
+              {shippingAddress ? (
                 <Typography sx={{ fontSize: bodyTypographyStyles.defaultBold }}>
                   {`${shippingAddress.address1}, ${shippingAddress.city}, ${shippingAddress.province}, ${shippingAddress.country}`}
                 </Typography>
@@ -828,7 +831,6 @@ export default function CartCheckout(props) {
                 margin: "20px 10px 20px 10px",
               }}
             >
-              {" "}
               <Box
                 sx={{ display: billingAddress !== undefined ? "flex" : "none" }}
                 direction="column"
@@ -838,7 +840,7 @@ export default function CartCheckout(props) {
                     <Typography
                       sx={{ fontSize: bodyTypographyStyles.defaultBold }}
                     >
-                      Is your billing address the same as shipping"
+                      Bill to shipping address?
                     </Typography>
                   }
                   control={
@@ -859,7 +861,6 @@ export default function CartCheckout(props) {
               </Box>
               {diffAddress && (
                 <Box
-                  d
                   sx={{
                     display: "flex",
                     flexDirection: { xs: "column", lg: "row" },
@@ -870,13 +871,8 @@ export default function CartCheckout(props) {
                   <Typography sx={{ fontSize: headingTypographyStyles.h6 }}>
                     Billing Address :
                   </Typography>
-                  {billingAddress !== undefined ? (
-                    <Typography
-                      sx={{ fontSize: bodyTypographyStyles.defaultBold }}
-                    >
-                      {`${billingAddress.address1}, ${billingAddress.city}, ${billingAddress.province}, ${billingAddress.country}`}
-                    </Typography>
-                  ) : (
+
+                  {billingAddress.address1 === undefined ? (
                     <Box direction="column">
                       <Button
                         sx={{
@@ -916,11 +912,17 @@ export default function CartCheckout(props) {
                         >
                           <CheckoutBillingAddress
                             saveAddress={setBillingAddress}
-                            handleCloseShippingModal={handleCloseBillingModal}
+                            handleCloseBillingModal={handleCloseBillingModal}
                           />
                         </Box>
                       </Modal>
                     </Box>
+                  ) : (
+                    <Typography
+                      sx={{ fontSize: bodyTypographyStyles.defaultBold }}
+                    >
+                      {`${billingAddress.address1}, ${billingAddress.city}, ${billingAddress.province}, ${billingAddress.country}`}
+                    </Typography>
                   )}
                 </Box>
               )}

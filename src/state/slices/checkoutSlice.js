@@ -19,6 +19,8 @@ const initialState = {
       address1: "",
       province: "",
       country: "",
+      city: "",
+      company: "",
       zip: "",
     },
   },
