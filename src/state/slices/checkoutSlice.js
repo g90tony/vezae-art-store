@@ -29,8 +29,6 @@ const checkoutSlice = createSlice({
   initialState,
   reducers: {
     loadCheckout: (state, { payload }) => {
-      state.id = payload.checkoutID;
-
       state = payload;
 
       try {
