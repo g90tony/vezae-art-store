@@ -60,6 +60,7 @@ import PriceConverter from "./priceConverter";
 
 export default function CartCheckout(props) {
   const cartItems = useSelector((state) => state.cart.items);
+  const checkoutSessionID = useSelector((state) => state.checkout.id);
   const checkoutState = useSelector((state) => state.checkout);
   const selectedCurrency = useSelector(
     (state) => state.currencySelector.selectedCurrency
@@ -124,9 +125,17 @@ export default function CartCheckout(props) {
 
       const payload = {
         id: createdCheckout.id,
-        checkoutItemIds,
-        itemsSubTotal: createdCheckout.lineItemsSubtotalPrice,
-        tax: createdCheckout.totalTaxV2,
+        checkout: {
+          checkoutItemIds: checkoutItemIds,
+          itemsSubTotal: createdCheckout.lineItemsSubtotalPrice,
+          tax: createdCheckout.totalTaxV2,
+          shippingAddress: {
+            address1: "",
+            province: "",
+            country: "",
+            zip: "",
+          },
+        },
       };
 
       dispatch(loadCheckout(payload));
@@ -139,10 +148,10 @@ export default function CartCheckout(props) {
       response = await updateCheckoutSessionItems(
         checkoutIDs,
         checkoutState.checkout.checkoutItemIds,
-        checkoutState.id
+        checkoutSessionID
       );
     } catch (error) {
-      console.error("There was a problem creating the checkout session", error);
+      console.error("There was a problem updating the checkout session", error);
     }
 
     const updateCheckout = response.checkout;
@@ -156,7 +165,7 @@ export default function CartCheckout(props) {
       });
 
       const payload = {
-        id: updateCheckout.id,
+        id: checkoutState.id,
         firstName: checkoutState.firstName
           ? checkoutState.firstName
           : undefined,
@@ -194,9 +203,12 @@ export default function CartCheckout(props) {
       if (response) {
         const checkoutIds = response.checkoutIds;
 
-        type === "create"
-          ? getCheckoutSession(checkoutIds)
-          : updateCheckoutSession(checkoutIds);
+        if (type === "create") {
+          getCheckoutSession(checkoutIds);
+        }
+        if (type === "update") {
+          updateCheckoutSession(checkoutIds);
+        }
       }
     }
   }
@@ -226,7 +238,6 @@ export default function CartCheckout(props) {
     }
 
     if (response) {
-      console.log(response);
       dispatch(preparePayment(response.id));
     }
   }
@@ -365,7 +376,7 @@ export default function CartCheckout(props) {
       }
     }
 
-    if (checkoutState.checkout) {
+    if (checkoutState.checkout && checkoutState.checkout.shippingAddress) {
       setShippingAddress({
         address1: checkoutState.checkout.shippingAddress.address1,
         city: checkoutState.checkout.shippingAddress.city,
