@@ -144,11 +144,13 @@ export default function CartCheckout(props) {
   async function updateCheckoutSession(checkoutIDs) {
     let response;
 
+    console.log(checkoutState);
+
     try {
       response = await updateCheckoutSessionItems(
         checkoutIDs,
         checkoutState.checkout.checkoutItemIds,
-        checkoutSessionID
+        checkoutState.id
       );
     } catch (error) {
       console.error("There was a problem updating the checkout session", error);
@@ -160,22 +162,18 @@ export default function CartCheckout(props) {
       setTax(parseInt(updateCheckout.totalTaxV2.amount));
       setProductsTotal(parseInt(updateCheckout.lineItemsSubtotalPrice.amount));
 
-      const checkoutItemIds = updateCheckout.lineItems.edges.map((node) => {
-        return node.node.id;
-      });
+      // const checkoutItemIds = updateCheckout.lineItems.edges.map((node) => {
+      //   return node.node.id;
+      // });
 
       const payload = {
         id: checkoutState.id,
-        firstName: checkoutState.firstName
-          ? checkoutState.firstName
-          : undefined,
-        lastName: checkoutState.lastName ? checkoutState.lastName : undefined,
-        email: checkoutState.email ? checkoutState.email : undefined,
+        firstName: checkoutState.firstName,
+        lastName: checkoutState.lastName,
+        email: checkoutState.email,
         checkout: {
-          checkoutItemIds,
-          shippingAddress: checkoutState.checkout.shippingAddress
-            ? checkoutState.checkout.shippingAddress
-            : undefined,
+          checkoutItemIds: checkoutState.checkout.checkoutIDs,
+          shippingAddress: checkoutState.checkout.shippingAddress,
           itemsSubTotal: updateCheckout.lineItemsSubtotalPrice,
           tax: updateCheckout.totalTaxV2,
         },

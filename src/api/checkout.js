@@ -94,7 +94,7 @@ async function updateCheckoutSessionItems(
     }
 
     if (response.status === 200) {
-      return response.data.data.checkoutLineItemsAdd;
+      return response.data.result.checkoutLineItemsAdd;
     }
   }
 }
